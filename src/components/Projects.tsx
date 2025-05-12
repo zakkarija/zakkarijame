@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Project {
   title: string;
@@ -53,10 +54,13 @@ const Projects = () => {
             <div className="w-full md:w-1/2">
               {project.mediaType === 'image' ? (
                 <div className="relative aspect-video rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src={project.mediaUrl}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                    priority={index === 0}
                   />
                 </div>
               ) : (

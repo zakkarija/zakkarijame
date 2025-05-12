@@ -5,7 +5,7 @@ import { Geist } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Zakkarija Micallef",
-  description: "Zakkarija Micallef's Portfolio",
+  description: "Zakkarija Micallef&apos;s Portfolio",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
