@@ -17,7 +17,7 @@ const projects: Project[] = [
     description: "A full-stack web application built with Next.js and TypeScript. Features include real-time updates, user authentication, and a responsive design. The project demonstrates modern web development practices and scalable architecture.",
     githubUrl: "https://github.com/yourusername/project1",
     mediaType: "image",
-    mediaUrl: "https://example.com/project1-image.jpg",
+    mediaUrl: "https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxoeVEOc4TjWbHD43p9hvwdrISa5cyflZBmzJ1",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"]
   },
   {
@@ -25,7 +25,7 @@ const projects: Project[] = [
     description: "An AI-powered application that processes and analyzes data in real-time. Built with Python and TensorFlow, this project showcases machine learning integration in web applications.",
     githubUrl: "https://github.com/yourusername/project2",
     mediaType: "video",
-    mediaUrl: "https://www.youtube.com/embed/your-video-id",
+    mediaUrl: "https://www.youtube.com/embed/uZtqgU7XOds",
     technologies: ["Python", "TensorFlow", "React", "FastAPI"]
   },
   {
@@ -33,7 +33,7 @@ const projects: Project[] = [
     description: "A mobile-first e-commerce platform with advanced search capabilities and secure payment processing. Demonstrates expertise in building scalable and secure web applications.",
     githubUrl: "https://github.com/yourusername/project3",
     mediaType: "image",
-    mediaUrl: "https://example.com/project3-image.jpg",
+    mediaUrl: "https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxoeVEOc4TjWbHD43p9hvwdrISa5cyflZBmzJ1",
     technologies: ["React Native", "Node.js", "MongoDB", "Stripe"]
   }
 ];

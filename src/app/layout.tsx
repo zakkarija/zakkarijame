@@ -5,8 +5,24 @@ import { Geist } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Zakkarija Micallef",
-  description: "Zakkarija Micallef&apos;s Portfolio",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  description: "Zakkarija Micallef's Portfolio",
+  icons: {
+    icon: [
+      {
+        url: '/favicon.ico?v=2',
+        sizes: 'any',
+        type: 'image/x-icon',
+      },
+    ],
+    shortcut: ['/favicon.ico?v=2'],
+    apple: [
+      {
+        url: '/favicon.ico?v=2',
+        sizes: 'any',
+        type: 'image/x-icon',
+      },
+    ],
+  },
 };
 
 const geist = Geist({
