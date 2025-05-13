@@ -13,6 +13,16 @@ const config = {
         hostname: 'nakv6s9tvu.ufs.sh',
         pathname: '/f/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.svgporn.com',
+        pathname: '/logos/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'svgl.app',
+        pathname: '/library/**',
+      },
     ],
   },
 };
