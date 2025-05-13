@@ -40,8 +40,8 @@ const projects: Project[] = [
       { name: "GitHub", url: "https://github.com/zakmic/zakkarijame" }
     ],
     mediaType: "image",
-    mediaUrl: "https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxoeVEOc4TjWbHD43p9hvwdrISa5cyflZBmzJ1",
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vercel"]
+    mediaUrl: "https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxZlvTIZEHcSpFhLO2yE4VbsldnG790ajWvtDX",
+    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Vercel Analytics"]
   }
 ];
 
