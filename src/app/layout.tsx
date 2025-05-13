@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 import Background from "~/components/Background";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Zakkarija Micallef",
@@ -39,6 +40,7 @@ export default function RootLayout({
       <body>
         <Background />
         {children}
+        <Analytics />
       </body>
     </html>
   );
