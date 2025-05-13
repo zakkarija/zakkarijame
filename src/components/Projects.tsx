@@ -5,7 +5,7 @@ import Image from 'next/image';
 interface Project {
   title: string;
   description: string;
-  githubUrl: string;
+  links: { name: string, url: string }[];
   mediaType: 'image' | 'video';
   mediaUrl: string;
   technologies: string[];
@@ -13,28 +13,35 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Project 1",
-    description: "A full-stack web application built with Next.js and TypeScript. Features include real-time updates, user authentication, and a responsive design. The project demonstrates modern web development practices and scalable architecture.",
-    githubUrl: "https://github.com/yourusername/project1",
+    title: "Saliency-Directed Product Placement",
+    description: "I developed a computer vision system that predicts which products in a scene will attract customer attention first. The system uses visual saliency (how certain objects naturally stand out due to contrast, color, or orientation) to objectively rank products based on their attention-grabbing potential. The tool combines state-of-the-art object detection with a novel saliency segment ranking algorithm, achieving a 0.66 correlation coefficient when compared with human attention patterns. This modular system allows marketers to optimize product placement for maximum visual impact before expensive physical implementations.",
+    links: [
+      { name: "Report", url: "https://www.um.edu.mt/library/oar/handle/123456789/92203" },
+      { name: "GitHub", url: "https://github.com/zakmic/Sal_Object_Rank" }
+    ],
     mediaType: "image",
     mediaUrl: "https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxoeVEOc4TjWbHD43p9hvwdrISa5cyflZBmzJ1",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"]
+    technologies: ["Python", "OpenCV", "Mask R-CNN", "Supervisely", "Saliency Detection"]
   },
   {
-    title: "Project 2",
-    description: "An AI-powered application that processes and analyzes data in real-time. Built with Python and TensorFlow, this project showcases machine learning integration in web applications.",
-    githubUrl: "https://github.com/yourusername/project2",
+    title: "Unity Game Development",
+    description: "Throughout my university courses and hackathons, I developed several games with Unity. The highlight was a 2-player platformer created during a 48-hour hackathon that won 2nd place and resulted in an internship offer. Other projects include a roguelike with procedurally generated maps (shown on the right) and an idle game. Each project helped me explore different aspects of game development, from path finding to procedural content generation.",
+    links: [
+      { name: "GitHub", url: "https://github.com/zakmic/ProjectBen" }
+    ],
     mediaType: "video",
     mediaUrl: "https://www.youtube.com/embed/uZtqgU7XOds",
-    technologies: ["Python", "TensorFlow", "React", "FastAPI"]
+    technologies: ["Unity", "C#", "Game Design", "Procedural Generation", "2D Animations"]
   },
   {
-    title: "Project 3",
-    description: "A mobile-first e-commerce platform with advanced search capabilities and secure payment processing. Demonstrates expertise in building scalable and secure web applications.",
-    githubUrl: "https://github.com/yourusername/project3",
+    title: "Personal Portfolio Website",
+    description: "This very website you're browsing! I built this portfolio as a project to learn modern web development, particularly React and Next.js. The site is deployed using Vercel for seamless continuous deployment from GitHub.",
+    links: [
+      { name: "GitHub", url: "https://github.com/zakmic/zakkarijame" }
+    ],
     mediaType: "image",
     mediaUrl: "https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxoeVEOc4TjWbHD43p9hvwdrISa5cyflZBmzJ1",
-    technologies: ["React Native", "Node.js", "MongoDB", "Stripe"]
+    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vercel"]
   }
 ];
 
@@ -92,14 +99,19 @@ const Projects = () => {
                   </span>
                 ))}
               </div>
-              <Link
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-4 text-blue-400 hover:text-blue-300 transition-colors"
-              >
-                View on GitHub →
-              </Link>
+              <div className="flex flex-wrap gap-4 mt-4">
+                {project.links.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-purple-400 hover:text-purple-300 transition-colors"
+                  >
+                    {link.name} →
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         ))}

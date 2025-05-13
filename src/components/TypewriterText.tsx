@@ -18,15 +18,19 @@ const TypewriterText = () => {
   "University of Amsterdam and VU Amsterdam. When I am not coding or studying, you " +
   "will find me experimenting with new tools, AI models, Linux distros, game mods, or " +
   "any other digital gadget that crosses my desk.";
-  
+
   return (
-    <div className="text-lg text-gray-300 leading-relaxed min-h-[200px]">
+    <div className="text-base text-gray-200 leading-relaxed font-mono">
       <Typewriter
         onInit={(typewriter) => {
           typewriter
-            .changeDelay(20)
+            .changeDelay(5) // Faster typing for terminal feel
             .typeString(fullText)
             .start();
+        }}
+        options={{
+          cursor: '█', // Block cursor like a terminal
+          delay: 5,
         }}
       />
     </div>
