@@ -7,7 +7,7 @@ const CV = () => {
       {/* <h2 className="section-title">Resume</h2> */}
       <div className="glass-panel p-4 md:p-6 flex justify-center">
         <Link
-          href="https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxrynFw6mVJlBOpKxtrTG8Sy0FIw2RzdLigknq"
+          href="https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxFrJxnzloSTyxlprH2uYjFkveD6Wc8qMBNzGC"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-md transition-all subtle-reveal shadow-md"

@@ -24,7 +24,7 @@ const Hero = () => {
             {/* CV download button */}
             <div className="flex flex-col md:flex-row items-center gap-4">
               <Link
-                href="https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxrynFw6mVJlBOpKxtrTG8Sy0FIw2RzdLigknq"
+                href="https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxFrJxnzloSTyxlprH2uYjFkveD6Wc8qMBNzGC"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-5 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-md transition-all shadow-lg hover:shadow-purple-500/20 subtle-reveal"
