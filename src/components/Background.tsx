@@ -18,9 +18,9 @@ const Background = () => {
         gyroControls: false,
         minHeight: 200.00,
         minWidth: 200.00,
-        baseColor: 0x2e026d,
-        backgroundColor: 0x15162c,
-        amplitudeFactor: 1.5,
+        baseColor: 0x4c1d95,
+        backgroundColor: 0x0f172a,
+        amplitudeFactor: 1.2,
         size: 1.50
       });
     }
@@ -36,7 +36,7 @@ const Background = () => {
     <>
       <div ref={vantaRef} className="fixed inset-0 -z-10"></div>
       
-      <div className="fixed inset-0 -z-10 bg-black/25 backdrop-blur-[25px] pointer-events-none"></div>
+      <div className="fixed inset-0 -z-10 bg-purple-950/20 backdrop-blur-[45px] pointer-events-none"></div>
     </>
   );
 };

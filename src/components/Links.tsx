@@ -4,7 +4,7 @@ import Link from 'next/link';
 const Links = () => {
   return (
     <section className="max-w-2xl mx-auto px-4 py-16">
-      <h2 className="text-3xl font-bold mb-8 text-center">Connect With Me</h2>
+      <h2 className="text-3xl font-bold mb-8 text-center">Contact</h2>
       <div className="flex flex-wrap justify-center gap-8">
         <Link 
           href="https://github.com/zakmic" 

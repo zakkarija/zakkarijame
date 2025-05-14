@@ -1,38 +1,135 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Typewriter from 'typewriter-effect';
 
+// Extending the Options type to include the html property
+interface ExtendedTypewriterOptions {
+  cursor?: string;
+  delay?: number;
+  deleteSpeed?: number;
+  loop?: boolean;
+  autoStart?: boolean;
+  devMode?: boolean;
+  wrapperClassName?: string;
+  cursorClassName?: string;
+  html?: boolean;
+}
+
 const TypewriterText = () => {
-  // TODO Update this text
-  // Hello! My name is Zak Micallef. I am a software developer with a lot of general intrests such as infrastructure, CI/CD, high availability, and distributed systems. I hold a Bachelor's degree in Artificial Intelligence from the University of Malta while interning at CCBill, which laid a solid academic foundation for my career. With two years of full-time experience at PhoenixNap, an IaaS company, I have gained extensive hands-on experience in leading features and working with technologies such as Spring Boot, NoSQL, and Kubernetes. Currently, I am pursuing a Master's degree in Computer Science at the University of Amsterdam while continuing to work part-time as a Java Engineer at PhoenixNap.
-  const fullText = 
-  "Hey, I am Zak Micallef, a software developer with a broad interest in cloud " +
-  "infrastructure, CI/CD, software architecture, and distributed systems. I earned " +
-  "a Bachelor's degree in Artificial Intelligence from the University of Malta, where " +
-  "an internship at CCBill introduced me to production grade software. I then spent " +
-  "two years at PhoenixNAP, a bare metal cloud provider, championing projects such as " +
-  "automated RAID configuration, custom operating system images, and an internal " +
-  "provisioning tool built with Spring Boot. I now juggle a part time role as a Java " +
-  "engineer at PhoenixNAP while pursuing a Master's in Computer Science at the " +
-  "University of Amsterdam and VU Amsterdam. When I am not coding or studying, you " +
-  "will find me experimenting with new tools, AI models, Linux distros, game mods, or " +
-  "any other digital gadget that crosses my desk.";
+  const [typingStage, setTypingStage] = useState<'typing_first' | 'awaiting_continue' | 'typing_remaining' | 'complete'>('typing_first');
+  const continueButtonRef = useRef<HTMLButtonElement>(null);
+  
+  // First paragraph - typed first
+  const firstParagraph = "Hey, I am Zak Micallef, <span class='text-purple-300 font-semibold'>based in Amsterdam</span> 🌷. I'm currently pursuing a <span class='gradient-text font-semibold'>Master's in Computer Science</span> 🎓 at the <span class='text-purple-300 font-semibold'>University of Amsterdam and VU Amsterdam</span> while working part-time as a <span class='gradient-text font-semibold'>Java Engineer</span> ☕ at <span class='text-purple-300 font-semibold'>PhoenixNAP</span>.";
+  
+  // Remaining paragraphs - typed after clicking continue
+  const remainingParagraphs = 
+    "I earned a <span class='gradient-text font-semibold'>Bachelor's degree in Artificial Intelligence</span> 🤖 from the <span class='text-purple-300 font-semibold'>University of Malta</span>, where an internship at CCBill introduced me to production grade software. I then spent two years at PhoenixNAP, a <span class='gradient-text font-semibold'>bare metal cloud provider</span> ☁️, championing projects such as <span class='text-purple-300 font-semibold'>automated RAID configuration</span>, <span class='text-purple-300 font-semibold'>custom operating system images</span>, and an <span class='text-purple-300 font-semibold'>internal provisioning tool</span> built with <span class='gradient-text font-semibold'>Spring Boot</span>.<br/><br/>" +
+    "My professional interests include <span class='gradient-text font-semibold'>cloud infrastructure</span> ☁️, <span class='gradient-text font-semibold'>CI/CD</span> 🔄, <span class='gradient-text font-semibold'>software architecture</span> 🏗️, and <span class='gradient-text font-semibold'>distributed systems</span> 🌐. When I'm not coding 💻 or studying, you'll find me experimenting with <span class='text-purple-300 font-semibold'>new tools</span> 🛠️, <span class='text-purple-300 font-semibold'>AI models</span> 🧠, <span class='text-purple-300 font-semibold'>Linux distros</span> 🐧, <span class='text-purple-300 font-semibold'>game mods</span> 🎮, or any other digital gadget that crosses my desk.";
+  
+  // All content for the complete view
+  const fullContent = `${firstParagraph}<br/><br/>${remainingParagraphs}`;
+
+  // Handle keyboard events for continuing with Enter key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' && typingStage === 'awaiting_continue') {
+        setTypingStage('typing_remaining');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [typingStage]);
+
+  // Focus the continue button when it appears
+  useEffect(() => {
+    if (typingStage === 'awaiting_continue' && continueButtonRef.current) {
+      continueButtonRef.current.focus();
+    }
+  }, [typingStage]);
 
   return (
-    <div className="text-base text-gray-200 leading-relaxed font-mono">
-      <Typewriter
-        onInit={(typewriter) => {
-          typewriter
-            .changeDelay(5) // Faster typing for terminal feel
-            .typeString(fullText)
-            .start();
-        }}
-        options={{
-          cursor: '█', // Block cursor like a terminal
-          delay: 5,
-        }}
-      />
+    <div className="text-base md:text-lg text-gray-200 leading-relaxed font-mono tracking-tight typewriter-content">
+      {typingStage === 'typing_first' && (
+        <Typewriter
+          onInit={(typewriter) => {
+            typewriter
+              .changeDelay(5)
+              .callFunction(() => {
+                document.querySelector('.Typewriter__cursor')?.classList.add('animate-pulse');
+              })
+              .typeString(firstParagraph)
+              .callFunction(() => {
+                setTypingStage('awaiting_continue');
+              })
+              .start();
+          }}
+          options={{
+            cursor: '█',
+            delay: 5,
+            deleteSpeed: 10,
+            wrapperClassName: "typewriter-wrapper",
+            cursorClassName: "typewriter-cursor",
+            html: true,
+          } as ExtendedTypewriterOptions}
+        />
+      )}
+      
+      {typingStage === 'awaiting_continue' && (
+        <>
+          <div dangerouslySetInnerHTML={{ __html: firstParagraph }} />
+          <div className="mt-4 flex items-center">
+            <span className="text-green-400 mr-2">$</span>
+            <button 
+              ref={continueButtonRef}
+              onClick={() => setTypingStage('typing_remaining')}
+              className="bg-transparent border border-gray-700 px-3 py-1 text-gray-300 hover:text-white hover:bg-gray-800/50 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors rounded-sm text-sm font-mono"
+            >
+              continue --more
+            </button>
+            <span className="ml-2 text-gray-500 text-sm">[Press Enter]</span>
+          </div>
+        </>
+      )}
+
+      {typingStage === 'typing_remaining' && (
+        <>
+          <div dangerouslySetInnerHTML={{ __html: firstParagraph }} />
+          <div className="mt-6">
+            <Typewriter
+              onInit={(typewriter) => {
+                typewriter
+                  .changeDelay(5)
+                  .callFunction(() => {
+                    document.querySelector('.Typewriter__cursor')?.classList.add('animate-pulse');
+                  })
+                  .typeString("<br/><br/>")
+                  .typeString(remainingParagraphs)
+                  .callFunction(() => {
+                    setTypingStage('complete');
+                  })
+                  .start();
+              }}
+              options={{
+                cursor: '█',
+                delay: 5,
+                deleteSpeed: 10,
+                wrapperClassName: "typewriter-wrapper",
+                cursorClassName: "typewriter-cursor",
+                html: true,
+              } as ExtendedTypewriterOptions}
+            />
+          </div>
+        </>
+      )}
+
+      {typingStage === 'complete' && (
+        <div dangerouslySetInnerHTML={{ __html: fullContent }} />
+      )}
     </div>
   );
 };

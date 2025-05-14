@@ -47,76 +47,84 @@ const projects: Project[] = [
 
 const Projects = () => {
   return (
-    <section className="max-w-6xl mx-auto px-4 py-16">
-      <h2 className="text-3xl font-bold mb-12 text-center">Projects</h2>
-      <div className="space-y-24">
-        {projects.map((project, index) => (
-          <div 
-            key={project.title}
-            className={`flex flex-col ${
-              index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-            } gap-8 items-center`}
-          >
-            {/* Media Section */}
-            <div className="w-full md:w-1/2">
-              {project.mediaType === 'image' ? (
-                <div className="relative aspect-video rounded-lg overflow-hidden">
-                  <Image
-                    src={project.mediaUrl}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                    priority={index === 0}
-                  />
-                </div>
-              ) : (
-                <div className="relative aspect-video rounded-lg overflow-hidden">
-                  <iframe
-                    src={project.mediaUrl}
-                    title={project.title}
-                    className="absolute top-0 left-0 w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              )}
-            </div>
+    <div className="max-w-6xl mx-auto">
+      <h2 className="section-title">Projects</h2>
+      
+      <div className="glass-panel glass-panel-hover p-6 md:p-10">
+        <div className="space-y-20 md:space-y-32">
+          {projects.map((project, index) => (
+            <div 
+              key={project.title}
+              className={`flex flex-col ${
+                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+              } gap-8 md:gap-12 items-center`}
+            >
+              {/* Media Section */}
+              <div className="w-full md:w-1/2">
+                {project.mediaType === 'image' ? (
+                  <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl transition-transform hover:scale-[1.02] duration-300">
+                    <Image
+                      src={project.mediaUrl}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                      priority={index === 0}
+                    />
+                  </div>
+                ) : (
+                  <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
+                    <iframe
+                      src={project.mediaUrl}
+                      title={project.title}
+                      className="absolute top-0 left-0 w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                )}
+              </div>
 
-            {/* Content Section */}
-            <div className="w-full md:w-1/2 space-y-4">
-              <h3 className="text-2xl font-semibold">{project.title}</h3>
-              <p className="text-gray-300 leading-relaxed">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 bg-gray-800 rounded-full text-sm"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div className="flex flex-wrap gap-4 mt-4">
-                {project.links.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-purple-400 hover:text-purple-300 transition-colors"
-                  >
-                    {link.name} →
-                  </Link>
-                ))}
+              {/* Content Section */}
+              <div className="w-full md:w-1/2 space-y-5">
+                <h3 className="text-2xl md:text-3xl font-semibold gradient-text">
+                  {project.title}
+                </h3>
+                <p className="text-gray-300 leading-relaxed text-base md:text-lg">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-purple-950/50 border border-purple-800/30 rounded-full text-sm text-purple-200"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-6 pt-2">
+                  {project.links.map((link) => (
+                    <Link
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors group"
+                    >
+                      <span>{link.name}</span>
+                      <svg className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -8,3 +8,108 @@
 html, body {
   background: transparent;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Timeline styles */
+.shadow-glow {
+  box-shadow: 0 0 15px 2px rgba(168, 85, 247, 0.5);
+}
+
+/* Glassmorphism and shared component styles */
+@layer components {
+  .glass-panel {
+    @apply bg-black/40 backdrop-blur-xl rounded-xl shadow-2xl border border-white/10 transition-all duration-300;
+    /* @apply bg-purple-900/30 backdrop-blur-xl rounded-xl shadow-2xl border border-purple-500/10 transition-all duration-300; */
+  }
+  
+  .glass-panel-hover {
+    @apply hover:border-purple-500/20 hover:shadow-purple-500/10;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-4 text-center;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-purple-500;
+  }
+  
+  .section-container {
+    @apply py-16 max-w-6xl mx-auto;
+  }
+  
+  .subtle-reveal {
+    @apply transition-all duration-300 hover:translate-y-[-2px];
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improved animation for section transitions */
+.section-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.section-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Typewriter styling */
+.typewriter-wrapper {
+  display: inline;
+}
+
+.typewriter-cursor {
+  font-weight: bold;
+}
+
+/* Fix gradient text in spans */
+span.gradient-text {
+  display: inline-block;
+}
+
+/* Typewriter content styling */
+.typewriter-content {
+  white-space: pre-line;
+}
+
+.typewriter-content br {
+  display: block;
+  content: "";
+  margin-top: 1rem;
+}
+
+/* Ensure proper spacing between paragraphs in typewriter content */
+.Typewriter__wrapper br + br {
+  margin-top: 0 !important;
+}
+
+/* Skill item hover effects */
+.glass-panel {
+  transition: all 0.3s ease;
+}
+
+.glass-panel:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(91, 33, 182, 0.4);  */
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+  transform: translateY(-4px);
+}

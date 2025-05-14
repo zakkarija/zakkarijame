@@ -23,6 +23,16 @@ const config = {
         hostname: 'svgl.app',
         pathname: '/library/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.simpleicons.org',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.svgrepo.com',
+        pathname: '/show/**',
+      },
     ],
   },
 };
