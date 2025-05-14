@@ -46,7 +46,7 @@ const skillCategories = [
 
 // Get category by index safely
 const getCategory = (index: number) => {
-  return skillCategories[index] || { name: '', skills: [] };
+  return skillCategories[index] ?? { name: '', skills: [] };
 };
 
 const SkillItem = ({ name, icon }: { name: string; icon: string }) => (
