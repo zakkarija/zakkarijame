@@ -43,24 +43,28 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 const Timeline = () => {
   const timelineItems = [
     {
+      id: "msc-cs",
       year: "2023 - Present",
       title: "M.Sc Computer Science",
       subtitle: "VU Amsterdam & University of Amsterdam",
       description: "Currently pursuing a Master's degree while working part-time as a Java engineer at PhoenixNAP. Focusing on advanced topics in distributed systems, cloud computing, and software architecture."
     },
     {
+      id: "phoenixnap",
       year: "2021 - Present",
       title: "Software Engineer",
       subtitle: "PhoenixNAP",
       description: "Worked as a full-time Java engineer at this bare metal cloud provider, developing automation systems and internal tools. Led projects including automated RAID configuration, custom OS image creation, and internal provisioning tools built with Spring Boot."
     },
     {
+      id: "ccbill",
       year: "2018 - 2021",
       title: "Software Engineer Intern",
       subtitle: "CCBill",
       description: "Developed and maintained an internal employee management tool as part of a small intern team, handling the full stack including frontend, backend, database, deployment, and support. Collaborated with Product Owners to prioritise sprint tasks and gained practical experience with Java, Spring, Maven, SQL, and JavaScript."
     },
     {
+      id: "bsc-ai",
       year: "2018 - 2021",
       title: "B.Sc Artificial Intelligence",
       subtitle: "University of Malta",
@@ -75,7 +79,7 @@ const Timeline = () => {
       <div className="glass-panel glass-panel-hover p-6 md:p-10">
         {timelineItems.map((item, index) => (
           <TimelineItem 
-            key={item.year}
+            key={item.id}
             year={item.year}
             title={item.title}
             subtitle={item.subtitle}
