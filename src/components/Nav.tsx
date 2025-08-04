@@ -42,7 +42,7 @@ const Nav = () => {
           <div className="flex items-center">
             <Link 
               href="/" 
-              className="text-white text-xl font-bold bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent hover:from-cyan-200 hover:to-white transition-all duration-300 nav-link-hover"
+              className="text-white text-xl font-bold bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent hover:from-cyan-200 hover:to-white transition-all duration-300"
             >
               Z.M
             </Link>
@@ -53,7 +53,7 @@ const Nav = () => {
               <a 
                 href="#about" 
                 onClick={scrollToSection('about')}
-                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group nav-link-hover"
+                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group"
               >
                 About Me
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
@@ -62,7 +62,7 @@ const Nav = () => {
               <a 
                 href="#skills" 
                 onClick={scrollToSection('skills')}
-                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group nav-link-hover"
+                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group"
               >
                 Skills
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
@@ -71,7 +71,7 @@ const Nav = () => {
               <a 
                 href="#timeline" 
                 onClick={scrollToSection('timeline')}
-                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group nav-link-hover"
+                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group"
               >
                 Timeline
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
@@ -80,7 +80,7 @@ const Nav = () => {
               <a 
                 href="#projects" 
                 onClick={scrollToSection('projects')}
-                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group nav-link-hover"
+                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group"
               >
                 Projects
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
@@ -89,7 +89,7 @@ const Nav = () => {
               <a 
                 href="#contact" 
                 onClick={scrollToSection('contact')}
-                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group nav-link-hover"
+                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group"
               >
                 Contact
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
