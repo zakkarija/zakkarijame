@@ -16,25 +16,27 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
   isLast = false 
 }) => {
   return (
-    <div className="flex mb-12 last:mb-0 group">
-      {/* Year Column */}
-      <div className="w-32 flex-shrink-0 text-right pr-8">
-        <div className="text-purple-400 font-semibold transition-all group-hover:text-purple-300">{year}</div>
+    <div className="flex flex-col sm:flex-row mb-12 last:mb-0 group">
+      {/* Year Column - Responsive */}
+      <div className="w-full sm:w-24 lg:w-32 flex-shrink-0 mb-4 sm:mb-0 sm:text-right sm:pr-6 lg:pr-8">
+        <div className="text-cyan-400 font-semibold transition-all group-hover:text-cyan-300 text-sm sm:text-base">
+          {year}
+        </div>
       </div>
       
-      {/* Timeline Line */}
-      <div className="relative flex flex-col items-center mr-6">
-        <div className="rounded-full h-5 w-5 bg-purple-500 shadow-glow z-10 transition-all duration-300 group-hover:scale-110 group-hover:bg-purple-400"></div>
+      {/* Timeline Line - Hidden on mobile, visible on larger screens */}
+      <div className="hidden sm:flex relative flex-col items-center mr-6">
+        <div className="rounded-full h-5 w-5 bg-cyan-500 shadow-glow z-10 transition-all duration-300 group-hover:scale-110 group-hover:bg-cyan-400"></div>
         {!isLast && (
-          <div className="h-full w-px bg-gradient-to-b from-purple-500 via-purple-700 to-purple-900 absolute top-5 opacity-70"></div>
+          <div className="h-full w-px bg-gradient-to-b from-cyan-500 via-cyan-700 to-cyan-900 absolute top-5 opacity-70"></div>
         )}
       </div>
       
       {/* Content Column */}
       <div className="flex-grow pt-1">
-        <h3 className="text-xl md:text-2xl font-semibold text-white mb-2 transition-all group-hover:translate-x-1">{title}</h3>
-        <div className="text-purple-300 font-medium mb-3">{subtitle}</div>
-        <p className="text-gray-300 text-sm md:text-base leading-relaxed">{description}</p>
+        <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-white mb-2 transition-all group-hover:translate-x-1">{title}</h3>
+        <div className="text-cyan-300 font-medium mb-3 text-sm sm:text-base">{subtitle}</div>
+        <p className="text-gray-300 text-sm sm:text-base leading-relaxed">{description}</p>
       </div>
     </div>
   );
@@ -76,7 +78,7 @@ const Timeline = () => {
     <div className="max-w-5xl mx-auto">
       <h2 className="section-title">Education & Experience</h2>
       
-      <div className="glass-panel glass-panel-hover p-6 md:p-10">
+      <div className="glass-panel glass-panel-hover p-4 sm:p-6 md:p-10">
         {timelineItems.map((item, index) => (
           <TimelineItem 
             key={item.id}

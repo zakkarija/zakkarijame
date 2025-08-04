@@ -23,18 +23,17 @@ html, body {
 
 /* Timeline styles */
 .shadow-glow {
-  box-shadow: 0 0 15px 2px rgba(168, 85, 247, 0.5);
+  box-shadow: 0 0 15px 2px rgba(6, 182, 212, 0.5);
 }
 
 /* Glassmorphism and shared component styles */
 @layer components {
   .glass-panel {
     @apply bg-black/40 backdrop-blur-xl rounded-xl shadow-2xl border border-white/10 transition-all duration-300;
-    /* @apply bg-purple-900/30 backdrop-blur-xl rounded-xl shadow-2xl border border-purple-500/10 transition-all duration-300; */
   }
   
   .glass-panel-hover {
-    @apply hover:border-purple-500/20 hover:shadow-purple-500/10;
+    @apply hover:border-cyan-500/20 hover:shadow-cyan-500/10;
   }
   
   .section-title {
@@ -42,7 +41,7 @@ html, body {
   }
   
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-purple-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-cyan-500;
   }
   
   .section-container {
@@ -108,8 +107,44 @@ span.gradient-text {
 
 .glass-panel:hover {
   background-color: rgba(0, 0, 0, 0.5);
-  /* background-color: rgba(91, 33, 182, 0.4);  */
-  border-color: rgba(168, 85, 247, 0.3);
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+  border-color: rgba(6, 182, 212, 0.3);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
   transform: translateY(-4px);
+}
+
+/* Navigation bar animations */
+@keyframes navFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-fade-in {
+  animation: navFadeIn 0.5s ease-out;
+}
+
+/* Subtle hover animations for nav links */
+.nav-link-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.nav-link-hover:hover::before {
+  left: 100%;
 }

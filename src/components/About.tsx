@@ -7,7 +7,7 @@ const About = () => {
   return (
     <div className="max-w-4xl mx-auto">
       {/* Terminal Window */}
-      <div className="bg-gray-900/90 rounded-lg overflow-hidden border border-gray-700 shadow-xl subtle-reveal hover:shadow-purple-900/20 hover:shadow-2xl">
+      <div className="bg-gray-900/90 rounded-lg overflow-hidden border border-gray-700 shadow-xl subtle-reveal hover:shadow-cyan-900/20 hover:shadow-2xl">
         {/* Terminal Header */}
         <div className="bg-gray-800/90 px-4 py-3 flex items-center border-b border-gray-700">
           <div className="flex space-x-2">
@@ -22,8 +22,8 @@ const About = () => {
         <div className="p-4 md:p-6 font-mono text-gray-100">
           <div className="flex items-center mb-3">
             <span className="text-green-400 mr-2">$</span>
-            <span className="text-blue-400 mr-2">cat</span>
-            <span className="text-purple-400">about_me.txt</span>
+            <span className="text-cyan-400 mr-2">cat</span>
+            <span className="text-cyan-300">about_me.txt</span>
           </div>
           <div className="mt-3">
             <TypewriterText />

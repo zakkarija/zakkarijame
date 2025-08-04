@@ -6,17 +6,17 @@ const Hero = () => {
     <section className="py-6 md:py-8">
       <div className="glass-panel p-6 md:p-8 relative overflow-hidden">
         {/* Background gradient effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20 z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/20 to-blue-900/20 z-0"></div>
         
         <div className="relative z-10">
           {/* Main content */}
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             {/* Name and title */}
             <div className="text-center lg:text-left">
-              <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-200">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-cyan-200">
                 Zakkarija Micallef
               </h1>
-              <h2 className="text-xl md:text-2xl text-purple-200 font-light">
+              <h2 className="text-lg sm:text-xl md:text-2xl text-cyan-200 font-light">
                 Software Engineer <span className="hidden sm:inline">|</span><br className="sm:hidden" /> Amsterdam, Netherlands
               </h2>
             </div>
@@ -27,7 +27,7 @@ const Hero = () => {
                 href="https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxFrJxnzloSTyxlprH2uYjFkveD6Wc8qMBNzGC"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-5 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-md transition-all shadow-lg hover:shadow-purple-500/20 subtle-reveal"
+                className="inline-flex items-center px-5 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white rounded-md transition-all shadow-lg hover:shadow-cyan-500/20 subtle-reveal"
               >
                 <svg
                   className="w-5 h-5 mr-2"

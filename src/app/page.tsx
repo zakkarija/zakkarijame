@@ -37,25 +37,25 @@ export default function HomePage() {
     <div className="min-h-screen">
       <Nav />
       
-      {/* Main content with consistent padding and section spacing */}
-      <main className="max-w-6xl mx-auto px-6 md:px-10 pt-20 text-white">
+      {/* Main content with improved mobile padding and section spacing */}
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 pt-20 text-white">
         <section id="hero" className="py-4">
           <Hero />
         </section>
         
-        <section id="about" className="py-4 scroll-mt-24 section-fade-in">
+        <section id="about" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">
           <About />
         </section>
         
-        <section id="skills" className="py-12 scroll-mt-24 section-fade-in">
+        <section id="skills" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">
           <Skills />
         </section>
         
-        <section id="timeline" className="py-12 scroll-mt-24 section-fade-in">
+        <section id="timeline" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">
           <Timeline />
         </section>
         
-        <section id="projects" className="py-12 scroll-mt-24 section-fade-in">
+        <section id="projects" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">
           <Projects />
         </section>
         

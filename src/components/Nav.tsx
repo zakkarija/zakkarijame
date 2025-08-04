@@ -31,9 +31,9 @@ const Nav = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 nav-fade-in ${
         isScrolled 
-          ? 'bg-black/60 backdrop-blur-md shadow-lg' 
+          ? 'bg-black/70 backdrop-blur-xl shadow-2xl border-b border-cyan-500/20' 
           : 'bg-transparent'
       }`}
     >
@@ -42,7 +42,7 @@ const Nav = () => {
           <div className="flex items-center">
             <Link 
               href="/" 
-              className="text-white text-xl font-bold"
+              className="text-white text-xl font-bold bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent hover:from-cyan-200 hover:to-white transition-all duration-300 nav-link-hover"
             >
               Z.M
             </Link>
@@ -53,50 +53,56 @@ const Nav = () => {
               <a 
                 href="#about" 
                 onClick={scrollToSection('about')}
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group nav-link-hover"
               >
                 About Me
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
               </a>
               
               <a 
                 href="#skills" 
                 onClick={scrollToSection('skills')}
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group nav-link-hover"
               >
                 Skills
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
               </a>
               
               <a 
                 href="#timeline" 
                 onClick={scrollToSection('timeline')}
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group nav-link-hover"
               >
                 Timeline
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
               </a>
               
               <a 
                 href="#projects" 
                 onClick={scrollToSection('projects')}
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group nav-link-hover"
               >
                 Projects
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
               </a>
               
               <a 
                 href="#contact" 
                 onClick={scrollToSection('contact')}
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group nav-link-hover"
               >
                 Contact
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
               </a>
             </div>
           </div>
           
-          {/* Mobile menu button - only visible on small screens */}
+          {/* Mobile menu button - improved touch target */}
           <div className="md:hidden flex items-center">
             <button 
-              className="text-gray-300 hover:text-white focus:outline-none"
+              className="text-gray-300 hover:text-cyan-300 focus:outline-none p-2 -m-2 transition-all duration-300"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle mobile menu"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path 
@@ -113,11 +119,11 @@ const Nav = () => {
         {/* Mobile menu, show/hide based on menu state */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/80 backdrop-blur-md rounded-lg mt-2">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/90 backdrop-blur-xl rounded-lg mt-2 border border-cyan-500/20">
               <a 
                 href="#about" 
                 onClick={scrollToSection('about')}
-                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base"
+                className="text-gray-300 hover:text-cyan-300 block px-3 py-3 rounded-md text-base transition-all duration-300"
               >
                 About
               </a>
@@ -125,7 +131,7 @@ const Nav = () => {
               <a 
                 href="#skills" 
                 onClick={scrollToSection('skills')}
-                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base"
+                className="text-gray-300 hover:text-cyan-300 block px-3 py-3 rounded-md text-base transition-all duration-300"
               >
                 Skills
               </a>
@@ -133,7 +139,7 @@ const Nav = () => {
               <a 
                 href="#timeline" 
                 onClick={scrollToSection('timeline')}
-                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base"
+                className="text-gray-300 hover:text-cyan-300 block px-3 py-3 rounded-md text-base transition-all duration-300"
               >
                 Timeline
               </a>
@@ -141,7 +147,7 @@ const Nav = () => {
               <a 
                 href="#projects" 
                 onClick={scrollToSection('projects')}
-                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base"
+                className="text-gray-300 hover:text-cyan-300 block px-3 py-3 rounded-md text-base transition-all duration-300"
               >
                 Projects
               </a>
@@ -149,7 +155,7 @@ const Nav = () => {
               <a 
                 href="#contact" 
                 onClick={scrollToSection('contact')}
-                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base"
+                className="text-gray-300 hover:text-cyan-300 block px-3 py-3 rounded-md text-base transition-all duration-300"
               >
                 Contact
               </a>

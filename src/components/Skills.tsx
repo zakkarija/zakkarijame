@@ -50,8 +50,8 @@ const getCategory = (index: number) => {
 };
 
 const SkillItem = ({ name, icon }: { name: string; icon: string }) => (
-  <div className="flex flex-col items-center gap-2 group w-20">
-    <div className="relative w-10 h-10 md:w-12 md:h-12 transition-transform transform group-hover:scale-110">
+  <div className="flex flex-col items-center gap-2 group w-24 sm:w-20 md:w-24">
+    <div className="relative w-12 h-12 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform transform group-hover:scale-110">
       <Image
         src={icon}
         alt={`${name} logo`}
@@ -59,7 +59,7 @@ const SkillItem = ({ name, icon }: { name: string; icon: string }) => (
         className="object-contain drop-shadow-lg"
       />
     </div>
-    <span className="text-xs md:text-sm text-gray-300 group-hover:text-white text-center">
+    <span className="text-xs sm:text-xs md:text-sm text-gray-300 group-hover:text-white text-center leading-tight">
       {name}
     </span>
   </div>
@@ -67,9 +67,9 @@ const SkillItem = ({ name, icon }: { name: string; icon: string }) => (
 
 const SkillCategory = ({ name, skills }: { name: string; skills: { name: string; icon: string }[] }) => (
   <div className="relative">
-    <div className="glass-panel p-3 md:p-4 bg-opacity-80">
-      <h3 className="text-sm md:text-base font-semibold text-center mb-3 text-purple-300">{name}</h3>
-      <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+    <div className="glass-panel p-4 sm:p-3 md:p-4 bg-opacity-80">
+      <h3 className="text-sm sm:text-sm md:text-base font-semibold text-center mb-3 text-cyan-300">{name}</h3>
+      <div className="flex flex-wrap justify-center gap-3 sm:gap-2 md:gap-4">
         {skills.map((skill) => (
           <SkillItem key={skill.name} name={skill.name} icon={skill.icon} />
         ))}
