@@ -26,16 +26,20 @@ html, body {
   box-shadow: 0 0 15px 2px rgba(6, 182, 212, 0.5);
 }
 
-/* Glassmorphism and shared component styles */
+/* REUSABLE COMPONENT STYLES */
 @layer components {
+  /* GLASS PANELS: Used for cards throughout the site (Skills, Timeline, Projects) */
   .glass-panel {
     @apply bg-black/40 backdrop-blur-xl rounded-xl shadow-2xl border border-white/10 transition-all duration-300;
   }
   
+  /* Optional hover effect for glass panels */
   .glass-panel-hover {
     @apply hover:border-cyan-500/20 hover:shadow-cyan-500/10;
   }
   
+  
+  /* TYPOGRAPHY STYLES */
   .section-title {
     @apply text-3xl md:text-4xl font-bold mb-4 text-center;
   }
@@ -44,13 +48,16 @@ html, body {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-cyan-500;
   }
   
+  /* LAYOUT UTILITIES */
   .section-container {
     @apply py-16 max-w-6xl mx-auto;
   }
   
+  /* Subtle hover animation for interactive elements */
   .subtle-reveal {
     @apply transition-all duration-300 hover:translate-y-[-2px];
   }
+  
 }
 
 /* Smooth scrolling */
@@ -126,4 +133,61 @@ span.gradient-text {
 
 .nav-fade-in {
   animation: navFadeIn 0.5s ease-out;
+}
+
+/* Blog Typography Styles */
+.prose {
+  @apply text-gray-700 max-w-none;
+}
+
+.prose h1 {
+  @apply text-4xl font-bold text-gray-900 mt-8 mb-6 leading-tight;
+}
+
+.prose h2 {
+  @apply text-3xl font-bold text-gray-900 mt-8 mb-4 leading-tight;
+}
+
+.prose h3 {
+  @apply text-2xl font-semibold text-gray-900 mt-6 mb-3;
+}
+
+.prose p {
+  @apply mb-6 leading-relaxed text-lg;
+}
+
+.prose p strong {
+  @apply font-bold text-gray-900;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-gray-300 pl-6 italic text-gray-600 my-6;
+}
+
+.prose ul {
+  @apply list-disc pl-6 mb-6 space-y-2;
+}
+
+.prose ol {
+  @apply list-decimal pl-6 mb-6 space-y-2;
+}
+
+.prose li {
+  @apply leading-relaxed;
+}
+
+.prose a {
+  @apply text-blue-600 hover:text-blue-800 underline;
+}
+
+.prose code {
+  @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono text-gray-800;
+}
+
+.prose pre {
+  @apply bg-gray-100 p-4 rounded-lg overflow-x-auto mb-6;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0;
 }

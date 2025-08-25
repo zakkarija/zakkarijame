@@ -3,6 +3,7 @@
  * for Docker builds.
  */
 import "./src/env.js";
+import createMDX from '@next/mdx';
 
 /** @type {import('next').NextConfig} */
 const config = {
@@ -33,8 +34,21 @@ const config = {
         hostname: 'www.svgrepo.com',
         pathname: '/show/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
     ],
   },
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 };
 
-export default config;
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+
+export default withMDX(config);

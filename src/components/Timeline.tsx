@@ -76,7 +76,7 @@ const Timeline = () => {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <h2 className="section-title">Education & Experience</h2>
+      <h2 className="section-title">Experience</h2>
       
       <div className="glass-panel glass-panel-hover p-4 sm:p-6 md:p-10">
         {timelineItems.map((item, index) => (

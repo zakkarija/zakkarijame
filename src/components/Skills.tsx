@@ -88,7 +88,7 @@ const Skills = () => {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <h2 className="section-title">Technical Toolbox</h2>
+      <h2 className="section-title">Skills</h2>
       
       <div className="pt-1 pb-4 md:pb-6">
         {/* Grid layout for categories */}

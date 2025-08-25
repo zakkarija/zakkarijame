@@ -52,7 +52,7 @@ const Hero = () => {
           <div className="mt-6 pt-4 border-t border-white/10">
             <div className="flex flex-wrap justify-center lg:justify-start gap-6">
               <Link 
-                href="https://github.com/zakmic" 
+                href="https://github.com/zakkarija" 
                 className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors group"
                 target="_blank"
                 rel="noopener noreferrer"

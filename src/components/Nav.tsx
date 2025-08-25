@@ -4,26 +4,32 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const Nav = () => {
+  // STATE MANAGEMENT:
+  // - isScrolled: adds background blur when user scrolls down
+  // - isMenuOpen: controls mobile hamburger menu visibility
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Handle scroll state for styling
   useEffect(() => {
+    // Simple scroll handler - only adds background when scrolled
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Smooth scroll to section
+  // SCROLL HANDLER: Smoothly scrolls to target section when nav links are clicked
   const scrollToSection = (sectionId: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsMenuOpen(false); // Close mobile menu when clicking a link
+    e.preventDefault(); // Prevent default anchor link behavior
+    setIsMenuOpen(false); // Close mobile menu if open
+    
+    // Find target section and scroll to it with offset for fixed navbar
     const element = document.getElementById(sectionId);
     if (element) {
       window.scrollTo({
-        top: element.offsetTop - 100, // Offset for the navbar height
+        top: element.offsetTop - 100, // 100px offset to account for fixed navbar height
         behavior: 'smooth'
       });
     }
@@ -53,46 +59,38 @@ const Nav = () => {
               <a 
                 href="#about" 
                 onClick={scrollToSection('about')}
-                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group"
+                className="text-gray-300 hover:text-white transition-colors duration-300 relative group"
               >
-                About Me
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                About
+                {/* Simple underline that appears on hover */}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
               </a>
               
               <a 
                 href="#skills" 
                 onClick={scrollToSection('skills')}
-                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group"
+                className="text-gray-300 hover:text-white transition-colors duration-300 relative group"
               >
                 Skills
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
               </a>
               
               <a 
                 href="#timeline" 
                 onClick={scrollToSection('timeline')}
-                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group"
+                className="text-gray-300 hover:text-white transition-colors duration-300 relative group"
               >
-                Timeline
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                Experience
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
               </a>
               
               <a 
                 href="#projects" 
                 onClick={scrollToSection('projects')}
-                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group"
+                className="text-gray-300 hover:text-white transition-colors duration-300 relative group"
               >
                 Projects
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              
-              <a 
-                href="#contact" 
-                onClick={scrollToSection('contact')}
-                className="text-gray-300 hover:text-cyan-300 transition-all duration-300 relative group"
-              >
-                Contact
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
               </a>
             </div>
           </div>
@@ -123,7 +121,7 @@ const Nav = () => {
               <a 
                 href="#about" 
                 onClick={scrollToSection('about')}
-                className="text-gray-300 hover:text-cyan-300 block px-3 py-3 rounded-md text-base transition-all duration-300"
+                className="text-gray-300 hover:text-white hover:bg-white/5 block px-3 py-3 rounded-md text-base transition-all duration-300"
               >
                 About
               </a>
@@ -131,7 +129,7 @@ const Nav = () => {
               <a 
                 href="#skills" 
                 onClick={scrollToSection('skills')}
-                className="text-gray-300 hover:text-cyan-300 block px-3 py-3 rounded-md text-base transition-all duration-300"
+                className="text-gray-300 hover:text-white hover:bg-white/5 block px-3 py-3 rounded-md text-base transition-all duration-300"
               >
                 Skills
               </a>
@@ -139,25 +137,17 @@ const Nav = () => {
               <a 
                 href="#timeline" 
                 onClick={scrollToSection('timeline')}
-                className="text-gray-300 hover:text-cyan-300 block px-3 py-3 rounded-md text-base transition-all duration-300"
+                className="text-gray-300 hover:text-white hover:bg-white/5 block px-3 py-3 rounded-md text-base transition-all duration-300"
               >
-                Timeline
+                Experience
               </a>
               
               <a 
                 href="#projects" 
                 onClick={scrollToSection('projects')}
-                className="text-gray-300 hover:text-cyan-300 block px-3 py-3 rounded-md text-base transition-all duration-300"
+                className="text-gray-300 hover:text-white hover:bg-white/5 block px-3 py-3 rounded-md text-base transition-all duration-300"
               >
                 Projects
-              </a>
-              
-              <a 
-                href="#contact" 
-                onClick={scrollToSection('contact')}
-                className="text-gray-300 hover:text-cyan-300 block px-3 py-3 rounded-md text-base transition-all duration-300"
-              >
-                Contact
               </a>
             </div>
           </div>

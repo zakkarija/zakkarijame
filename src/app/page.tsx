@@ -8,7 +8,7 @@ import Nav from "~/components/Nav";
 import Timeline from "~/components/Timeline";
 
 export default function HomePage() {
-  // Add intersection observer for section animations
+  // Simple intersection observer only for section fade-in animations
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -21,11 +21,12 @@ export default function HomePage() {
       threshold: 0.1
     });
 
-    // Observe all sections with the section-fade-in class
+    // Watch all sections that have the fade-in animation
     document.querySelectorAll('.section-fade-in').forEach(section => {
       observer.observe(section);
     });
 
+    // Cleanup when component unmounts
     return () => {
       document.querySelectorAll('.section-fade-in').forEach(section => {
         observer.unobserve(section);
