@@ -33,14 +33,14 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 
       return {
         slug,
-        title: data.title || 'Untitled',
-        date: data.date || new Date().toISOString().split('T')[0],
-        excerpt: data.excerpt || content.substring(0, 150) + '...',
-        readTime: data.readTime || '5 min read',
+        title: (data.title as string) ?? 'Untitled',
+        date: (data.date as string) ?? new Date().toISOString().split('T')[0],
+        excerpt: (data.excerpt as string) ?? content.substring(0, 150) + '...',
+        readTime: (data.readTime as string) ?? '5 min read',
         content,
-        image: data.image,
-        tags: data.tags || [],
-        author: data.author || 'Zakkarija Micallef',
+        image: data.image as string | undefined,
+        tags: (data.tags as string[]) ?? [],
+        author: (data.author as string) ?? 'Zakkarija Micallef',
       };
     });
 
@@ -56,16 +56,16 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
 
     return {
       slug,
-      title: data.title || 'Untitled',
-      date: data.date || new Date().toISOString().split('T')[0],
-      excerpt: data.excerpt || content.substring(0, 150) + '...',
-      readTime: data.readTime || '5 min read',
+      title: (data.title as string) ?? 'Untitled',
+      date: (data.date as string) ?? new Date().toISOString().split('T')[0],
+      excerpt: (data.excerpt as string) ?? content.substring(0, 150) + '...',
+      readTime: (data.readTime as string) ?? '5 min read',
       content,
-      image: data.image,
-      tags: data.tags || [],
-      author: data.author || 'Zakkarija Micallef',
+      image: data.image as string | undefined,
+      tags: (data.tags as string[]) ?? [],
+      author: (data.author as string) ?? 'Zakkarija Micallef',
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }

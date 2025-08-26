@@ -40,16 +40,20 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </pre>
     ),
-    a: ({ href, children }) => (
-      <a 
-        href={href} 
-        className="text-blue-600 hover:underline font-medium"
-        target={href?.startsWith('http') ? '_blank' : undefined}
-        rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-      >
-        {children}
-      </a>
-    ),
+    a: ({ href, children }) => {
+      const safeHref = typeof href === 'string' ? href : '';
+      const isExternal = safeHref.startsWith('http');
+      return (
+        <a 
+          href={safeHref} 
+          className="text-blue-600 hover:underline font-medium"
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}
+        >
+          {children}
+        </a>
+      );
+    },
     ...components,
   };
 }
