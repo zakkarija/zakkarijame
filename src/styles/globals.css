@@ -99,7 +99,22 @@ span.gradient-text {
 .typewriter-content br {
   display: block;
   content: "";
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Typewriter container for consistent layout */
+.typewriter-container {
+  position: relative;
+  min-height: 1.5em;
+}
+
+/* Ensure consistent styling between typewriter and static content */
+.typewriter-wrapper {
+  display: inline;
+  line-height: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
 }
 
 /* Ensure proper spacing between paragraphs in typewriter content */

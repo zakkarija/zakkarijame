@@ -53,35 +53,37 @@ const TypewriterText = () => {
   }, [typingStage]);
 
   return (
-    <div className="text-base md:text-lg text-gray-200 leading-relaxed font-mono tracking-tight typewriter-content">
+    <div className="text-base md:text-lg text-gray-200 leading-relaxed font-mono tracking-tight typewriter-content min-h-[200px]">
       {typingStage === 'typing_first' && (
-        <Typewriter
-          onInit={(typewriter) => {
-            typewriter
-              .changeDelay(5)
-              .callFunction(() => {
-                document.querySelector('.Typewriter__cursor')?.classList.add('animate-pulse');
-              })
-              .typeString(firstParagraph)
-              .callFunction(() => {
-                setTypingStage('awaiting_continue');
-              })
-              .start();
-          }}
-          options={{
-            cursor: '█',
-            delay: 5,
-            deleteSpeed: 10,
-            wrapperClassName: "typewriter-wrapper",
-            cursorClassName: "typewriter-cursor",
-            html: true,
-          } as ExtendedTypewriterOptions}
-        />
+        <div className="typewriter-container">
+          <Typewriter
+            onInit={(typewriter) => {
+              typewriter
+                .changeDelay(5)
+                .callFunction(() => {
+                  document.querySelector('.Typewriter__cursor')?.classList.add('animate-pulse');
+                })
+                .typeString(firstParagraph)
+                .callFunction(() => {
+                  setTypingStage('awaiting_continue');
+                })
+                .start();
+            }}
+            options={{
+              cursor: '█',
+              delay: 5,
+              deleteSpeed: 10,
+              wrapperClassName: "typewriter-wrapper",
+              cursorClassName: "typewriter-cursor",
+              html: true,
+            } as ExtendedTypewriterOptions}
+          />
+        </div>
       )}
       
       {typingStage === 'awaiting_continue' && (
-        <>
-          <div dangerouslySetInnerHTML={{ __html: firstParagraph }} />
+        <div className="typewriter-container">
+          <div className="typewriter-wrapper" dangerouslySetInnerHTML={{ __html: firstParagraph }} />
           <div className="mt-4 flex items-center">
             <span className="text-green-400 mr-2">$</span>
             <button 
@@ -93,12 +95,12 @@ const TypewriterText = () => {
             </button>
             <span className="ml-2 text-gray-500 text-sm">[Press Enter]</span>
           </div>
-        </>
+        </div>
       )}
 
       {typingStage === 'typing_remaining' && (
-        <>
-          <div dangerouslySetInnerHTML={{ __html: firstParagraph }} />
+        <div className="typewriter-container">
+          <div className="typewriter-wrapper" dangerouslySetInnerHTML={{ __html: firstParagraph }} />
           <div className="mt-6">
             <Typewriter
               onInit={(typewriter) => {
@@ -107,8 +109,8 @@ const TypewriterText = () => {
                   .callFunction(() => {
                     document.querySelector('.Typewriter__cursor')?.classList.add('animate-pulse');
                   })
-                  .typeString("<br/><br/>")
-                  .typeString(remainingParagraphs)
+              .typeString("<br/>")
+              .typeString(remainingParagraphs)
                   .callFunction(() => {
                     setTypingStage('complete');
                   })
@@ -124,11 +126,13 @@ const TypewriterText = () => {
               } as ExtendedTypewriterOptions}
             />
           </div>
-        </>
+        </div>
       )}
 
       {typingStage === 'complete' && (
-        <div dangerouslySetInnerHTML={{ __html: fullContent }} />
+        <div className="typewriter-container">
+          <div className="typewriter-wrapper" dangerouslySetInnerHTML={{ __html: fullContent }} />
+        </div>
       )}
     </div>
   );
