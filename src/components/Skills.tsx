@@ -22,7 +22,7 @@ const skillCategories = [
   {
     name: "Databases",
     skills: [
-      { name: 'MongoDB', icon: 'https://svgl.app/library/mongodb.svg' },
+      { name: 'MongoDB', icon: 'https://cdn.simpleicons.org/mongodb' },
       { name: 'PostgreSQL', icon: 'https://svgl.app/library/postgresql.svg' },
     ]
   },
