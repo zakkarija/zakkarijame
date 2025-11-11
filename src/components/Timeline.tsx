@@ -45,18 +45,18 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 const Timeline = () => {
   const timelineItems = [
     {
-      id: "msc-cs",
-      year: "2023 - Present",
-      title: "M.Sc Computer Science",
-      subtitle: "VU Amsterdam & University of Amsterdam",
-      description: "Currently pursuing a Master's degree while working part-time as a Java engineer at PhoenixNAP. Focusing on advanced topics in distributed systems, cloud computing, and software architecture."
-    },
-    {
       id: "phoenixnap",
       year: "2021 - Present",
       title: "Software Engineer",
       subtitle: "PhoenixNAP",
       description: "Worked as a full-time Java engineer at this bare metal cloud provider, developing automation systems and internal tools. Led projects including automated RAID configuration, custom OS image creation, and internal provisioning tools built with Spring Boot."
+    },
+    {
+      id: "msc-cs",
+      year: "2023 - 2025",
+      title: "M.Sc Computer Science",
+      subtitle: "VU Amsterdam & University of Amsterdam",
+      description: "Graduated with a Master's degree focusing on advanced topics in distributed systems, cloud computing, and software architecture. Dissertation: Developed real-world industrial anomaly detection pipeline for CNC machines using MLflow/Kubeflow, automating model training through deployment."
     },
     {
       id: "ccbill",

@@ -1,7 +1,7 @@
 'use client';
 // About.tsx - Client Component
 import React from 'react';
-import TypewriterText from './TypewriterText';
+import TypewriterText from './TypewriterClient';
 
 const About = () => {
   return (

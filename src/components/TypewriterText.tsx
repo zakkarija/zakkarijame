@@ -21,7 +21,7 @@ const TypewriterText = () => {
   const continueButtonRef = useRef<HTMLButtonElement>(null);
   
   // First paragraph - typed first
-  const firstParagraph = "Hey, I am Zak Micallef, <span class='text-cyan-300 font-semibold'>based in Amsterdam</span>. I'm currently pursuing a <span class='gradient-text font-semibold'>Master's in Computer Science</span> at the <span class='text-cyan-300 font-semibold'>University of Amsterdam and VU Amsterdam</span> while working part-time as a <span class='gradient-text font-semibold'>Java Engineer</span> at <span class='text-cyan-300 font-semibold'>PhoenixNAP</span>.";
+  const firstParagraph = "Hey, I am Zak Micallef, <span class='text-cyan-300 font-semibold'>based in Amsterdam</span>. I recently graduated with a <span class='gradient-text font-semibold'>Master's in Computer Science</span> from the <span class='text-cyan-300 font-semibold'>University of Amsterdam and VU Amsterdam</span> while working part-time as a <span class='gradient-text font-semibold'>Java Engineer</span> at <span class='text-cyan-300 font-semibold'>PhoenixNAP</span>.";
   
   // Remaining paragraphs - typed after clicking continue
   const remainingParagraphs = 
