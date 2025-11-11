@@ -29,7 +29,7 @@ const skillCategories = [
   {
     name: "Misc",
     skills: [
-      { name: 'TensorFlow', icon: 'https://svgl.app/library/tensorflow.svg' },
+      { name: 'TensorFlow', icon: 'https://cdn.simpleicons.org/tensorflow' },
       { name: 'OpenCV', icon: 'https://www.svgrepo.com/show/354139/opencv.svg' },
       { name: 'Unity', icon: 'https://svgl.app/library/unity_dark.svg' }
     ]
