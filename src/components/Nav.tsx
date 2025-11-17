@@ -4,156 +4,196 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const Nav = () => {
-  // STATE MANAGEMENT:
-  // - isScrolled: adds background blur when user scrolls down
-  // - isMenuOpen: controls mobile hamburger menu visibility
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Simple scroll handler - only adds background when scrolled
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // SCROLL HANDLER: Smoothly scrolls to target section when nav links are clicked
   const scrollToSection = (sectionId: string) => (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent default anchor link behavior
-    setIsMenuOpen(false); // Close mobile menu if open
-    
-    // Find target section and scroll to it with offset for fixed navbar
+    e.preventDefault();
+    setIsMenuOpen(false);
+
     const element = document.getElementById(sectionId);
     if (element) {
       window.scrollTo({
-        top: element.offsetTop - 100, // 100px offset to account for fixed navbar height
+        top: element.offsetTop - 80,
         behavior: 'smooth'
       });
     }
   };
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 nav-fade-in ${
-        isScrolled 
-          ? 'bg-black/70 backdrop-blur-xl shadow-2xl border-b border-cyan-500/20' 
-          : 'bg-transparent'
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-black/80 backdrop-blur-2xl shadow-2xl border-b border-cyan-500/30'
+          : 'bg-gradient-to-b from-black/60 to-transparent backdrop-blur-md'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <Link 
-              href="/" 
-              className="text-white text-xl font-bold bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent hover:from-cyan-200 hover:to-white transition-all duration-300"
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          {/* Logo/Brand */}
+          <div className="flex-shrink-0">
+            <Link
+              href="/"
+              className="flex items-center space-x-2 group"
             >
-              Z.M
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg blur opacity-50 group-hover:opacity-75 transition-opacity"></div>
+                <div className="relative bg-gradient-to-br from-cyan-500 to-blue-600 p-2 rounded-lg shadow-lg">
+                  <span className="text-white font-bold text-xl">ZM</span>
+                </div>
+              </div>
+              <div className="hidden sm:block">
+                <span className="text-white font-semibold text-lg tracking-tight">
+                  Zakkarija Micallef
+                </span>
+                <div className="text-xs text-cyan-300 font-light -mt-1">
+                  Software Engineer
+                </div>
+              </div>
             </Link>
           </div>
-          
-          <div className="hidden md:block">
-            <div className="flex items-center space-x-8">
-              <a 
-                href="#about" 
-                onClick={scrollToSection('about')}
-                className="text-gray-300 hover:text-cyan-300 transition-colors duration-300 relative group"
-              >
-                About
-                {/* Simple underline that appears on hover */}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              
-              <a 
-                href="#skills" 
-                onClick={scrollToSection('skills')}
-                className="text-gray-300 hover:text-cyan-300 transition-colors duration-300 relative group"
-              >
-                Skills
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              
-              <a 
-                href="#timeline" 
-                onClick={scrollToSection('timeline')}
-                className="text-gray-300 hover:text-cyan-300 transition-colors duration-300 relative group"
-              >
-                Experience
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              
-              <a 
-                href="#projects" 
-                onClick={scrollToSection('projects')}
-                className="text-gray-300 hover:text-cyan-300 transition-colors duration-300 relative group"
-              >
-                Projects
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-            </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1">
+            <a
+              href="#about"
+              onClick={scrollToSection('about')}
+              className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
+            >
+              About
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
+            </a>
+
+            <a
+              href="#skills"
+              onClick={scrollToSection('skills')}
+              className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
+            >
+              Skills
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
+            </a>
+
+            <a
+              href="#timeline"
+              onClick={scrollToSection('timeline')}
+              className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
+            >
+              Experience
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
+            </a>
+
+            <a
+              href="#projects"
+              onClick={scrollToSection('projects')}
+              className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
+            >
+              Projects
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
+            </a>
+
+            <Link
+              href="/blogs"
+              className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
+            >
+              Blog
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
+            </Link>
+
+            {/* CTA Button */}
+            <a
+              href="#hero"
+              onClick={scrollToSection('hero')}
+              className="ml-4 px-6 py-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-lg font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 transform hover:scale-105"
+            >
+              Get in Touch
+            </a>
           </div>
-          
-          {/* Mobile menu button - improved touch target */}
-          <div className="md:hidden flex items-center">
-            <button 
-              className="text-gray-300 hover:text-cyan-300 focus:outline-none p-2 -m-2 transition-all duration-300"
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              className="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle mobile menu"
+              aria-expanded={isMenuOpen}
             >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth="2" 
-                  d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} 
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
                 />
               </svg>
             </button>
           </div>
         </div>
-        
-        {/* Mobile menu, show/hide based on menu state */}
+
+        {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/90 backdrop-blur-xl rounded-lg mt-2 border border-cyan-500/20">
-              <a 
-                href="#about" 
+          <div className="md:hidden pb-4 animate-in slide-in-from-top duration-200">
+            <div className="space-y-1 bg-black/95 backdrop-blur-xl rounded-xl p-4 border border-cyan-500/20 shadow-2xl">
+              <a
+                href="#about"
                 onClick={scrollToSection('about')}
-                className="text-gray-300 hover:text-cyan-300 hover:bg-cyan-500/10 block px-3 py-3 rounded-md text-base transition-all duration-300"
+                className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
               >
                 About
               </a>
-              
-              <a 
-                href="#skills" 
+
+              <a
+                href="#skills"
                 onClick={scrollToSection('skills')}
-                className="text-gray-300 hover:text-cyan-300 hover:bg-cyan-500/10 block px-3 py-3 rounded-md text-base transition-all duration-300"
+                className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
               >
                 Skills
               </a>
-              
-              <a 
-                href="#timeline" 
+
+              <a
+                href="#timeline"
                 onClick={scrollToSection('timeline')}
-                className="text-gray-300 hover:text-cyan-300 hover:bg-cyan-500/10 block px-3 py-3 rounded-md text-base transition-all duration-300"
+                className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
               >
                 Experience
               </a>
-              
-              <a 
-                href="#projects" 
+
+              <a
+                href="#projects"
                 onClick={scrollToSection('projects')}
-                className="text-gray-300 hover:text-cyan-300 hover:bg-cyan-500/10 block px-3 py-3 rounded-md text-base transition-all duration-300"
+                className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
               >
                 Projects
               </a>
+
+              <Link
+                href="/blogs"
+                className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
+              >
+                Blog
+              </Link>
+
+              <div className="pt-2 mt-2 border-t border-gray-700">
+                <a
+                  href="#hero"
+                  onClick={scrollToSection('hero')}
+                  className="block px-4 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white text-center rounded-lg font-semibold shadow-lg hover:shadow-cyan-500/40 transition-all duration-300"
+                >
+                  Get in Touch
+                </a>
+              </div>
             </div>
           </div>
         )}
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
 
