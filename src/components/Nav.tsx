@@ -74,20 +74,20 @@ const Nav = () => {
             </a>
 
             <a
-              href="#skills"
-              onClick={scrollToSection('skills')}
-              className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
-            >
-              Skills
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
-            </a>
-
-            <a
               href="#timeline"
               onClick={scrollToSection('timeline')}
               className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
             >
               Experience
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
+            </a>
+
+            <a
+              href="#skills"
+              onClick={scrollToSection('skills')}
+              className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
+            >
+              Skills
               <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
             </a>
 
@@ -150,19 +150,19 @@ const Nav = () => {
               </a>
 
               <a
-                href="#skills"
-                onClick={scrollToSection('skills')}
-                className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
-              >
-                Skills
-              </a>
-
-              <a
                 href="#timeline"
                 onClick={scrollToSection('timeline')}
                 className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
               >
                 Experience
+              </a>
+
+              <a
+                href="#skills"
+                onClick={scrollToSection('skills')}
+                className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
+              >
+                Skills
               </a>
 
               <a

@@ -49,20 +49,20 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#skills"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
-                >
-                  <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                  Skills
-                </a>
-              </li>
-              <li>
-                <a
                   href="#timeline"
                   className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
                 >
                   <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   Experience
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#skills"
+                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
+                >
+                  <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                  Skills
                 </a>
               </li>
               <li>

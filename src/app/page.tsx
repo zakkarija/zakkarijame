@@ -49,12 +49,12 @@ export default function HomePage() {
           <About />
         </section>
 
-        <section id="skills" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">
-          <Skills />
-        </section>
-
         <section id="timeline" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">
           <Timeline />
+        </section>
+
+        <section id="skills" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">
+          <Skills />
         </section>
 
         <section id="projects" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">

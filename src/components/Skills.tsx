@@ -20,12 +20,12 @@ const skillCategories: SkillCategory[] = [
     description: "Primary backend technologies and programming languages",
     color: "from-cyan-500 to-blue-500",
     skills: [
-      { name: 'Java', icon: 'https://svgl.app/library/java.svg', level: 'expert' },
-      { name: 'Spring', icon: 'https://svgl.app/library/spring.svg', level: 'expert' },
-      { name: 'Python', icon: 'https://svgl.app/library/python.svg', level: 'advanced' },
-      { name: 'C', icon: 'https://svgl.app/library/c.svg', level: 'advanced' },
-      { name: 'JavaScript', icon: 'https://svgl.app/library/javascript.svg', level: 'intermediate' },
-      { name: 'TypeScript', icon: 'https://svgl.app/library/typescript.svg', level: 'intermediate' },
+      { name: 'Java', icon: 'https://cdn.simpleicons.org/openjdk/FFFFFF', level: 'expert' },
+      { name: 'Spring', icon: 'https://cdn.simpleicons.org/spring/6DB33F', level: 'expert' },
+      { name: 'Python', icon: 'https://cdn.simpleicons.org/python/3776AB', level: 'advanced' },
+      { name: 'C', icon: 'https://cdn.simpleicons.org/c/A8B9CC', level: 'advanced' },
+      { name: 'JavaScript', icon: 'https://cdn.simpleicons.org/javascript/F7DF1E', level: 'intermediate' },
+      { name: 'TypeScript', icon: 'https://cdn.simpleicons.org/typescript/3178C6', level: 'intermediate' },
     ]
   },
   {
@@ -33,12 +33,12 @@ const skillCategories: SkillCategory[] = [
     description: "Infrastructure, deployment, and cloud services",
     color: "from-orange-500 to-red-500",
     skills: [
-      { name: 'Docker', icon: 'https://svgl.app/library/docker.svg', level: 'expert' },
-      { name: 'AWS', icon: 'https://svgl.app/library/aws_light.svg', level: 'advanced' },
-      { name: 'Git', icon: 'https://svgl.app/library/git.svg', level: 'expert' },
-      { name: 'GitHub', icon: 'https://svgl.app/library/github_dark.svg', level: 'expert' },
-      { name: 'Linux', icon: 'https://svgl.app/library/linux.svg', level: 'expert' },
-      { name: 'Bash', icon: 'https://svgl.app/library/bash_dark.svg', level: 'advanced' },
+      { name: 'Docker', icon: 'https://cdn.simpleicons.org/docker/2496ED', level: 'expert' },
+      { name: 'AWS', icon: 'https://cdn.simpleicons.org/amazonaws/FF9900', level: 'advanced' },
+      { name: 'Git', icon: 'https://cdn.simpleicons.org/git/F05032', level: 'expert' },
+      { name: 'GitHub', icon: 'https://cdn.simpleicons.org/github/FFFFFF', level: 'expert' },
+      { name: 'Linux', icon: 'https://cdn.simpleicons.org/linux/FCC624', level: 'expert' },
+      { name: 'Bash', icon: 'https://cdn.simpleicons.org/gnubash/4EAA25', level: 'advanced' },
     ]
   },
   {
@@ -46,9 +46,9 @@ const skillCategories: SkillCategory[] = [
     description: "Database systems and data management",
     color: "from-green-500 to-emerald-500",
     skills: [
-      { name: 'MongoDB', icon: 'https://cdn.simpleicons.org/mongodb', level: 'advanced' },
-      { name: 'PostgreSQL', icon: 'https://svgl.app/library/postgresql.svg', level: 'advanced' },
-      { name: 'MySQL', icon: 'https://svgl.app/library/mysql.svg', level: 'intermediate' },
+      { name: 'MongoDB', icon: 'https://cdn.simpleicons.org/mongodb/47A248', level: 'advanced' },
+      { name: 'PostgreSQL', icon: 'https://cdn.simpleicons.org/postgresql/4169E1', level: 'advanced' },
+      { name: 'MySQL', icon: 'https://cdn.simpleicons.org/mysql/4479A1', level: 'intermediate' },
     ]
   },
   {
@@ -56,9 +56,9 @@ const skillCategories: SkillCategory[] = [
     description: "Artificial intelligence and computer vision",
     color: "from-purple-500 to-pink-500",
     skills: [
-      { name: 'TensorFlow', icon: 'https://cdn.simpleicons.org/tensorflow', level: 'intermediate' },
-      { name: 'OpenCV', icon: 'https://www.svgrepo.com/show/354139/opencv.svg', level: 'intermediate' },
-      { name: 'PyTorch', icon: 'https://svgl.app/library/pytorch.svg', level: 'intermediate' },
+      { name: 'TensorFlow', icon: 'https://cdn.simpleicons.org/tensorflow/FF6F00', level: 'intermediate' },
+      { name: 'OpenCV', icon: 'https://cdn.simpleicons.org/opencv/5C3EE8', level: 'intermediate' },
+      { name: 'PyTorch', icon: 'https://cdn.simpleicons.org/pytorch/EE4C2C', level: 'intermediate' },
     ]
   },
   {
@@ -66,10 +66,10 @@ const skillCategories: SkillCategory[] = [
     description: "Frontend and full-stack frameworks",
     color: "from-blue-500 to-indigo-500",
     skills: [
-      { name: 'React', icon: 'https://svgl.app/library/react.svg', level: 'intermediate' },
-      { name: 'Next.js', icon: 'https://svgl.app/library/nextjs_icon_dark.svg', level: 'intermediate' },
-      { name: 'Node.js', icon: 'https://svgl.app/library/nodejs.svg', level: 'intermediate' },
-      { name: 'Tailwind', icon: 'https://svgl.app/library/tailwindcss.svg', level: 'intermediate' },
+      { name: 'React', icon: 'https://cdn.simpleicons.org/react/61DAFB', level: 'intermediate' },
+      { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/FFFFFF', level: 'intermediate' },
+      { name: 'Node.js', icon: 'https://cdn.simpleicons.org/nodedotjs/5FA04E', level: 'intermediate' },
+      { name: 'Tailwind CSS', icon: 'https://cdn.simpleicons.org/tailwindcss/06B6D4', level: 'intermediate' },
     ]
   },
   {
@@ -77,9 +77,9 @@ const skillCategories: SkillCategory[] = [
     description: "Development tools and additional technologies",
     color: "from-yellow-500 to-orange-500",
     skills: [
-      { name: 'Unity', icon: 'https://svgl.app/library/unity_dark.svg', level: 'intermediate' },
-      { name: 'VS Code', icon: 'https://svgl.app/library/vscode.svg', level: 'expert' },
-      { name: 'Postman', icon: 'https://svgl.app/library/postman.svg', level: 'advanced' },
+      { name: 'Unity', icon: 'https://cdn.simpleicons.org/unity/FFFFFF', level: 'intermediate' },
+      { name: 'VS Code', icon: 'https://cdn.simpleicons.org/visualstudiocode/007ACC', level: 'expert' },
+      { name: 'Postman', icon: 'https://cdn.simpleicons.org/postman/FF6C37', level: 'advanced' },
     ]
   }
 ];
