@@ -6,6 +6,7 @@ import Projects from "~/components/Projects";
 import Skills from "~/components/Skills";
 import Nav from "~/components/Nav";
 import Timeline from "~/components/Timeline";
+import Footer from "~/components/Footer";
 
 export default function HomePage() {
   // Simple intersection observer only for section fade-in animations
@@ -35,35 +36,33 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Nav />
-      
+
       {/* Main content with improved mobile padding and section spacing */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 pt-20 text-white">
+      <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 text-white w-full">
         <section id="hero" className="py-4">
           <Hero />
         </section>
-        
+
         <section id="about" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">
           <About />
         </section>
-        
-        <section id="skills" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">
-          <Skills />
-        </section>
-        
+
         <section id="timeline" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">
           <Timeline />
         </section>
-        
+
+        <section id="skills" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">
+          <Skills />
+        </section>
+
         <section id="projects" className="py-8 sm:py-12 scroll-mt-24 section-fade-in">
           <Projects />
         </section>
-        
-        <footer className="py-8 text-center text-gray-400 text-sm border-t border-gray-800 mt-12">
-          © {new Date().getFullYear()} Zakkarija Micallef. All rights reserved.
-        </footer>
       </main>
+
+      <Footer />
     </div>
   );
 }
