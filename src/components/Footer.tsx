@@ -1,3 +1,11 @@
+/**
+ * Footer Component
+ *
+ * Provides site-wide footer with navigation links, social media connections, and contact information.
+ * Features organized sections for About, Quick Links, and Connect options.
+ * Includes decorative gradient and professional branding elements.
+ */
+
 import React from 'react';
 import Link from 'next/link';
 
@@ -41,45 +49,40 @@ const Footer = () => {
               <li>
                 <a
                   href="#about"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
+                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
                 >
-                  <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   About Me
                 </a>
               </li>
               <li>
                 <a
                   href="#timeline"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
+                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
                 >
-                  <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   Experience
                 </a>
               </li>
               <li>
                 <a
                   href="#skills"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
+                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
                 >
-                  <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   Skills
                 </a>
               </li>
               <li>
                 <a
                   href="#projects"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
+                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
                 >
-                  <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   Projects
                 </a>
               </li>
               <li>
                 <Link
                   href="/blogs"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
+                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
                 >
-                  <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   Blog
                 </Link>
               </li>
@@ -170,16 +173,9 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-800/50">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex justify-center items-center">
             <div className="text-gray-500 text-sm">
               © {currentYear} Zakkarija Micallef. All rights reserved.
-            </div>
-            <div className="flex items-center space-x-6 text-sm text-gray-500">
-              <span className="flex items-center">
-                Built with
-                <span className="mx-1 text-cyan-400">♥</span>
-                using Next.js
-              </span>
             </div>
           </div>
         </div>
