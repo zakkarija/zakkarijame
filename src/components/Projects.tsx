@@ -1,7 +1,16 @@
+/**
+ * Projects Component
+ *
+ * Showcases selected portfolio projects with descriptions, media (images/videos), and technologies used.
+ * Features alternating layout for visual interest and responsive design.
+ * Each project includes links to live demos, repositories, or documentation.
+ */
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+// Type definition for project data structure
 interface Project {
   title: string;
   description: string;
@@ -11,6 +20,10 @@ interface Project {
   technologies: string[];
 }
 
+/**
+ * Projects Data
+ * Portfolio of selected projects with detailed descriptions and technical information
+ */
 const projects: Project[] = [
   {
     title: "Saliency-Directed Product Placement",
@@ -45,11 +58,24 @@ const projects: Project[] = [
   }
 ];
 
+/**
+ * Main Projects Component
+ * Renders the complete projects section with header and project cards
+ * Uses alternating left-right layout for visual variety
+ */
 const Projects = () => {
   return (
     <div className="max-w-6xl mx-auto">
-      <h2 className="section-title">Projects</h2>
-      
+      {/* Section header - matches Technical Skills style */}
+      <div className="text-center mb-12">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-cyan-200 to-white bg-clip-text text-transparent">
+          Projects
+        </h2>
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          Selected projects showcasing my technical skills and problem-solving abilities
+        </p>
+      </div>
+
       <div className="glass-panel glass-panel-hover p-4 sm:p-6 md:p-10">
         <div className="space-y-16 sm:space-y-20 md:space-y-32">
           {projects.map((project, index) => (

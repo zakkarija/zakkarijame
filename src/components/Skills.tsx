@@ -1,6 +1,15 @@
+/**
+ * Skills Component
+ *
+ * Displays technical skills organized by category in a responsive grid layout.
+ * Each category contains multiple skill items with icons, names, and proficiency levels.
+ * Features gradient borders, hover effects, and a clean, compact design.
+ */
+
 import React from 'react';
 import Image from 'next/image';
 
+// Type definitions for skill data structure
 interface Skill {
   name: string;
   icon: string;
@@ -11,9 +20,13 @@ interface SkillCategory {
   name: string;
   description: string;
   skills: Skill[];
-  color: string;
+  color: string; // Tailwind gradient color classes
 }
 
+/**
+ * Skill Categories Data
+ * Organized by domain with icons from Simple Icons CDN
+ */
 const skillCategories: SkillCategory[] = [
   {
     name: "Backend & Languages",
@@ -84,10 +97,15 @@ const skillCategories: SkillCategory[] = [
   }
 ];
 
+/**
+ * SkillItem Component
+ * Displays individual skill with icon, name, and optional proficiency indicator
+ * Features hover effects for better interactivity
+ */
 const SkillItem = ({ name, icon, level }: { name: string; icon: string; level?: string }) => (
   <div className="group relative">
-    <div className="flex flex-col items-center gap-2 p-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20">
-      <div className="relative w-12 h-12 transition-transform">
+    <div className="flex flex-col items-center gap-1.5 p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20">
+      <div className="relative w-10 h-10 transition-transform">
         <Image
           src={icon}
           alt={`${name} logo`}
@@ -105,27 +123,32 @@ const SkillItem = ({ name, icon, level }: { name: string; icon: string; level?: 
   </div>
 );
 
+/**
+ * SkillCategory Component
+ * Groups related skills into categorized sections with gradient accents
+ * Displays category name, description, and grid of skills
+ */
 const SkillCategory = ({ name, description, skills, color }: SkillCategory) => (
   <div className="group relative">
     {/* Gradient border effect */}
     <div className={`absolute -inset-0.5 bg-gradient-to-r ${color} rounded-2xl opacity-0 group-hover:opacity-30 blur transition-opacity duration-300`}></div>
 
-    <div className="relative glass-panel p-6 rounded-2xl border border-white/10 group-hover:border-white/20 transition-all duration-300">
+    <div className="relative glass-panel p-4 rounded-2xl border border-white/10 group-hover:border-white/20 transition-all duration-300">
       {/* Category header */}
-      <div className="mb-5">
-        <div className="flex items-center gap-2 mb-2">
-          <div className={`h-1 w-12 rounded-full bg-gradient-to-r ${color}`}></div>
-          <h3 className="text-lg font-bold text-white">
+      <div className="mb-3">
+        <div className="flex items-center gap-2 mb-1.5">
+          <div className={`h-1 w-10 rounded-full bg-gradient-to-r ${color}`}></div>
+          <h3 className="text-base font-bold text-white">
             {name}
           </h3>
         </div>
-        <p className="text-sm text-gray-400 leading-relaxed">
+        <p className="text-xs text-gray-400 leading-relaxed">
           {description}
         </p>
       </div>
 
       {/* Skills grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
         {skills.map((skill) => (
           <SkillItem
             key={skill.name}
@@ -135,17 +158,15 @@ const SkillCategory = ({ name, description, skills, color }: SkillCategory) => (
           />
         ))}
       </div>
-
-      {/* Skill count badge */}
-      <div className="mt-4 flex justify-end">
-        <span className="text-xs text-gray-500 font-medium">
-          {skills.length} {skills.length === 1 ? 'skill' : 'skills'}
-        </span>
-      </div>
     </div>
   </div>
 );
 
+/**
+ * Main Skills Component
+ * Renders the complete skills section with header and categorized skill grid
+ * Uses a 2-column responsive layout for optimal space utilization
+ */
 const Skills = () => {
   return (
     <div className="max-w-7xl mx-auto">
@@ -160,7 +181,7 @@ const Skills = () => {
       </div>
 
       {/* Skills grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {skillCategories.map((category) => (
           <SkillCategory
             key={category.name}
@@ -170,26 +191,6 @@ const Skills = () => {
             color={category.color}
           />
         ))}
-      </div>
-
-      {/* Skills summary */}
-      <div className="mt-12 text-center">
-        <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full">
-          <div className="flex -space-x-2">
-            {skillCategories.slice(0, 4).map((category, index) => (
-              <div
-                key={category.name}
-                className={`w-8 h-8 rounded-full bg-gradient-to-r ${category.color} flex items-center justify-center text-xs font-bold text-white border-2 border-black`}
-                style={{ zIndex: 4 - index }}
-              >
-                {category.skills.length}
-              </div>
-            ))}
-          </div>
-          <span className="text-gray-400 text-sm font-medium">
-            {skillCategories.reduce((acc, cat) => acc + cat.skills.length, 0)} total skills across {skillCategories.length} categories
-          </span>
-        </div>
       </div>
     </div>
   );

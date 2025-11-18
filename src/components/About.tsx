@@ -1,5 +1,13 @@
+/**
+ * About Component
+ *
+ * Displays personal introduction in a terminal-style interface.
+ * Features animated typewriter effect for engaging text presentation.
+ * Styled as a command-line terminal with realistic window decorations.
+ */
+
 'use client';
-// About.tsx - Client Component
+
 import React from 'react';
 import TypewriterText from './TypewriterClient';
 
