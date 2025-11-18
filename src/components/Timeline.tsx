@@ -53,12 +53,12 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
       <div className="flex-grow pt-1 relative">
         {/* Company/University Logo */}
         {logo && (
-          <div className="absolute top-0 right-0 w-12 h-12 sm:w-14 sm:h-14 opacity-30 group-hover:opacity-50 transition-opacity duration-300">
+          <div className="absolute top-0 right-0 w-12 h-12 sm:w-14 sm:h-14">
             <Image
               src={logo}
               alt={`${subtitle} logo`}
               fill
-              className="object-contain filter grayscale"
+              className="object-contain rounded-full"
             />
           </div>
         )}
@@ -85,7 +85,7 @@ const Timeline = () => {
       title: "Software Engineer",
       subtitle: "PhoenixNAP",
       description: "Worked as a full-time Java engineer at this bare metal cloud provider, developing automation systems and internal tools. Led projects including automated RAID configuration, custom OS image creation, and internal provisioning tools built with Spring Boot.",
-      logo: "https://cdn.simpleicons.org/phoenixnap/FFFFFF"
+      logo: "/logos/pnap-favicon.png"
     },
     {
       id: "msc-cs",
@@ -93,7 +93,7 @@ const Timeline = () => {
       title: "M.Sc Computer Science",
       subtitle: "VU Amsterdam & University of Amsterdam",
       description: "Graduated with a Master's degree focusing on advanced topics in distributed systems, cloud computing, and software architecture. Dissertation: Developed real-world industrial anomaly detection pipeline for CNC machines using MLflow/Kubeflow, automating model training through deployment.",
-      logo: "https://cdn.simpleicons.org/academia/FFFFFF"
+      logo: "/logos/Amsterdamuniversitylogo.svg.png"
     },
     {
       id: "ccbill",
@@ -101,7 +101,7 @@ const Timeline = () => {
       title: "Software Engineer Intern",
       subtitle: "CCBill",
       description: "Developed and maintained an internal employee management tool as part of a small intern team, handling the full stack including frontend, backend, database, deployment, and support. Collaborated with Product Owners to prioritise sprint tasks and gained practical experience with Java, Spring, Maven, SQL, and JavaScript.",
-      logo: "https://cdn.simpleicons.org/databricks/FFFFFF"
+      logo: "/logos/CCBill_transparent_1.png"
     },
     {
       id: "bsc-ai",
@@ -109,7 +109,7 @@ const Timeline = () => {
       title: "B.Sc Artificial Intelligence",
       subtitle: "University of Malta",
       description: "Studied core AI concepts including machine learning, computer vision, and knowledge representation.",
-      logo: "https://cdn.simpleicons.org/academia/FFFFFF"
+      logo: "/logos/UoM_logo.jpg"
     }
   ];
 

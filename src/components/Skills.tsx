@@ -8,11 +8,25 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { Java } from './logos/Java';
+import { Spring } from './logos/Spring';
+import { Python } from './logos/Python';
+import { C } from './logos/C';
+import { JavaScript } from './logos/JavaScript';
+import { Docker } from './logos/Docker';
+import { AmazonWebServices as AWS } from './logos/AWS';
+import { Git } from './logos/Git';
+import { GitHub } from './logos/GitHub';
+import { Linux } from './logos/Linux';
+import { Bash } from './logos/Bash';
+import { MongoDB } from './logos/MongoDB';
+import { PostgreSQL } from './logos/PostgreSQL';
+import { Unity } from './logos/Unity';
 
 // Type definitions for skill data structure
 interface Skill {
   name: string;
-  icon: string;
+  icon: string | React.ComponentType<React.SVGProps<SVGSVGElement>>;
   level?: 'expert' | 'advanced' | 'intermediate';
 }
 
@@ -33,12 +47,11 @@ const skillCategories: SkillCategory[] = [
     description: "Primary backend technologies and programming languages",
     color: "from-cyan-500 to-blue-500",
     skills: [
-      { name: 'Java', icon: 'https://cdn.simpleicons.org/openjdk/FFFFFF', level: 'expert' },
-      { name: 'Spring', icon: 'https://cdn.simpleicons.org/spring/6DB33F', level: 'expert' },
-      { name: 'Python', icon: 'https://cdn.simpleicons.org/python/3776AB', level: 'advanced' },
-      { name: 'C', icon: 'https://cdn.simpleicons.org/c/A8B9CC', level: 'advanced' },
-      { name: 'JavaScript', icon: 'https://cdn.simpleicons.org/javascript/F7DF1E', level: 'intermediate' },
-      { name: 'TypeScript', icon: 'https://cdn.simpleicons.org/typescript/3178C6', level: 'intermediate' },
+      { name: 'Java', icon: Java, level: 'expert' },
+      { name: 'Spring', icon: Spring, level: 'expert' },
+      { name: 'Python', icon: Python, level: 'advanced' },
+      { name: 'C', icon: C, level: 'advanced' },
+      { name: 'JavaScript', icon: JavaScript, level: 'intermediate' },
     ]
   },
   {
@@ -46,53 +59,23 @@ const skillCategories: SkillCategory[] = [
     description: "Infrastructure, deployment, and cloud services",
     color: "from-orange-500 to-red-500",
     skills: [
-      { name: 'Docker', icon: 'https://cdn.simpleicons.org/docker/2496ED', level: 'expert' },
-      { name: 'AWS', icon: 'https://cdn.simpleicons.org/amazonaws/FF9900', level: 'advanced' },
-      { name: 'Git', icon: 'https://cdn.simpleicons.org/git/F05032', level: 'expert' },
-      { name: 'GitHub', icon: 'https://cdn.simpleicons.org/github/FFFFFF', level: 'expert' },
-      { name: 'Linux', icon: 'https://cdn.simpleicons.org/linux/FCC624', level: 'expert' },
-      { name: 'Bash', icon: 'https://cdn.simpleicons.org/gnubash/4EAA25', level: 'advanced' },
+      { name: 'Docker', icon: Docker, level: 'expert' },
+      { name: 'Temporal', icon: '/logos/image.png', level: 'advanced' },
+      { name: 'AWS', icon: AWS, level: 'advanced' },
+      { name: 'Git', icon: Git, level: 'expert' },
+      { name: 'GitHub', icon: GitHub, level: 'expert' },
+      { name: 'Linux', icon: Linux, level: 'expert' },
+      { name: 'Bash', icon: Bash, level: 'advanced' },
     ]
   },
   {
-    name: "Databases",
-    description: "Database systems and data management",
-    color: "from-green-500 to-emerald-500",
+    name: "Databases & Other",
+    description: "Database systems and additional technologies",
+    color: "from-green-500 to-teal-500",
     skills: [
-      { name: 'MongoDB', icon: 'https://cdn.simpleicons.org/mongodb/47A248', level: 'advanced' },
-      { name: 'PostgreSQL', icon: 'https://cdn.simpleicons.org/postgresql/4169E1', level: 'advanced' },
-      { name: 'MySQL', icon: 'https://cdn.simpleicons.org/mysql/4479A1', level: 'intermediate' },
-    ]
-  },
-  {
-    name: "AI & Machine Learning",
-    description: "Artificial intelligence and computer vision",
-    color: "from-purple-500 to-pink-500",
-    skills: [
-      { name: 'TensorFlow', icon: 'https://cdn.simpleicons.org/tensorflow/FF6F00', level: 'intermediate' },
-      { name: 'OpenCV', icon: 'https://cdn.simpleicons.org/opencv/5C3EE8', level: 'intermediate' },
-      { name: 'PyTorch', icon: 'https://cdn.simpleicons.org/pytorch/EE4C2C', level: 'intermediate' },
-    ]
-  },
-  {
-    name: "Web & Frameworks",
-    description: "Frontend and full-stack frameworks",
-    color: "from-blue-500 to-indigo-500",
-    skills: [
-      { name: 'React', icon: 'https://cdn.simpleicons.org/react/61DAFB', level: 'intermediate' },
-      { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/FFFFFF', level: 'intermediate' },
-      { name: 'Node.js', icon: 'https://cdn.simpleicons.org/nodedotjs/5FA04E', level: 'intermediate' },
-      { name: 'Tailwind CSS', icon: 'https://cdn.simpleicons.org/tailwindcss/06B6D4', level: 'intermediate' },
-    ]
-  },
-  {
-    name: "Tools & Other",
-    description: "Development tools and additional technologies",
-    color: "from-yellow-500 to-orange-500",
-    skills: [
-      { name: 'Unity', icon: 'https://cdn.simpleicons.org/unity/FFFFFF', level: 'intermediate' },
-      { name: 'VS Code', icon: 'https://cdn.simpleicons.org/visualstudiocode/007ACC', level: 'expert' },
-      { name: 'Postman', icon: 'https://cdn.simpleicons.org/postman/FF6C37', level: 'advanced' },
+      { name: 'MongoDB', icon: MongoDB, level: 'advanced' },
+      { name: 'PostgreSQL', icon: PostgreSQL, level: 'advanced' },
+      { name: 'Unity', icon: Unity, level: 'intermediate' },
     ]
   }
 ];
@@ -102,16 +85,20 @@ const skillCategories: SkillCategory[] = [
  * Displays individual skill with icon, name, and optional proficiency indicator
  * Features hover effects for better interactivity
  */
-const SkillItem = ({ name, icon, level }: { name: string; icon: string; level?: string }) => (
+const SkillItem = ({ name, icon, level }: { name: string; icon: string | React.ComponentType<React.SVGProps<SVGSVGElement>>; level?: string }) => (
   <div className="group relative">
     <div className="flex flex-col items-center gap-1.5 p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20">
-      <div className="relative w-10 h-10 transition-transform">
-        <Image
-          src={icon}
-          alt={`${name} logo`}
-          fill
-          className="object-contain drop-shadow-lg"
-        />
+      <div className="relative w-10 h-10 transition-transform flex items-center justify-center">
+        {typeof icon === 'string' ? (
+          <Image
+            src={icon}
+            alt={`${name} logo`}
+            fill
+            className={`object-contain drop-shadow-lg ${name === 'Temporal' ? 'brightness-0 invert' : ''}`}
+          />
+        ) : (
+          React.createElement(icon, { className: "w-full h-full object-contain drop-shadow-lg" })
+        )}
       </div>
       <span className="text-xs text-gray-300 group-hover:text-white text-center font-medium transition-colors">
         {name}

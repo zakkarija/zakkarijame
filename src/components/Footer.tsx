@@ -49,45 +49,40 @@ const Footer = () => {
               <li>
                 <a
                   href="#about"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
+                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
                 >
-                  <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   About Me
                 </a>
               </li>
               <li>
                 <a
                   href="#timeline"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
+                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
                 >
-                  <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   Experience
                 </a>
               </li>
               <li>
                 <a
                   href="#skills"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
+                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
                 >
-                  <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   Skills
                 </a>
               </li>
               <li>
                 <a
                   href="#projects"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
+                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
                 >
-                  <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   Projects
                 </a>
               </li>
               <li>
                 <Link
                   href="/blogs"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
+                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
                 >
-                  <span className="mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   Blog
                 </Link>
               </li>
