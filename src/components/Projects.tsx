@@ -9,54 +9,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-
-// Type definition for project data structure
-interface Project {
-  title: string;
-  description: string;
-  links: { name: string, url: string }[];
-  mediaType: 'image' | 'video';
-  mediaUrl: string;
-  technologies: string[];
-}
-
-/**
- * Projects Data
- * Portfolio of selected projects with detailed descriptions and technical information
- */
-const projects: Project[] = [
-  {
-    title: "Saliency-Directed Product Placement",
-    description: "I developed a computer vision system that predicts which products in a scene will attract customer attention first. The system uses visual saliency (how certain objects naturally stand out due to contrast, color, or orientation) to objectively rank products based on their attention-grabbing potential. The tool combines state-of-the-art object detection with a novel saliency segment ranking algorithm, achieving a 0.66 correlation coefficient when compared with human attention patterns. This modular system allows marketers to optimize product placement for maximum visual impact before expensive physical implementations.",
-    links: [
-      { name: "Report", url: "https://www.um.edu.mt/library/oar/handle/123456789/92203" },
-      { name: "GitHub", url: "https://github.com/zakkarija/Sal_Object_Rank" }
-    ],
-    mediaType: "image",
-    mediaUrl: "https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxoeVEOc4TjWbHD43p9hvwdrISa5cyflZBmzJ1",
-    technologies: ["Python", "OpenCV", "Mask R-CNN", "Supervisely", "Saliency Detection"]
-  },
-  {
-    title: "Unity Game Development",
-    description: "Throughout my university courses and hackathons, I developed several games with Unity. The highlight was a 2-player platformer created during a 48-hour hackathon that won 2nd place and resulted in an internship offer. Other projects include a roguelike with procedurally generated maps (shown on the right) and an idle game. Each project helped me explore different aspects of game development, from path finding to procedural content generation.",
-    links: [
-      { name: "GitHub", url: "https://github.com/zakkarija/ProjectBen" }
-    ],
-    mediaType: "video",
-    mediaUrl: "https://www.youtube.com/embed/uZtqgU7XOds",
-    technologies: ["Unity", "C#", "Game Design", "Procedural Generation", "2D Animations"]
-  },
-  {
-    title: "Personal Portfolio Website",
-    description: "This very website you're browsing! I built this portfolio as a project to learn modern web development, particularly React and Next.js. The site is deployed using Vercel for seamless continuous deployment from GitHub.",
-    links: [
-      { name: "GitHub", url: "https://github.com/zakkarija/zakkarijame" }
-    ],
-    mediaType: "image",
-    mediaUrl: "https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxZlvTIZEHcSpFhLO2yE4VbsldnG790ajWvtDX",
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vercel"]
-  }
-];
+import { projects } from '~/data/projects';
 
 /**
  * Main Projects Component
@@ -88,13 +41,13 @@ const Projects = () => {
               {/* Media Section */}
               <div className="w-full md:w-1/2">
                 {project.mediaType === 'image' ? (
-                  <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl transition-transform hover:scale-[1.02] duration-300">
+                  <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl transition-transform hover:scale-[1.02] duration-300 bg-gray-900/50">
                     <Image
                       src={project.mediaUrl}
                       alt={project.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
+                      className="object-contain"
                       priority={index === 0}
                     />
                   </div>
@@ -155,4 +108,4 @@ const Projects = () => {
   );
 };
 
-export default Projects; 
+export default Projects;

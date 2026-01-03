@@ -1,7 +1,16 @@
 'use client';
 
+/**
+ * Nav Component
+ *
+ * Fixed navigation bar with logo, navigation links, and mobile menu.
+ * Features scroll-based styling changes and smooth section scrolling.
+ */
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { profile } from '~/data/profile';
+import { navItems } from '~/data/navigation';
 
 const Nav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -53,10 +62,10 @@ const Nav = () => {
               </div>
               <div className="hidden sm:block">
                 <span className="text-white font-semibold text-lg tracking-tight">
-                  Zakkarija Micallef
+                  {profile.name}
                 </span>
                 <div className="text-xs text-cyan-300 font-light -mt-1">
-                  Software Engineer
+                  {profile.title}
                 </div>
               </div>
             </Link>
@@ -64,49 +73,28 @@ const Nav = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            <a
-              href="#about"
-              onClick={scrollToSection('about')}
-              className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
-            >
-              About
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
-            </a>
-
-            <a
-              href="#timeline"
-              onClick={scrollToSection('timeline')}
-              className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
-            >
-              Experience
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
-            </a>
-
-            <a
-              href="#skills"
-              onClick={scrollToSection('skills')}
-              className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
-            >
-              Skills
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
-            </a>
-
-            <a
-              href="#projects"
-              onClick={scrollToSection('projects')}
-              className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
-            >
-              Projects
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
-            </a>
-
-            <Link
-              href="/blogs"
-              className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
-            >
-              Blog
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
-            </Link>
+            {navItems.map((item) => (
+              item.type === "anchor" ? (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  onClick={scrollToSection(item.id)}
+                  className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
+                >
+                  {item.label}
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
+                </a>
+              ) : (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  className="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 relative group font-medium"
+                >
+                  {item.label}
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-300 group-hover:w-3/4"></span>
+                </Link>
+              )
+            ))}
 
             {/* CTA Button */}
             <a
@@ -141,44 +129,26 @@ const Nav = () => {
         {isMenuOpen && (
           <div className="md:hidden pb-4 animate-in slide-in-from-top duration-200">
             <div className="space-y-1 bg-black/95 backdrop-blur-xl rounded-xl p-4 border border-cyan-500/20 shadow-2xl">
-              <a
-                href="#about"
-                onClick={scrollToSection('about')}
-                className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
-              >
-                About
-              </a>
-
-              <a
-                href="#timeline"
-                onClick={scrollToSection('timeline')}
-                className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
-              >
-                Experience
-              </a>
-
-              <a
-                href="#skills"
-                onClick={scrollToSection('skills')}
-                className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
-              >
-                Skills
-              </a>
-
-              <a
-                href="#projects"
-                onClick={scrollToSection('projects')}
-                className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
-              >
-                Projects
-              </a>
-
-              <Link
-                href="/blogs"
-                className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
-              >
-                Blog
-              </Link>
+              {navItems.map((item) => (
+                item.type === "anchor" ? (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    onClick={scrollToSection(item.id)}
+                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.id}
+                    href={item.href}
+                    className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-cyan-500/10 rounded-lg transition-all duration-200 font-medium"
+                  >
+                    {item.label}
+                  </Link>
+                )
+              ))}
 
               <div className="pt-2 mt-2 border-t border-gray-700">
                 <a
@@ -197,4 +167,4 @@ const Nav = () => {
   );
 };
 
-export default Nav; 
+export default Nav;

@@ -8,84 +8,14 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Java } from './logos/Java';
-import { Spring } from './logos/Spring';
-import { Python } from './logos/Python';
-import { C } from './logos/C';
-import { JavaScript } from './logos/JavaScript';
-import { Docker } from './logos/Docker';
-import { AmazonWebServices as AWS } from './logos/AWS';
-import { Git } from './logos/Git';
-import { GitHub } from './logos/GitHub';
-import { Linux } from './logos/Linux';
-import { Bash } from './logos/Bash';
-import { MongoDB } from './logos/MongoDB';
-import { PostgreSQL } from './logos/PostgreSQL';
-import { Unity } from './logos/Unity';
-
-// Type definitions for skill data structure
-interface Skill {
-  name: string;
-  icon: string | React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  level?: 'expert' | 'advanced' | 'intermediate';
-}
-
-interface SkillCategory {
-  name: string;
-  description: string;
-  skills: Skill[];
-  color: string; // Tailwind gradient color classes
-}
-
-/**
- * Skill Categories Data
- * Organized by domain with icons from Simple Icons CDN
- */
-const skillCategories: SkillCategory[] = [
-  {
-    name: "Backend & Languages",
-    description: "Primary backend technologies and programming languages",
-    color: "from-cyan-500 to-blue-500",
-    skills: [
-      { name: 'Java', icon: Java, level: 'expert' },
-      { name: 'Spring', icon: Spring, level: 'expert' },
-      { name: 'Python', icon: Python, level: 'advanced' },
-      { name: 'C', icon: C, level: 'advanced' },
-      { name: 'JavaScript', icon: JavaScript, level: 'intermediate' },
-    ]
-  },
-  {
-    name: "DevOps & Cloud",
-    description: "Infrastructure, deployment, and cloud services",
-    color: "from-orange-500 to-red-500",
-    skills: [
-      { name: 'Docker', icon: Docker, level: 'expert' },
-      { name: 'Temporal', icon: '/logos/image.png', level: 'advanced' },
-      { name: 'AWS', icon: AWS, level: 'advanced' },
-      { name: 'Git', icon: Git, level: 'expert' },
-      { name: 'GitHub', icon: GitHub, level: 'expert' },
-      { name: 'Linux', icon: Linux, level: 'expert' },
-      { name: 'Bash', icon: Bash, level: 'advanced' },
-    ]
-  },
-  {
-    name: "Databases & Other",
-    description: "Database systems and additional technologies",
-    color: "from-green-500 to-teal-500",
-    skills: [
-      { name: 'MongoDB', icon: MongoDB, level: 'advanced' },
-      { name: 'PostgreSQL', icon: PostgreSQL, level: 'advanced' },
-      { name: 'Unity', icon: Unity, level: 'intermediate' },
-    ]
-  }
-];
+import { skillCategories, type SkillCategory, type Skill } from '~/data/skills';
 
 /**
  * SkillItem Component
  * Displays individual skill with icon, name, and optional proficiency indicator
  * Features hover effects for better interactivity
  */
-const SkillItem = ({ name, icon, level }: { name: string; icon: string | React.ComponentType<React.SVGProps<SVGSVGElement>>; level?: string }) => (
+const SkillItem = ({ name, icon, level }: Skill) => (
   <div className="group relative">
     <div className="flex flex-col items-center gap-1.5 p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20">
       <div className="relative w-10 h-10 transition-transform flex items-center justify-center">
@@ -111,11 +41,11 @@ const SkillItem = ({ name, icon, level }: { name: string; icon: string | React.C
 );
 
 /**
- * SkillCategory Component
+ * SkillCategoryCard Component
  * Groups related skills into categorized sections with gradient accents
  * Displays category name, description, and grid of skills
  */
-const SkillCategory = ({ name, description, skills, color }: SkillCategory) => (
+const SkillCategoryCard = ({ name, description, skills, color }: SkillCategory) => (
   <div className="group relative">
     {/* Gradient border effect */}
     <div className={`absolute -inset-0.5 bg-gradient-to-r ${color} rounded-2xl opacity-0 group-hover:opacity-30 blur transition-opacity duration-300`}></div>
@@ -139,9 +69,7 @@ const SkillCategory = ({ name, description, skills, color }: SkillCategory) => (
         {skills.map((skill) => (
           <SkillItem
             key={skill.name}
-            name={skill.name}
-            icon={skill.icon}
-            level={skill.level}
+            {...skill}
           />
         ))}
       </div>
@@ -170,12 +98,9 @@ const Skills = () => {
       {/* Skills grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {skillCategories.map((category) => (
-          <SkillCategory
+          <SkillCategoryCard
             key={category.name}
-            name={category.name}
-            description={category.description}
-            skills={category.skills}
-            color={category.color}
+            {...category}
           />
         ))}
       </div>
@@ -183,4 +108,4 @@ const Skills = () => {
   );
 };
 
-export default Skills; 
+export default Skills;

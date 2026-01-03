@@ -8,6 +8,9 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { profile } from '~/data/profile';
+import { footerQuickLinks } from '~/data/navigation';
+import { GitHubIcon, LinkedInIcon, EmailIcon, DownloadIcon } from '~/components/icons';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -30,13 +33,13 @@ const Footer = () => {
                 </div>
               </div>
               <div>
-                <h3 className="text-white font-semibold text-lg">Zakkarija Micallef</h3>
-                <p className="text-cyan-300 text-sm font-light">Software Engineer</p>
+                <h3 className="text-white font-semibold text-lg">{profile.name}</h3>
+                <p className="text-cyan-300 text-sm font-light">{profile.title}</p>
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-md">
               Passionate software engineer specializing in backend development, cloud infrastructure,
-              and building scalable solutions. Based in Amsterdam, Netherlands.
+              and building scalable solutions. Based in {profile.location}.
             </p>
           </div>
 
@@ -46,46 +49,25 @@ const Footer = () => {
               Quick Links
             </h4>
             <ul className="space-y-2">
-              <li>
-                <a
-                  href="#about"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
-                >
-                  About Me
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#timeline"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
-                >
-                  Experience
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#skills"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
-                >
-                  Skills
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#projects"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
-                >
-                  Projects
-                </a>
-              </li>
-              <li>
-                <Link
-                  href="/blogs"
-                  className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
-                >
-                  Blog
-                </Link>
-              </li>
+              {footerQuickLinks.map((link) => (
+                <li key={link.id}>
+                  {link.isRoute ? (
+                    <Link
+                      href={link.href}
+                      className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group hover:underline"
+                    >
+                      {link.label}
+                    </a>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -97,73 +79,43 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="https://github.com/zakkarija"
+                  href={profile.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
                 >
-                  <svg
-                    className="w-5 h-5 mr-2 fill-current"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                  </svg>
+                  <GitHubIcon className="w-5 h-5 mr-2 fill-current" />
                   <span className="group-hover:underline">GitHub</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/in/zakkarija-micallef/"
+                  href={profile.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
                 >
-                  <svg
-                    className="w-5 h-5 mr-2 fill-current"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                  </svg>
+                  <LinkedInIcon className="w-5 h-5 mr-2 fill-current" />
                   <span className="group-hover:underline">LinkedIn</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:zak.micallef27@gmail.com"
+                  href={`mailto:${profile.email}`}
                   className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
                 >
-                  <svg
-                    className="w-5 h-5 mr-2 fill-current"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
-                    <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
-                  </svg>
+                  <EmailIcon className="w-5 h-5 mr-2 fill-current" />
                   <span className="group-hover:underline">Email</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxJCq2baEIbfhXNIRd0927apZygWQESMPDUHkv"
+                  href={profile.cvUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-cyan-300 transition-colors duration-200 text-sm flex items-center group"
                 >
-                  <svg
-                    className="w-5 h-5 mr-2 fill-current"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
+                  <DownloadIcon className="w-5 h-5 mr-2 fill-current" />
                   <span className="group-hover:underline">Download CV</span>
                 </a>
               </li>
@@ -175,7 +127,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-gray-800/50">
           <div className="flex justify-center items-center">
             <div className="text-gray-500 text-sm">
-              © {currentYear} Zakkarija Micallef. All rights reserved.
+              © {currentYear} {profile.name}. All rights reserved.
             </div>
           </div>
         </div>
