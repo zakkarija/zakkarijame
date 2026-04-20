@@ -14,12 +14,12 @@ export interface TimelineEntry {
 
 export const timelineItems: TimelineEntry[] = [
   {
-    id: "phoenixnap",
-    year: "2021 - Present",
+    id: "booking",
+    year: "2026 - Present",
     title: "Software Engineer",
-    subtitle: "PhoenixNAP",
-    description: "Worked as a full-time Java engineer at this bare metal cloud provider, developing automation systems and internal tools. Led projects including automated RAID configuration, custom OS image creation, and internal provisioning tools built with Spring Boot.",
-    logo: "/logos/pnap-favicon.png"
+    subtitle: "Booking.com",
+    description: "Recently joined Booking.com as a Software Engineer in Amsterdam, working on scalable systems and production-grade software.",
+    logo: "/logos/booking.svg"
   },
   {
     id: "msc-cs",
@@ -28,6 +28,14 @@ export const timelineItems: TimelineEntry[] = [
     subtitle: "VU Amsterdam & University of Amsterdam",
     description: "Graduated with a Master's degree focusing on advanced topics in distributed systems, cloud computing, and software architecture. Dissertation: Developed real-world industrial anomaly detection pipeline for CNC machines using MLflow/Kubeflow, automating model training through deployment.",
     logo: "/logos/Amsterdamuniversitylogo.svg.png"
+  },
+  {
+    id: "phoenixnap",
+    year: "2021 - 2026",
+    title: "Software Engineer",
+    subtitle: "PhoenixNAP",
+    description: "Worked as a full-time Java engineer at this bare metal cloud provider, developing automation systems and internal tools. Led projects including automated RAID configuration, custom OS image creation, and internal provisioning tools built with Spring Boot.",
+    logo: "/logos/pnap-favicon.png"
   },
   {
     id: "ccbill",

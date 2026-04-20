@@ -65,7 +65,7 @@ const Nav = () => {
                   {profile.name}
                 </span>
                 <div className="text-xs text-cyan-300 font-light -mt-1">
-                  {profile.title}
+                  Software Engineer
                 </div>
               </div>
             </Link>

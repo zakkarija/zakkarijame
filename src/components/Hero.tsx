@@ -10,33 +10,73 @@ import Link from 'next/link';
 import { profile } from '~/data/profile';
 import { GitHubIcon, LinkedInIcon, EmailIcon, DownloadIcon } from '~/components/icons';
 
+const classes = {
+  section: 'py-6 md:py-8',
+  container: 'glass-panel p-6 md:p-8 relative overflow-hidden',
+  backgroundGradient: 'absolute inset-0 bg-gradient-to-br from-cyan-900/20 to-blue-900/20 z-0',
+  content: 'relative z-10',
+  mainRow: 'flex flex-col lg:flex-row items-center justify-between gap-6',
+  nameWrapper: 'text-center lg:text-left',
+  name: 'text-3xl sm:text-4xl md:text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-cyan-200',
+  title: 'text-lg sm:text-xl md:text-2xl text-cyan-200 font-light',
+  buttonWrapper: 'flex flex-col md:flex-row items-center gap-4',
+  cvButton:
+    'inline-flex items-center px-5 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white rounded-md transition-all shadow-lg hover:shadow-cyan-500/20 subtle-reveal',
+  socialSection: 'mt-6 pt-4 border-t border-white/10',
+  socialList: 'flex flex-wrap justify-center lg:justify-start gap-6',
+  socialLink: 'flex items-center space-x-2 text-gray-300 hover:text-white transition-colors group',
+  socialIcon: 'w-5 h-5 fill-current transition-transform group-hover:scale-110',
+  socialText: 'group-hover:underline',
+} as const;
+
+const socialLinks = [
+  {
+    href: profile.github,
+    label: 'GitHub',
+    Icon: GitHubIcon,
+    external: true,
+  },
+  {
+    href: profile.linkedin,
+    label: 'LinkedIn',
+    Icon: LinkedInIcon,
+    external: true,
+  },
+  {
+    href: `mailto:${profile.email}`,
+    label: 'Email',
+    Icon: EmailIcon,
+    external: false,
+  },
+] as const;
+
 const Hero = () => {
   return (
-    <section className="py-6 md:py-8">
-      <div className="glass-panel p-6 md:p-8 relative overflow-hidden">
+    <section className={classes.section}>
+      <div className={classes.container}>
         {/* Background gradient effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/20 to-blue-900/20 z-0"></div>
+        <div className={classes.backgroundGradient}></div>
         
-        <div className="relative z-10">
+        <div className={classes.content}>
           {/* Main content */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+          <div className={classes.mainRow}>
             {/* Name and title */}
-            <div className="text-center lg:text-left">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-cyan-200">
+            <div className={classes.nameWrapper}>
+              <h1 className={classes.name}>
                 {profile.name}
               </h1>
-              <h2 className="text-lg sm:text-xl md:text-2xl text-cyan-200 font-light">
+              <h2 className={classes.title}>
                 {profile.title} <span className="hidden sm:inline">|</span><br className="sm:hidden" /> {profile.location}
               </h2>
             </div>
             
             {/* CV download button */}
-            <div className="flex flex-col md:flex-row items-center gap-4">
+            <div className={classes.buttonWrapper}>
               <Link
                 href={profile.cvUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-5 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white rounded-md transition-all shadow-lg hover:shadow-cyan-500/20 subtle-reveal"
+                className={classes.cvButton}
               >
                 <DownloadIcon className="w-5 h-5 mr-2" />
                 Download CV
@@ -45,35 +85,20 @@ const Hero = () => {
           </div>
           
           {/* Social Links */}
-          <div className="mt-6 pt-4 border-t border-white/10">
-            <div className="flex flex-wrap justify-center lg:justify-start gap-6">
-              <Link 
-                href={profile.github}
-                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors group"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GitHubIcon className="w-5 h-5 fill-current transition-transform group-hover:scale-110" />
-                <span className="group-hover:underline">GitHub</span>
-              </Link>
-
-              <Link 
-                href={profile.linkedin}
-                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors group"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <LinkedInIcon className="w-5 h-5 fill-current transition-transform group-hover:scale-110" />
-                <span className="group-hover:underline">LinkedIn</span>
-              </Link>
-
-              <Link 
-                href={`mailto:${profile.email}`}
-                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors group"
-              >
-                <EmailIcon className="w-5 h-5 fill-current transition-transform group-hover:scale-110" />
-                <span className="group-hover:underline">Email</span>
-              </Link>
+          <div className={classes.socialSection}>
+            <div className={classes.socialList}>
+              {socialLinks.map(({ href, label, Icon, external }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  className={classes.socialLink}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noopener noreferrer' : undefined}
+                >
+                  <Icon className={classes.socialIcon} />
+                  <span className={classes.socialText}>{label}</span>
+                </Link>
+              ))}
             </div>
           </div>
         </div>

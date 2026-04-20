@@ -5,7 +5,7 @@
 
 export const profile = {
   name: "Zakkarija Micallef",
-  title: "Software Engineer",
+  title: "Software Engineer at Booking.com",
   location: "Amsterdam, Netherlands",
   email: "zak.micallef27@gmail.com",
   cvUrl: "https://nakv6s9tvu.ufs.sh/f/dWAZu4wE3JKxJCq2baEIbfhXNIRd0927apZygWQESMPDUHkv",

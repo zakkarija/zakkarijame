@@ -31,6 +31,17 @@ export const projects: Project[] = [
     technologies: ["MLOps", "MLflow", "Kubeflow", "DVC", "Anomaly Detection", "Python"]
   },
   {
+    title: "A Systematic Review of MLOps Tools (CAIN 2026)",
+    description: "Peer-reviewed paper published at the 5th International Conference on AI Engineering (CAIN 2026, Rio de Janeiro), co-authored with Keerthiga Rajenthiram and Ilias Gerostathopoulos (VU Amsterdam). The paper conducts a systematic literature review of MLOps-native tools, mapping them to lifecycle components to reveal their function, scope, and the challenges they address. We identify adoption trends and synthesise reported benefits and limitations from real-world usage. The most commonly used components turn out to be orchestration frameworks, data versioning, experiment tracking, and managed cloud platforms, and no single tool covers the entire lifecycle, so teams routinely stitch together several tools, which makes interoperability a central concern for production MLOps pipelines.",
+    links: [
+      { name: "ResearchGate", url: "https://www.researchgate.net/publication/403771320_A_Systematic_Review_of_MLOps_Tools_Tool_Adoption_Lifecycle_Coverage_and_Critical_Insights" },
+      { name: "DOI", url: "https://doi.org/10.1145/3793653.3793785" }
+    ],
+    mediaType: "image",
+    mediaUrl: "/projects/cain-2026-mlops-heatmap.png",
+    technologies: ["MLOps", "Systematic Review", "ML Lifecycle", "CAIN 2026", "Academic Publication"]
+  },
+  {
     title: "Saliency-Directed Product Placement",
     description: "I developed a computer vision system that predicts which products in a scene will attract customer attention first. The system uses visual saliency (how certain objects naturally stand out due to contrast, color, or orientation) to objectively rank products based on their attention-grabbing potential. The tool combines state-of-the-art object detection with a novel saliency segment ranking algorithm, achieving a 0.66 correlation coefficient when compared with human attention patterns. This modular system allows marketers to optimize product placement for maximum visual impact before expensive physical implementations.",
     links: [
