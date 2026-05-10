@@ -1,29 +1,18 @@
 import "~/styles/globals.css";
+import "~/styles/grotesque.css";
 
 import { type Metadata } from "next";
-import { Geist } from "next/font/google";
-import Background from "~/components/Background";
+import { Geist, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-  title: "Zakkarija Micallef",
-  description: "Zakkarija Micallef's Portfolio",
+  title: "Zakkarija Micallef — software engineer, Amsterdam",
+  description:
+    "Zakkarija Micallef — software engineer on the GenAI Engineering team at Booking.com.",
   icons: {
-    icon: [
-      {
-        url: '/favicon.ico?v=2',
-        sizes: 'any',
-        type: 'image/x-icon',
-      },
-    ],
-    shortcut: ['/favicon.ico?v=2'],
-    apple: [
-      {
-        url: '/favicon.ico?v=2',
-        sizes: 'any',
-        type: 'image/x-icon',
-      },
-    ],
+    icon: [{ url: "/favicon.ico?v=2", sizes: "any", type: "image/x-icon" }],
+    shortcut: ["/favicon.ico?v=2"],
+    apple: [{ url: "/favicon.ico?v=2", sizes: "any", type: "image/x-icon" }],
   },
 };
 
@@ -32,13 +21,19 @@ const geist = Geist({
   variable: "--font-geist-sans",
 });
 
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable}`}>
-      <body>
-        <Background />
+    <html lang="en" className={`${geist.variable} ${instrumentSerif.variable}`}>
+      <body className="grotesque">
         {children}
         <Analytics />
       </body>
