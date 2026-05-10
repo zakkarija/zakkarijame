@@ -113,11 +113,10 @@ export default function HomePage() {
           <div className="container">
             <div className="grid12 sec-grid">
               <div className="eyebrow-block">
-                <p className="eyebrow">
+                <h2 className="eyebrow">
                   <span className="num">02</span>Experience
-                </p>
+                </h2>
               </div>
-              <h2 className="sec-title">Experience.</h2>
               <ol className="cv">
                 <li className="current">
                   <span className="when">
@@ -240,11 +239,10 @@ export default function HomePage() {
           <div className="container">
             <div className="grid12 sec-grid">
               <div className="eyebrow-block">
-                <p className="eyebrow">
+                <h2 className="eyebrow">
                   <span className="num">03</span>Selected work
-                </p>
+                </h2>
               </div>
-              <h2 className="sec-title">Selected work.</h2>
               <ol className="work-list">
                 <li>
                   <div className="work-thumb key-finding" aria-hidden="false">
