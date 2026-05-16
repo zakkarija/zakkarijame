@@ -1,4 +1,6 @@
 import Popovers from "~/components/Popovers";
+import { EmailIcon, GitHubIcon, LinkedInIcon, DownloadIcon } from "~/components/icons";
+import { BookCallTrigger } from "~/components/BookCall";
 
 export default function HomePage() {
   return (
@@ -23,8 +25,13 @@ export default function HomePage() {
           <ul className="directory" aria-label="Contact">
             <li>
               <a href="mailto:zak.micallef27@gmail.com">
-                <span className="kicker">Email</span>
-                <span className="handle">zak.micallef27@&#8203;gmail.com</span>
+                <span className="ico" aria-hidden="true">
+                  <EmailIcon fill="currentColor" />
+                </span>
+                <span className="row-text">
+                  <span className="label">Email</span>
+                  <span className="caption">zak.micallef27@gmail.com</span>
+                </span>
                 <span className="arrow">→</span>
               </a>
             </li>
@@ -34,8 +41,13 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="kicker">GitHub</span>
-                <span className="handle">@zakkarija</span>
+                <span className="ico" aria-hidden="true">
+                  <GitHubIcon fill="currentColor" />
+                </span>
+                <span className="row-text">
+                  <span className="label">GitHub</span>
+                  <span className="caption">@zakkarija</span>
+                </span>
                 <span className="arrow">→</span>
               </a>
             </li>
@@ -45,8 +57,13 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="kicker">LinkedIn</span>
-                <span className="handle">in/zakkarija-micallef</span>
+                <span className="ico" aria-hidden="true">
+                  <LinkedInIcon fill="currentColor" />
+                </span>
+                <span className="row-text">
+                  <span className="label">LinkedIn</span>
+                  <span className="caption">in/zakkarija-micallef</span>
+                </span>
                 <span className="arrow">→</span>
               </a>
             </li>
@@ -56,60 +73,234 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="kicker">CV</span>
-                <span className="handle">PDF, 2026</span>
+                <span className="ico" aria-hidden="true">
+                  <DownloadIcon />
+                </span>
+                <span className="row-text">
+                  <span className="label">CV</span>
+                  <span className="caption">PDF, 2026</span>
+                </span>
                 <span className="arrow">→</span>
               </a>
             </li>
           </ul>
-
-          <p className="bio" data-screen-label="Bio">
-            I build the <strong>backend systems</strong> behind LLM-backed product features at
-            Booking.com in Amsterdam. Before this, four years at PhoenixNAP on backend
-            orchestration for a bare-metal cloud, alongside an MSc at{" "}
-            <button className="pop" data-pop="vu">
-              VU Amsterdam
-            </button>{" "}
-            and UvA on industrial MLOps. Originally from Malta.
-          </p>
         </div>
+
+        <p className="bio" data-screen-label="Bio">
+          I build the <strong>backend systems</strong> behind LLM-backed product features at
+          Booking.com in Amsterdam. Before this, four years at PhoenixNAP on backend
+          orchestration for a bare-metal cloud, alongside an MSc at{" "}
+          <button className="pop" data-pop="vu">
+            UvA and VU Amsterdam
+          </button>{" "}
+          on industrial MLOps. Originally from Malta.
+        </p>
       </header>
 
       <main>
-        <section data-screen-label="Available">
+        <section id="available" data-screen-label="Available">
           <div className="container">
             <div className="grid12 sec-grid">
               <div className="eyebrow-block">
                 <p className="eyebrow">
                   <span className="num">01</span>Available for
+                  <span className="status">
+                    <span className="status-dot" aria-hidden="true" />
+                    <span className="status-label">Open now</span>
+                  </span>
                 </p>
               </div>
               <h2 className="sec-title">
                 Open to <em>short-term contract work</em> in Amsterdam, Malta &amp; remote-EU.
               </h2>
               <ul className="services">
-                <li>
-                  <h3>Backend services</h3>
-                  <p>Java and Spring. APIs, data pipelines, the unglamorous middle.</p>
+                <li className="services__featured">
+                  <span className="service-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <rect x="3" y="5" width="18" height="14" rx="1" />
+                      <line x1="3" y1="9" x2="21" y2="9" />
+                      <circle cx="6" cy="7" r="0.6" fill="currentColor" />
+                      <circle cx="8.4" cy="7" r="0.6" fill="currentColor" />
+                      <circle cx="10.8" cy="7" r="0.6" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <h3>Web &amp; commerce</h3>
+                  <p>
+                    Get online and start selling. Marketing sites that convert.
+                    Online stores with real-time inventory, secure checkout and
+                    order tracking. AI features that lift conversion: smart
+                    site search, a support chatbot that handles the obvious
+                    questions, product recommendations that learn from buyers.
+                  </p>
+                  <ul className="tags">
+                    <li>Next.js</li>
+                    <li>Tailwind</li>
+                    <li>Stripe</li>
+                    <li>Shopify</li>
+                    <li>Inventory</li>
+                    <li>Webhooks</li>
+                    <li>RAG search</li>
+                    <li>AI chat</li>
+                  </ul>
+                  <p className="examples-heading">Recent work</p>
+                  <ul className="examples">
+                    <li>
+                      <a
+                        href="https://volta-ebike.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span className="ex-name">Volta</span>
+                        <span className="ex-desc">E-bike storefront</span>
+                        <span className="ex-host">volta-ebike.vercel.app</span>
+                        <span className="ex-arrow" aria-hidden="true">↗</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://zenith-studio-kappa.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span className="ex-name">Zenith Studio</span>
+                        <span className="ex-desc">Creative studio site</span>
+                        <span className="ex-host">zenith-studio-kappa.vercel.app</span>
+                        <span className="ex-arrow" aria-hidden="true">↗</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://zakkarija.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span className="ex-name">zakkarija.com</span>
+                        <span className="ex-desc">Earlier portfolio</span>
+                        <span className="ex-host">zakkarija.com</span>
+                        <span className="ex-arrow" aria-hidden="true">↗</span>
+                      </a>
+                    </li>
+                  </ul>
                 </li>
                 <li>
-                  <h3>Infrastructure</h3>
-                  <p>AWS and Kubernetes. Setup, hardening, migrations, day-2 operations.</p>
+                  <span className="service-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z" />
+                      <path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z" />
+                    </svg>
+                  </span>
+                  <h3>AI that does a job</h3>
+                  <p>
+                    Set up agents, MCP servers and custom skills that plug
+                    straight into your stack. Integrate the right tool for the
+                    job: Glean for company-wide search, a Slack or Notion
+                    connector, a support chatbot that handles the routine
+                    tickets, document processing that replaces hours of manual
+                    review. Build, or buy and integrate, whichever ships you
+                    value faster.
+                  </p>
+                  <ul className="tags">
+                    <li>Agents</li>
+                    <li>MCP</li>
+                    <li>Custom skills</li>
+                    <li>Glean</li>
+                    <li>Support chat</li>
+                    <li>Doc extraction</li>
+                  </ul>
                 </li>
                 <li>
-                  <h3>MLOps pipelines</h3>
-                  <p>Training to deployment to monitoring. MLflow, Kubeflow, or built from primitives.</p>
+                  <span className="service-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <rect x="3" y="4" width="18" height="5" rx="1" />
+                      <rect x="3" y="10" width="18" height="5" rx="1" />
+                      <rect x="3" y="16" width="18" height="5" rx="1" />
+                      <circle cx="6.5" cy="6.5" r="0.6" fill="currentColor" />
+                      <circle cx="6.5" cy="12.5" r="0.6" fill="currentColor" />
+                      <circle cx="6.5" cy="18.5" r="0.6" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <h3>Backend &amp; integrations</h3>
+                  <p>
+                    Make your systems talk and your processes run themselves.
+                    Connect the tools your team already uses, automate the
+                    handoffs that someone is doing manually today, and build
+                    APIs your team and partners can rely on.
+                  </p>
+                  <ul className="tags">
+                    <li>Java</li>
+                    <li>Spring</li>
+                    <li>Temporal</li>
+                    <li>gRPC</li>
+                    <li>PostgreSQL</li>
+                    <li>MongoDB</li>
+                  </ul>
                 </li>
                 <li>
-                  <h3>LLM glue work</h3>
-                  <p>Wiring LLMs into production: retrieval, evals, guardrails, cost.</p>
+                  <span className="service-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M7 18a5 5 0 0 1-1-9.9A6 6 0 0 1 18 9.5 4 4 0 0 1 17 17.5" />
+                      <path d="M7 18h10" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                  <h3>Cloud &amp; infrastructure</h3>
+                  <p>
+                    Run reliably and pay less. Cloud setup that scales without
+                    surprises on your bill, deployments that don&apos;t wake
+                    anyone at 3am, and monitoring that catches problems before
+                    customers notice them.
+                  </p>
+                  <ul className="tags">
+                    <li>AWS</li>
+                    <li>Kubernetes</li>
+                    <li>Terraform</li>
+                    <li>Ansible</li>
+                    <li>Docker</li>
+                    <li>GitHub Actions</li>
+                  </ul>
+                </li>
+                <li>
+                  <span className="service-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <circle cx="5" cy="6" r="2" />
+                      <circle cx="5" cy="18" r="2" />
+                      <circle cx="19" cy="12" r="2" />
+                      <path d="M7 6h6a3 3 0 0 1 3 3v2" strokeLinecap="round" />
+                      <path d="M7 18h6a3 3 0 0 0 3-3v-2" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                  <h3>ML in production</h3>
+                  <p>
+                    Take your models from notebook to production, and keep
+                    them working. Automated training, versioning and
+                    deployment, with monitoring that flags drift before it
+                    starts costing you. Your team ships models instead of
+                    fighting tooling.
+                  </p>
+                  <ul className="tags">
+                    <li>MLflow</li>
+                    <li>Kubeflow</li>
+                    <li>Argo</li>
+                    <li>Docker</li>
+                    <li>Python</li>
+                    <li>PyTorch</li>
+                  </ul>
                 </li>
               </ul>
+              <div className="services__cta">
+                <p className="services__cta-body">
+                  Don&apos;t know what any of this means? Set up a call and
+                  we&apos;ll walk you through how AI can actually move your
+                  business forward.
+                </p>
+                <BookCallTrigger className="services__cta-btn">
+                  Book a consultation <span aria-hidden="true">↗</span>
+                </BookCallTrigger>
+              </div>
             </div>
           </div>
         </section>
 
-        <section data-screen-label="Experience">
+        <section id="experience" data-screen-label="Experience">
           <div className="container">
             <div className="grid12 sec-grid">
               <div className="eyebrow-block">
@@ -121,7 +312,7 @@ export default function HomePage() {
                 <li className="current">
                   <span className="when">
                     <em>Apr 2025</em>
-                    <br />— Now
+                    <br />to Now
                   </span>
                   <span className="logo">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -132,39 +323,38 @@ export default function HomePage() {
                     />
                   </span>
                   <div className="what">
-                    <p className="role-line">
-                      Software engineer at{" "}
+                    <p className="org">
                       <button className="pop" data-pop="booking">
                         Booking.com
                       </button>
                     </p>
+                    <p className="role">Software engineer · GenAI Engineering</p>
                     <p className="gloss">
-                      GenAI Engineering team. Backend tooling and infrastructure for LLM-backed
-                      product features. Production systems, not research prototypes.
+                      Backend tooling and infrastructure for LLM-backed product features.
+                      Production systems, not research prototypes.
                     </p>
                   </div>
                 </li>
                 <li>
-                  <span className="when">2023 — 2025</span>
+                  <span className="when">2023 to 2025</span>
                   <span className="logo">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="https://zakkarija.com/logos/Amsterdamuniversitylogo.svg.png"
-                      alt="VU Amsterdam & UvA"
+                      alt="UvA & VU Amsterdam"
                       referrerPolicy="no-referrer"
                     />
                   </span>
                   <div className="what">
-                    <p className="role-line">
-                      MSc Computer Science,{" "}
+                    <p className="org">
                       <button className="pop" data-pop="vu">
-                        VU Amsterdam
-                      </button>{" "}
-                      and UvA
+                        UvA and VU Amsterdam
+                      </button>
                     </p>
+                    <p className="role">MSc Computer Science · Joint programme</p>
                     <p className="gloss">
-                      Joint programme. Coursework in distributed systems, cloud computing,
-                      software architecture. Thesis on MLOps pipelines for CNC anomaly detection
+                      Coursework in distributed systems, cloud computing, software
+                      architecture. Thesis on MLOps pipelines for CNC anomaly detection
                       (MLflow vs. Kubeflow), with{" "}
                       <button className="pop" data-pop="ideko">
                         IDEKO
@@ -174,7 +364,7 @@ export default function HomePage() {
                   </div>
                 </li>
                 <li>
-                  <span className="when">2021 — 2025</span>
+                  <span className="when">2021 to 2025</span>
                   <span className="logo">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -184,17 +374,22 @@ export default function HomePage() {
                     />
                   </span>
                   <div className="what">
-                    <p className="role-line">Software engineer, PhoenixNAP</p>
+                    <p className="org">
+                      <button className="pop" data-pop="pnap">
+                        PhoenixNAP
+                      </button>
+                    </p>
+                    <p className="role">Software engineer · Bare-metal cloud</p>
                     <p className="gloss">
-                      Java engineer at a bare-metal cloud provider. Automated RAID configuration,
-                      custom OS image creation, Spring Boot provisioning tools, Temporal workflow
-                      migration, iPXE / SSH / Ansible integration, MongoDB-based distributed
-                      locking.
+                      Java engineer at a bare-metal cloud provider. Automated RAID
+                      configuration, custom OS image creation, Spring Boot provisioning tools,
+                      Temporal workflow migration, iPXE / SSH / Ansible integration,
+                      MongoDB-based distributed locking.
                     </p>
                   </div>
                 </li>
                 <li>
-                  <span className="when">2018 — 2021</span>
+                  <span className="when">2018 to 2021</span>
                   <span className="logo">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -204,16 +399,21 @@ export default function HomePage() {
                     />
                   </span>
                   <div className="what">
-                    <p className="role-line">Software engineer intern, CCBill</p>
+                    <p className="org">
+                      <button className="pop" data-pop="ccbill">
+                        CCBill
+                      </button>
+                    </p>
+                    <p className="role">Software engineer intern · Three summers</p>
                     <p className="gloss">
-                      A PhoenixNAP brand. Three summers building a full-stack internal employee
-                      management tool with a small team (Java, Spring, Maven, SQL, JS), through
-                      to deployment and support.
+                      A PhoenixNAP brand. Full-stack internal employee management tool
+                      with a small team (Java, Spring, Maven, SQL, JS), through to
+                      deployment and support.
                     </p>
                   </div>
                 </li>
                 <li>
-                  <span className="when">2018 — 2021</span>
+                  <span className="when">2018 to 2021</span>
                   <span className="logo">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -223,10 +423,15 @@ export default function HomePage() {
                     />
                   </span>
                   <div className="what">
-                    <p className="role-line">BSc Artificial Intelligence, University of Malta</p>
+                    <p className="org">
+                      <button className="pop" data-pop="uom">
+                        University of Malta
+                      </button>
+                    </p>
+                    <p className="role">BSc Artificial Intelligence</p>
                     <p className="gloss">
-                      Machine learning, computer vision, knowledge representation. Dissertation
-                      on saliency-directed product placement.
+                      Machine learning, computer vision, knowledge representation.
+                      Dissertation on saliency-directed product placement.
                     </p>
                   </div>
                 </li>
@@ -235,7 +440,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="last" data-screen-label="Selected work">
+        <section id="work" className="last" data-screen-label="Selected work">
           <div className="container">
             <div className="grid12 sec-grid">
               <div className="eyebrow-block">
@@ -251,7 +456,7 @@ export default function HomePage() {
                     </span>
                     <blockquote>
                       No single tool covers the full <em>MLOps lifecycle</em>. Teams stitch
-                      several together — interoperability becomes the central concern.
+                      several together. Interoperability becomes the central concern.
                     </blockquote>
                     <div className="panel-foot">
                       <span className="stat">41</span>
@@ -314,7 +519,7 @@ export default function HomePage() {
                         IDEKO
                       </button>
                       . Honest finding: MLflow gets you running quickly; Kubeflow needs
-                      Kubernetes fluency before it gives you anything. Both work — the choice is
+                      Kubernetes fluency before it gives you anything. Both work; the choice is
                       mostly about what the team already runs.
                     </p>
                     <div className="links">
