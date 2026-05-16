@@ -552,6 +552,15 @@ body.grotesque ::selection { background: var(--ink); color: var(--bg); }
   max-width: 100%; max-height: 100%; object-fit: contain;
   mix-blend-mode: multiply;
 }
+html[data-theme="dark"] .grotesque .cv .logo {
+  background: #FAF8F5;
+  border-radius: 6px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+html[data-theme="dark"] .grotesque .cv .logo img {
+  mix-blend-mode: normal;
+}
 .grotesque .cv .what { font-size: 17px; line-height: 1.5; padding-top: 4px; }
 .grotesque .cv .org {
   font-family: var(--display);
