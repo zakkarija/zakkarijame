@@ -9,7 +9,7 @@ export function SiteNav() {
         </a>
         <ul className="site-nav__links">
           <li>
-            <a href="#available">Available</a>
+            <a href="#available">Consultation work</a>
           </li>
           <li>
             <a href="#experience">Experience</a>

@@ -161,6 +161,25 @@ body.grotesque ::selection { background: var(--ink); color: var(--bg); }
 .grotesque .tagline .roman { font-style: normal; color: var(--ink); }
 .grotesque .tagline .mute { color: var(--mute); font-style: italic; }
 
+.grotesque .location {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: var(--s-3) 0 0 0;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.grotesque .location__pin {
+  width: 13px;
+  height: 13px;
+  color: var(--red);
+  flex: 0 0 auto;
+}
+
 .grotesque .bio {
   margin: 0;
   padding: 0 0 var(--s-6) 0;
@@ -489,37 +508,7 @@ body.grotesque ::selection { background: var(--ink); color: var(--bg); }
   transform: translate(2px, -2px);
 }
 
-/* Live status pill in eyebrow */
-.grotesque .eyebrow .status {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-left: var(--s-3);
-  padding: 3px 9px 3px 8px;
-  border: 1px solid color-mix(in srgb, var(--red) 30%, transparent);
-  border-radius: 999px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--red);
-  text-transform: uppercase;
-}
-.grotesque .eyebrow .status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: var(--red);
-  box-shadow: 0 0 0 0 color-mix(in srgb, var(--red) 60%, transparent);
-  animation: status-pulse 1.8s ease-in-out infinite;
-  flex: 0 0 auto;
-}
-@keyframes status-pulse {
-  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--red) 55%, transparent); }
-  70%  { box-shadow: 0 0 0 8px color-mix(in srgb, var(--red) 0%, transparent); }
-  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--red) 0%, transparent); }
-}
 @media (prefers-reduced-motion: reduce) {
-  .grotesque .eyebrow .status-dot { animation: none; }
   .grotesque .services li:hover .service-icon { transform: none; }
 }
 
@@ -1108,10 +1097,14 @@ html[data-theme="dark"] .theme-toggle__icon--moon { display: none; }
 
 /* Book-a-call modal */
 .book-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
   border: 0;
   padding: 0;
   max-width: min(440px, calc(100vw - 32px));
   width: 100%;
+  max-height: calc(100vh - 32px);
   background: transparent;
   color: var(--ink);
 }

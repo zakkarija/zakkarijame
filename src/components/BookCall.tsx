@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const CAL_URL = "https://cal.com/zakkarija-micallef";
+const CAL_URL = "https://cal.com/zak-micallef-j5yhlg";
 const EMAIL = "zak.micallef27@gmail.com";
 
 export function BookCall() {
