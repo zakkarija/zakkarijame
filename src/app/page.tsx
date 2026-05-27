@@ -1,9 +1,7 @@
 import Popovers from "~/components/Popovers";
 import { EmailIcon, GitHubIcon, LinkedInIcon, DownloadIcon } from "~/components/icons";
 import { BookCallTrigger } from "~/components/BookCall";
-
-// Temporarily hidden: not advertising consulting availability right now.
-const SHOW_AVAILABLE = false;
+import { SHOW_AVAILABLE } from "~/lib/site-config";
 
 export default function HomePage() {
   return (
@@ -107,13 +105,14 @@ export default function HomePage() {
         </div>
 
         <p className="bio" data-screen-label="Bio">
-          I build the <strong>backend systems</strong> behind LLM-backed product features at
-          Booking.com in Amsterdam. Before this, four years at PhoenixNAP on backend
-          orchestration for a bare-metal cloud, alongside an MSc at{" "}
+          I build <strong>developer tooling</strong> at Booking.com in Amsterdam: the
+          internal agent platform, the MCP integration platform, and the infrastructure
+          that helps engineering ship faster. Four years at PhoenixNAP before that on
+          backend orchestration for a bare-metal cloud, alongside an MSc at{" "}
           <button className="pop" data-pop="vu">
-            UvA and VU Amsterdam
+            VU Amsterdam &amp; University of Amsterdam
           </button>{" "}
-          on industrial MLOps. Originally from Malta.
+          on industrial MLOps.
         </p>
       </header>
 
@@ -346,10 +345,11 @@ export default function HomePage() {
                         Booking.com
                       </button>
                     </p>
-                    <p className="role">Software engineer · GenAI Engineering</p>
+                    <p className="role">Software Engineer · GenAI Engineering</p>
                     <p className="gloss">
-                      Backend tooling and infrastructure for LLM-backed product features.
-                      Production systems, not research prototypes.
+                      Building tools to accelerate developers across the company:
+                      the internal agent platform, MCP integration platform, and the
+                      infrastructure around them.
                     </p>
                   </div>
                 </li>
@@ -359,21 +359,23 @@ export default function HomePage() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="https://zakkarija.com/logos/Amsterdamuniversitylogo.svg.png"
-                      alt="UvA & VU Amsterdam"
+                      alt="VU Amsterdam & University of Amsterdam"
                       referrerPolicy="no-referrer"
                     />
                   </span>
                   <div className="what">
                     <p className="org">
                       <button className="pop" data-pop="vu">
-                        UvA and VU Amsterdam
+                        VU Amsterdam &amp; University of Amsterdam
                       </button>
                     </p>
-                    <p className="role">MSc Computer Science · Joint programme</p>
+                    <p className="role">M.Sc Computer Science</p>
                     <p className="gloss">
-                      Coursework in distributed systems, cloud computing, software
-                      architecture. Thesis on MLOps pipelines for CNC anomaly detection
-                      (MLflow vs. Kubeflow), with{" "}
+                      Graduated with a Master&apos;s degree focusing on advanced topics in
+                      distributed systems, cloud computing, and software architecture.
+                      Dissertation: developed a real-world industrial anomaly detection
+                      pipeline for CNC machines using MLflow/Kubeflow, automating model
+                      training through deployment, with{" "}
                       <button className="pop" data-pop="ideko">
                         IDEKO
                       </button>
@@ -397,12 +399,12 @@ export default function HomePage() {
                         PhoenixNAP
                       </button>
                     </p>
-                    <p className="role">Software engineer · Bare-metal cloud</p>
+                    <p className="role">Software Engineer</p>
                     <p className="gloss">
-                      Java engineer at a bare-metal cloud provider. Automated RAID
-                      configuration, custom OS image creation, Spring Boot provisioning tools,
-                      Temporal workflow migration, iPXE / SSH / Ansible integration,
-                      MongoDB-based distributed locking.
+                      Worked as a full-time Java engineer at this bare-metal cloud
+                      provider, developing automation systems and internal tools. Led
+                      projects including automated RAID configuration, custom OS image
+                      creation, and internal provisioning tools built with Spring Boot.
                     </p>
                   </div>
                 </li>
@@ -422,11 +424,13 @@ export default function HomePage() {
                         CCBill
                       </button>
                     </p>
-                    <p className="role">Software engineer intern · Three summers</p>
+                    <p className="role">Software Engineer Intern</p>
                     <p className="gloss">
-                      A PhoenixNAP brand. Full-stack internal employee management tool
-                      with a small team (Java, Spring, Maven, SQL, JS), through to
-                      deployment and support.
+                      Developed and maintained an internal employee management tool as
+                      part of a small intern team, handling the full stack including
+                      frontend, backend, database, deployment, and support. Collaborated
+                      with Product Owners to prioritise sprint tasks and gained practical
+                      experience with Java, Spring, Maven, SQL, and JavaScript.
                     </p>
                   </div>
                 </li>
@@ -446,10 +450,10 @@ export default function HomePage() {
                         University of Malta
                       </button>
                     </p>
-                    <p className="role">BSc Artificial Intelligence</p>
+                    <p className="role">B.Sc Artificial Intelligence</p>
                     <p className="gloss">
-                      Machine learning, computer vision, knowledge representation.
-                      Dissertation on saliency-directed product placement.
+                      Studied core AI concepts including machine learning, computer
+                      vision, and knowledge representation.
                     </p>
                   </div>
                 </li>

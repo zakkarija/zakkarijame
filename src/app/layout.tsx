@@ -63,6 +63,7 @@ export default function RootLayout({
       lang="en"
       data-font="instrument"
       data-theme="light"
+      suppressHydrationWarning
       className={`${geist.variable} ${fraunces.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <head>

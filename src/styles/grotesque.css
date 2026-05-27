@@ -1,15 +1,20 @@
 /* ============== Variant B / Grotesque ============== */
 
+/*
+  Palette — "Editorial scarlet on warm paper" (light) / "Bright scarlet on warm black" (dark).
+  Same accent family across both themes, with the accent shifting in lightness
+  to stay readable on the active background.
+*/
 :root {
-  --bg:        #FAF8F5;
-  --bg-tint:   #F1ECE2;
-  --ink:       #1A1A1A;
-  --ink-soft:  #4A4A4A;
-  --mute:      #7A7A7A;
-  --rule:      #E5E1D6;
-  --rule-soft: #ECE7DA;
-  --red:       oklch(0.66 0.19 52);
-  --red-soft:  oklch(0.94 0.06 60);
+  --bg:        #F4EFE6;
+  --bg-tint:   #ECE5D6;
+  --ink:       #16110C;
+  --ink-soft:  #443A2D;
+  --mute:      #8A7E6C;
+  --rule:      #DCD3BF;
+  --rule-soft: #E6DECC;
+  --red:       oklch(0.50 0.18 25);
+  --red-soft:  oklch(0.94 0.05 25);
 
   --display:   var(--font-fraunces), "Times New Roman", serif;
   --body:      var(--font-geist-sans), "Helvetica Neue", Arial, sans-serif;
@@ -22,15 +27,15 @@
 }
 
 html[data-theme="dark"] {
-  --bg:        #16140F;
-  --bg-tint:   #1F1C16;
-  --ink:       #F5F2EB;
-  --ink-soft:  #C9C4B7;
-  --mute:      #8A8579;
-  --rule:      #2E2A20;
-  --rule-soft: #25221A;
-  --red:       oklch(0.72 0.18 52);
-  --red-soft:  oklch(0.30 0.10 50);
+  --bg:        #0C0D0A;
+  --bg-tint:   #14160F;
+  --ink:       #ECEAE0;
+  --ink-soft:  #B5B2A5;
+  --mute:      #6E6C5F;
+  --rule:      #22241B;
+  --rule-soft: #181A12;
+  --red:       oklch(0.72 0.20 25);
+  --red-soft:  oklch(0.30 0.12 25);
 }
 
 html[data-font="fraunces"] {
@@ -53,6 +58,23 @@ html[data-font="fraunces"] .grotesque .lede {
 html, body {
   background: var(--bg);
   color: var(--ink);
+}
+
+/* Subtle atmosphere — radial wash and faint grid for depth. */
+body.grotesque {
+  background-image:
+    radial-gradient(
+      1100px 700px at 12% -10%,
+      color-mix(in srgb, var(--red) 9%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      900px 600px at 100% 110%,
+      color-mix(in srgb, var(--red) 6%, transparent),
+      transparent 70%
+    );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 body.grotesque {
@@ -111,7 +133,7 @@ body.grotesque ::selection { background: var(--ink); color: var(--bg); }
 /* Hero — one integrated banner */
 .grotesque .banner {
   padding: 0;
-  margin: var(--s-7) 0 var(--s-6);
+  margin: var(--s-6) 0 var(--s-5);
   row-gap: 0;
   border: 1px solid var(--rule);
 }
@@ -122,20 +144,42 @@ body.grotesque ::selection { background: var(--ink); color: var(--bg); }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: var(--s-5);
+  gap: var(--s-4);
   padding: var(--s-5);
   border-right: 1px solid var(--rule);
   min-width: 0;
+}
+
+@property --blob-x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 20%;
+}
+@property --blob-y {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 30%;
 }
 
 .grotesque .display-name {
   margin: 0;
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(56px, 9.8vw, 132px);
-  line-height: 0.98;
-  letter-spacing: -0.022em;
+  font-size: clamp(52px, 8.2vw, 108px);
+  line-height: 0.94;
+  letter-spacing: -0.024em;
   color: var(--ink);
+  background-color: var(--ink);
+  background-image: radial-gradient(
+    circle clamp(120px, 18vw, 260px) at var(--blob-x) var(--blob-y),
+    var(--red),
+    transparent 70%
+  );
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+          color: transparent;
+  animation: blob-drift 16s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 .grotesque .display-name .l1,
 .grotesque .display-name .l2 { display: block; }
@@ -143,20 +187,33 @@ body.grotesque ::selection { background: var(--ink); color: var(--bg); }
   margin-top: -0.04em;
   font-style: italic;
 }
-.grotesque .display-name em { font-style: italic; font-weight: 400; color: var(--ink); }
+.grotesque .display-name em { font-style: italic; font-weight: 400; }
+
+@keyframes blob-drift {
+  0%   { --blob-x: 15%;  --blob-y: 28%; }
+  18%  { --blob-x: 62%;  --blob-y: 18%; }
+  36%  { --blob-x: 88%;  --blob-y: 60%; }
+  54%  { --blob-x: 48%;  --blob-y: 90%; }
+  72%  { --blob-x: 12%;  --blob-y: 72%; }
+  100% { --blob-x: 15%;  --blob-y: 28%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grotesque .display-name { animation: none; }
+}
 
 .grotesque .tagline {
-  margin: var(--s-4) 0 0 0;
-  padding-top: var(--s-4);
+  margin: var(--s-3) 0 0 0;
+  padding-top: var(--s-3);
   border-top: 1px solid var(--rule);
   font-family: var(--display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(22px, 2.3vw, 28px);
-  line-height: 1.25;
+  font-size: clamp(20px, 2vw, 25px);
+  line-height: 1.28;
   letter-spacing: -0.005em;
   color: var(--ink);
-  max-width: 30ch;
+  max-width: 32ch;
 }
 .grotesque .tagline .roman { font-style: normal; color: var(--ink); }
 .grotesque .tagline .mute { color: var(--mute); font-style: italic; }
@@ -211,27 +268,53 @@ body.grotesque ::selection { background: var(--ink); color: var(--bg); }
 }
 .grotesque .directory li:last-child { border-bottom: none; }
 .grotesque .directory a {
+  position: relative;
   display: grid;
-  grid-template-columns: 20px 1fr auto;
+  grid-template-columns: 52px 1fr auto;
   align-items: center;
   gap: 18px;
-  padding: var(--s-4) var(--s-5);
+  padding: 18px var(--s-5);
   height: 100%;
   color: var(--ink);
   text-decoration: none;
-  transition: color 120ms ease, background-color 200ms ease;
+  transition: background-color 200ms ease, padding-left 220ms cubic-bezier(0.65, 0, 0.35, 1);
   min-width: 0;
+  overflow: hidden;
+}
+.grotesque .directory a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--red);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 260ms cubic-bezier(0.65, 0, 0.35, 1);
 }
 .grotesque .directory .ico {
-  width: 18px;
-  height: 18px;
+  width: 52px;
+  height: 52px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--mute);
-  transition: color 120ms ease;
+  color: var(--ink-soft);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  transition:
+    color 260ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 260ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 260ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 340ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.grotesque .directory .ico svg { width: 100%; height: 100%; display: block; }
+.grotesque .directory .ico svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  transition: transform 340ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 .grotesque .directory .row-text {
   display: flex;
   flex-direction: column;
@@ -246,6 +329,7 @@ body.grotesque ::selection { background: var(--ink); color: var(--bg); }
   line-height: 1.1;
   letter-spacing: -0.005em;
   color: var(--ink);
+  transition: color 200ms ease;
 }
 .grotesque .directory .caption {
   font-family: var(--body);
@@ -258,6 +342,7 @@ body.grotesque ::selection { background: var(--ink); color: var(--bg); }
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
+  transition: color 200ms ease;
 }
 .grotesque .directory .arrow {
   font-family: var(--display);
@@ -266,24 +351,39 @@ body.grotesque ::selection { background: var(--ink); color: var(--bg); }
   color: var(--mute);
   flex: 0 0 auto;
   align-self: center;
-  transition: transform 180ms ease, color 120ms ease;
+  transition: transform 220ms cubic-bezier(0.65, 0, 0.35, 1), color 200ms ease, opacity 200ms ease;
+  opacity: 0.55;
 }
+
 .grotesque .directory a:hover,
 .grotesque .directory a:focus-visible {
-  background: var(--red);
-  color: #fff;
+  background: color-mix(in srgb, var(--red) 5%, transparent);
   outline: none;
+  padding-left: calc(var(--s-5) + 4px);
+}
+.grotesque .directory a:hover::before,
+.grotesque .directory a:focus-visible::before { transform: scaleY(1); }
+.grotesque .directory a:hover .ico,
+.grotesque .directory a:focus-visible .ico {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+  transform: scale(1.06) rotate(-3deg);
+}
+.grotesque .directory a:hover .ico svg,
+.grotesque .directory a:focus-visible .ico svg {
+  transform: scale(1.08);
 }
 .grotesque .directory a:hover .label,
-.grotesque .directory a:focus-visible .label,
-.grotesque .directory a:hover .arrow,
-.grotesque .directory a:focus-visible .arrow,
-.grotesque .directory a:hover .ico,
-.grotesque .directory a:focus-visible .ico { color: #fff; }
+.grotesque .directory a:focus-visible .label { color: var(--red); }
 .grotesque .directory a:hover .caption,
-.grotesque .directory a:focus-visible .caption { color: rgba(255, 255, 255, 0.78); }
+.grotesque .directory a:focus-visible .caption { color: var(--ink); }
 .grotesque .directory a:hover .arrow,
-.grotesque .directory a:focus-visible .arrow { transform: translateX(4px); }
+.grotesque .directory a:focus-visible .arrow {
+  color: var(--red);
+  opacity: 1;
+  transform: translateX(6px);
+}
 
 /* Section chrome */
 .grotesque section {
@@ -553,7 +653,7 @@ body.grotesque ::selection { background: var(--ink); color: var(--bg); }
   mix-blend-mode: multiply;
 }
 html[data-theme="dark"] .grotesque .cv .logo {
-  background: #FAF8F5;
+  background: #ECF1F2;
   border-radius: 6px;
   padding: 4px;
   box-sizing: border-box;
@@ -873,10 +973,12 @@ html[data-theme="dark"] .grotesque .cv .logo img {
     margin: 0;
     padding: 0;
   }
-  .grotesque .display-name { font-size: clamp(56px, 12vw, 96px); }
+  .grotesque .display-name { font-size: clamp(56px, 11vw, 92px); }
   .grotesque .bio { max-width: 60ch; padding: var(--s-4) 0 var(--s-5); }
-  .grotesque .directory a { grid-template-columns: 20px 1fr auto; gap: 16px; padding: var(--s-4) var(--s-5); }
-  .grotesque .directory .label { font-size: 22px; }
+  .grotesque .directory a { grid-template-columns: 48px 1fr auto; gap: 16px; padding: 16px var(--s-5); }
+  .grotesque .directory .ico { width: 48px; height: 48px; }
+  .grotesque .directory .ico svg { width: 22px; height: 22px; }
+  .grotesque .directory .label { font-size: 21px; }
   .grotesque .eyebrow-block,
   .grotesque .sec-title,
   .grotesque .sec-content,
@@ -894,13 +996,17 @@ html[data-theme="dark"] .grotesque .cv .logo img {
   .grotesque .site-nav__mark { font-size: 17px; }
   .grotesque .site-nav__links { gap: var(--s-3); }
   .grotesque .site-nav__links a { font-size: 10.5px; letter-spacing: 0.12em; }
-  .grotesque .nameplate { padding: var(--s-4); }
+  .grotesque .nameplate { padding: var(--s-4); gap: var(--s-3); }
   .grotesque .display-name { font-size: clamp(48px, 13vw, 76px); letter-spacing: -0.025em; }
-  .grotesque .tagline { font-size: 19px; padding-top: 16px; margin-top: 16px; }
+  .grotesque .tagline { font-size: 18px; padding-top: 14px; margin-top: 14px; max-width: none; }
   .grotesque .bio { font-size: 16px; }
-  .grotesque .directory a { grid-template-columns: 18px 1fr auto; gap: 14px; padding: var(--s-3) var(--s-4); }
+  .grotesque .directory a { grid-template-columns: 44px 1fr auto; gap: 14px; padding: 14px var(--s-4); }
+  .grotesque .directory a:hover, .grotesque .directory a:focus-visible { padding-left: calc(var(--s-4) + 4px); }
+  .grotesque .directory .ico { width: 44px; height: 44px; border-radius: 10px; }
+  .grotesque .directory .ico svg { width: 20px; height: 20px; }
   .grotesque .directory .label { font-size: 19px; }
   .grotesque .directory .caption { font-size: 12px; }
+  .grotesque .directory .arrow { font-size: 20px; }
   .grotesque section { padding: var(--s-6) 0; }
   .grotesque .sec-title { font-size: 32px; }
   .grotesque .services { grid-template-columns: 1fr; gap: var(--s-3); }
@@ -1102,6 +1208,56 @@ html[data-theme="dark"] .theme-toggle__icon--moon { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .book-fab__dot { animation: none; }
+}
+
+/* Contact FAB — shown when consulting availability is hidden.
+   Selector specificity matches `.grotesque a` so it wins the color cascade. */
+.grotesque .contact-fab,
+.grotesque .contact-fab:link,
+.grotesque .contact-fab:visited {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 55;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 12px 22px 12px 16px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 180ms ease, box-shadow 180ms ease,
+    background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.grotesque .contact-fab:hover,
+.grotesque .contact-fab:focus-visible {
+  transform: translateY(-2px);
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--red) 40%, transparent),
+    0 3px 10px rgba(0, 0, 0, 0.12);
+  outline: none;
+  text-decoration: none;
+}
+.contact-fab__icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-fab__icon svg { width: 100%; height: 100%; display: block; }
+@media (max-width: 640px) {
+  .grotesque .contact-fab { padding: 11px 18px 11px 14px; font-size: 11px; }
 }
 
 /* Book-a-call modal */

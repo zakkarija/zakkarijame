@@ -59,8 +59,9 @@ export default function Popovers() {
       <div className="popover" id="pop-booking" role="dialog" aria-label="Booking.com">
         <span className="label">Booking.com</span>
         <p>
-          Online travel platform headquartered in Amsterdam. The GenAI Engineering team
-          builds backend infrastructure for LLM-backed features in the consumer product.
+          Online travel platform headquartered in Amsterdam. The GenAI Engineering
+          team builds the internal developer platform: agent platform, MCP integration
+          platform and supporting infrastructure to accelerate engineers across the company.
         </p>
         <a className="visit" href="https://www.booking.com" target="_blank" rel="noopener noreferrer">
           Visit site →

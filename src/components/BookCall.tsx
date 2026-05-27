@@ -1,18 +1,35 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { EmailIcon } from "~/components/icons";
+import { SHOW_AVAILABLE, CONTACT_EMAIL } from "~/lib/site-config";
 
 const CAL_URL = "https://cal.com/zak-micallef-j5yhlg";
-const EMAIL = "zak.micallef27@gmail.com";
 
 export function BookCall() {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
+    if (!SHOW_AVAILABLE) return;
     const open = () => dialogRef.current?.showModal();
     window.addEventListener("book-call:open", open);
     return () => window.removeEventListener("book-call:open", open);
   }, []);
+
+  if (!SHOW_AVAILABLE) {
+    return (
+      <a
+        className="contact-fab"
+        href={`mailto:${CONTACT_EMAIL}`}
+        aria-label={`Email ${CONTACT_EMAIL}`}
+      >
+        <span className="contact-fab__icon" aria-hidden="true">
+          <EmailIcon fill="currentColor" />
+        </span>
+        Get in touch
+      </a>
+    );
+  }
 
   const close = () => dialogRef.current?.close();
 
@@ -58,8 +75,8 @@ export function BookCall() {
           >
             Book on Cal.com <span aria-hidden="true">↗</span>
           </a>
-          <a className="book-modal__alt" href={`mailto:${EMAIL}`}>
-            or email {EMAIL}
+          <a className="book-modal__alt" href={`mailto:${CONTACT_EMAIL}`}>
+            or email {CONTACT_EMAIL}
           </a>
         </div>
       </dialog>
