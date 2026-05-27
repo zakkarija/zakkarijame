@@ -1,5 +1,8 @@
 import Popovers from "~/components/Popovers";
 
+// Temporarily hidden: not advertising consulting availability right now.
+const SHOW_AVAILABLE = false;
+
 export default function HomePage() {
   return (
     <>
@@ -76,45 +79,47 @@ export default function HomePage() {
       </header>
 
       <main>
-        <section data-screen-label="Available">
-          <div className="container">
-            <div className="grid12 sec-grid">
-              <div className="eyebrow-block">
-                <p className="eyebrow">
-                  <span className="num">01</span>Available for
-                </p>
+        {SHOW_AVAILABLE && (
+          <section data-screen-label="Available">
+            <div className="container">
+              <div className="grid12 sec-grid">
+                <div className="eyebrow-block">
+                  <p className="eyebrow">
+                    <span className="num">01</span>Available for
+                  </p>
+                </div>
+                <h2 className="sec-title">
+                  Open to <em>short-term contract work</em> in Amsterdam, Malta &amp; remote-EU.
+                </h2>
+                <ul className="services">
+                  <li>
+                    <h3>Backend services</h3>
+                    <p>Java and Spring. APIs, data pipelines, the unglamorous middle.</p>
+                  </li>
+                  <li>
+                    <h3>Infrastructure</h3>
+                    <p>AWS and Kubernetes. Setup, hardening, migrations, day-2 operations.</p>
+                  </li>
+                  <li>
+                    <h3>MLOps pipelines</h3>
+                    <p>Training to deployment to monitoring. MLflow, Kubeflow, or built from primitives.</p>
+                  </li>
+                  <li>
+                    <h3>LLM glue work</h3>
+                    <p>Wiring LLMs into production: retrieval, evals, guardrails, cost.</p>
+                  </li>
+                </ul>
               </div>
-              <h2 className="sec-title">
-                Open to <em>short-term contract work</em> in Amsterdam, Malta &amp; remote-EU.
-              </h2>
-              <ul className="services">
-                <li>
-                  <h3>Backend services</h3>
-                  <p>Java and Spring. APIs, data pipelines, the unglamorous middle.</p>
-                </li>
-                <li>
-                  <h3>Infrastructure</h3>
-                  <p>AWS and Kubernetes. Setup, hardening, migrations, day-2 operations.</p>
-                </li>
-                <li>
-                  <h3>MLOps pipelines</h3>
-                  <p>Training to deployment to monitoring. MLflow, Kubeflow, or built from primitives.</p>
-                </li>
-                <li>
-                  <h3>LLM glue work</h3>
-                  <p>Wiring LLMs into production: retrieval, evals, guardrails, cost.</p>
-                </li>
-              </ul>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         <section data-screen-label="Experience">
           <div className="container">
             <div className="grid12 sec-grid">
               <div className="eyebrow-block">
                 <h2 className="eyebrow">
-                  <span className="num">02</span>Experience
+                  <span className="num">01</span>Experience
                 </h2>
               </div>
               <ol className="cv">
@@ -240,7 +245,7 @@ export default function HomePage() {
             <div className="grid12 sec-grid">
               <div className="eyebrow-block">
                 <h2 className="eyebrow">
-                  <span className="num">03</span>Selected work
+                  <span className="num">02</span>Selected work
                 </h2>
               </div>
               <ol className="work-list">
