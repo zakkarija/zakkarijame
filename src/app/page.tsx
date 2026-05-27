@@ -2,6 +2,9 @@ import Popovers from "~/components/Popovers";
 import { EmailIcon, GitHubIcon, LinkedInIcon, DownloadIcon } from "~/components/icons";
 import { BookCallTrigger } from "~/components/BookCall";
 
+// Temporarily hidden: not advertising consulting availability right now.
+const SHOW_AVAILABLE = false;
+
 export default function HomePage() {
   return (
     <>
@@ -115,6 +118,7 @@ export default function HomePage() {
       </header>
 
       <main>
+        {SHOW_AVAILABLE && (
         <section id="available" data-screen-label="Available">
           <div className="container">
             <div className="grid12 sec-grid">
@@ -312,13 +316,14 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+        )}
 
         <section id="experience" data-screen-label="Experience">
           <div className="container">
             <div className="grid12 sec-grid">
               <div className="eyebrow-block">
                 <h2 className="eyebrow">
-                  <span className="num">02</span>Experience
+                  <span className="num">01</span>Experience
                 </h2>
               </div>
               <ol className="cv">
@@ -458,7 +463,7 @@ export default function HomePage() {
             <div className="grid12 sec-grid">
               <div className="eyebrow-block">
                 <h2 className="eyebrow">
-                  <span className="num">03</span>Selected work
+                  <span className="num">02</span>Selected work
                 </h2>
               </div>
               <ol className="work-list">
