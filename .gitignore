@@ -46,7 +46,10 @@ yarn-error.log*
 .idea
 
 # Claude Code configuration
-CLAUDE.md
+# CLAUDE.md is committed on purpose: it is project guidance every contributor
+# (and Claude Code) should get on checkout. Keep personal, machine-specific
+# notes in CLAUDE.local.md instead, which stays untracked.
+CLAUDE.local.md
 
 # Local-only screenshots & Playwright MCP scratch
 /.playwright-mcp

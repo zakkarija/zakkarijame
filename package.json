@@ -10,7 +10,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "dev": "WATCHPACK_POLLING=true next dev --hostname 127.0.0.1",
+    "dev": "next dev --hostname 127.0.0.1",
     "dev:turbo": "next dev --turbo --hostname 127.0.0.1",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "format:write": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
@@ -19,7 +19,8 @@
     "preview": "next build && next start",
     "start": "next start",
     "test:smoke": "node test-smoke.js",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "dev:poll": "cross-env WATCHPACK_POLLING=true next dev --hostname 127.0.0.1"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
@@ -46,6 +47,7 @@
     "@types/node": "^20.14.10",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "cross-env": "^10.1.0",
     "drizzle-kit": "^0.30.5",
     "eslint": "^9.23.0",
     "eslint-config-next": "^15.5.7",
