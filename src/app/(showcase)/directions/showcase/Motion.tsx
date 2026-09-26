@@ -110,6 +110,19 @@ export function Motion() {
         );
       });
 
+      // Single cards grow into place as they arrive.
+      document.querySelectorAll<HTMLElement>(".grow").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { scale: 0.92 },
+          {
+            scale: 1,
+            ease: "none",
+            scrollTrigger: { trigger: el, start: "top bottom", end: "top 40%", scrub: true },
+          },
+        );
+      });
+
       return () => {
         gsap.ticker.remove(tick);
         lenis.destroy();

@@ -33,6 +33,8 @@ export interface Project {
   short?: string;
   /** Timeline entry this work came out of (see timeline.ts). */
   partOf?: string;
+  /** One sentence lifted from the summary, for a card with no image. */
+  highlight?: string;
   year?: number;
   summary?: string;
   citation?: string;
@@ -71,6 +73,7 @@ export const projects: Project[] = [
     heading: "Industrial MLOps for anomaly detection",
     short: "MSc thesis",
     partOf: "msc-cs",
+    highlight: "MLflow gets a team running quickly; Kubeflow needs Kubernetes fluency before it gives anything back.",
     year: 2025,
     title: "MLOps Research: From Literature Review to Industrial Implementation",
     summary: "Two pipelines for the same industrial anomaly-detection use case on CNC machine signals, with IDEKO: one built on MLflow, one on Kubeflow. MLflow gets a team running quickly; Kubeflow needs Kubernetes fluency before it gives anything back. Which to pick depends mostly on what the team already runs.",

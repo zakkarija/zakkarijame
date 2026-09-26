@@ -18,8 +18,11 @@ export interface TimelineEntry {
   team?: string;
   /** Label short enough to sit on a time axis. */
   short: string;
-  /** What was built there, one item per line. Facts only. */
-  built?: string[];
+  /**
+   * What was built there. Details are drafted strictly from the description
+   * above (and what the names mean); Zakkarija should check the wording.
+   */
+  built?: { title: string; detail: string }[];
   /** Technologies named in the description. */
   stack?: string[];
 }
@@ -38,9 +41,18 @@ export const timelineItems: TimelineEntry[] = [
     end: null,
     track: "work",
     built: [
-      "The internal agent platform",
-      "The MCP integration platform",
-      "The infrastructure and developer tooling around both",
+      {
+        title: "Internal agent platform",
+        detail: "An internal platform for AI agents, built for engineers across the company.",
+      },
+      {
+        title: "MCP integration platform",
+        detail: "Connects internal tools and services to agents through the Model Context Protocol.",
+      },
+      {
+        title: "Developer tooling",
+        detail: "The infrastructure and tooling around both platforms, so engineering ships faster.",
+      },
     ],
     stack: ["AI agents", "MCP"],
   },
@@ -68,10 +80,22 @@ export const timelineItems: TimelineEntry[] = [
     end: 2026,
     track: "work",
     built: [
-      "Backend orchestration for a bare-metal cloud",
-      "Automated RAID configuration",
-      "Custom OS image creation",
-      "Internal provisioning tools in Spring Boot",
+      {
+        title: "Backend orchestration",
+        detail: "Java backend orchestration for a bare-metal cloud provider.",
+      },
+      {
+        title: "Automated RAID configuration",
+        detail: "Led the project to configure server RAID automatically.",
+      },
+      {
+        title: "Custom OS images",
+        detail: "Led the work on creating custom operating-system images.",
+      },
+      {
+        title: "Provisioning tools",
+        detail: "Internal tools for provisioning servers, built with Spring Boot.",
+      },
     ],
     stack: ["Java", "Spring Boot"],
   },
@@ -87,8 +111,14 @@ export const timelineItems: TimelineEntry[] = [
     end: 2021,
     track: "work",
     built: [
-      "An internal employee-management tool, end to end",
-      "Frontend, backend, database, deployment and support",
+      {
+        title: "Employee-management tool",
+        detail: "An internal tool, built and run end to end by a small intern team.",
+      },
+      {
+        title: "Full stack, start to finish",
+        detail: "Frontend, backend, database, deployment and support, with sprint priorities set alongside Product Owners.",
+      },
     ],
     stack: ["Java", "Spring", "Maven", "SQL", "JavaScript"],
   },
