@@ -8,10 +8,12 @@ import { timelineItems } from "~/data/timeline";
 import { formatPeriod } from "~/lib/format";
 import { OPEN_TO_WORK, OPEN_TO_WORK_NOTE } from "~/lib/site-config";
 
-import { ContourBackground } from "./ContourBackground";
-import { ExperienceTabs, type Role } from "./ExperienceTabs";
-import { Motion } from "./Motion";
-import { OrgLink, WithMentions } from "./OrgLink";
+import { ContourBackground } from "~/components/site/ContourBackground";
+import { EmailLink } from "~/components/site/EmailLink";
+import { ExperienceTabs, type Role } from "~/components/site/ExperienceTabs";
+import { Motion } from "~/components/site/Motion";
+import { OrgLink, WithMentions } from "~/components/site/OrgLink";
+import { SiteBar, SiteFooter } from "~/components/site/SiteChrome";
 
 const work = timelineItems.filter((t) => t.track === "work");
 const education = timelineItems.filter((t) => t.track === "study");
@@ -101,29 +103,7 @@ export default function ShowcasePage() {
     <>
       <ContourBackground />
 
-      <header className="bar">
-        <div className="bar__scrim" aria-hidden="true" />
-        <a className="bar__mark" href="#top" aria-label={`${profile.name}, back to top`}>
-          <span>{profile.givenName}</span>
-          <span>{profile.familyName}</span>
-        </a>
-        <nav aria-label="Sections">
-          <ul className="bar__nav">
-            <li>
-              <a href="#experience">Experience</a>
-            </li>
-            <li>
-              <a href="#projects">Projects</a>
-            </li>
-            <li>
-              <a href="#contact">Contact</a>
-            </li>
-          </ul>
-        </nav>
-        <a className="btn btn--accent bar__cta" href={`mailto:${profile.email}`}>
-          Email me
-        </a>
-      </header>
+      <SiteBar home />
 
       <div className="page">
         <main id="top">
@@ -233,14 +213,14 @@ export default function ShowcasePage() {
               <h2 id="contact-title" className="contact__title">
                 Get in touch
               </h2>
-              <a className="contact__email" href={`mailto:${profile.email}`}>
+              <EmailLink email={profile.email} className="contact__email">
                 {profile.email}
-              </a>
+              </EmailLink>
               {OPEN_TO_WORK ? <p className="contact__note">{OPEN_TO_WORK_NOTE}</p> : null}
               <div className="contact__actions">
-                <a className="btn btn--ink btn--lg" href={`mailto:${profile.email}`}>
+                <EmailLink email={profile.email} className="btn btn--ink btn--lg">
                   Email me
-                </a>
+                </EmailLink>
                 <a className="btn btn--line btn--lg" href={profile.calUrl}>
                   Book a call
                   <Arrow />
@@ -251,12 +231,7 @@ export default function ShowcasePage() {
           </section>
         </main>
 
-        <footer className="footer">
-          <p>
-            © {new Date().getFullYear()} {profile.name}
-          </p>
-          <p>{profile.location}</p>
-        </footer>
+        <SiteFooter />
       </div>
 
       <Motion />
