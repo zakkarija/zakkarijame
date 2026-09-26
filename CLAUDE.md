@@ -68,19 +68,23 @@ Run `npm run check` and `npm run build` before declaring any change finished.
 ## Layout of the code
 
 ```
-src/app/page.tsx          the single-page site (hero, experience, work)
-src/app/layout.tsx        fonts, theme bootstrap script, metadata
-src/app/blogs/            blog index and post pages (MDX)
-src/components/           React components
-src/data/                 profile, navigation, projects, skills, timeline
-src/lib/site-config.ts    feature flags + contact email
-src/styles/globals.css    Tailwind entry + legacy utility soup
-src/styles/grotesque.css  the current hand-written design system (1393 lines)
-src/content/posts/        MDX blog posts
+src/app/page.tsx              the homepage (hero, experience, projects, contact)
+src/app/layout.tsx            root layout: font, metadata, analytics
+src/app/blogs/                blog index and post pages (MDX)
+src/components/site/          homepage and shared UI (bar, footer, experience
+                              switcher, organisation popovers, email link,
+                              contour background, scroll motion)
+src/components/icons/         GitHub, LinkedIn, email, download marks
+src/data/                     profile, timeline, projects, organisations
+src/lib/                      blog loader, formatting, site config
+src/styles/reset.css          minimal reset
+src/styles/site.css           the design system for the whole site
+src/content/posts/            MDX blog posts
 ```
 
-`src/styles/grotesque.css` is the **old** design and is scheduled for deletion,
-not extension. Do not add to it. See `docs/design-brief.md`.
+The previous site (cream/serif "grotesque" design) is preserved on the
+`archive/previous-site` branch. The three unused design directions
+(Coverage, To scale, Sources) are preserved on the `ui-directions` branch.
 
 ## Content is data, not prose in JSX
 

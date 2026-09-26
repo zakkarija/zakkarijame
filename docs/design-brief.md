@@ -5,6 +5,16 @@ has been redesigned five or six times and every attempt came out looking
 machine-generated. The failures were not random; they repeat, they are
 identifiable, and they are listed here so you do not repeat them a seventh time.
 
+> **Status, 26 September 2026: shipped.** The live design (dark ground,
+> contour-line background, huge condensed caps, big cards, one orange accent)
+> was chosen by Zakkarija after comparing four directions. It deliberately
+> departs from parts of this brief: an animated background, scroll-driven
+> motion (smooth scroll, drifting headings, cards growing in), uppercase
+> labels, pill buttons and arrows on external links. Those departures are
+> accepted, so do not "correct" them. Everything else here still applies:
+> facts only, the copy rules, the accessibility floor, reduced-motion
+> support, and checking 390 / 834 / 1440 before calling anything done.
+
 ---
 
 ## 1. The brief
