@@ -16,7 +16,7 @@
   --accent-deep: #b4410a;
 
   --gutter: 16px;
-  --card-pad: 24px;
+  --card-pad: 20px;
   --card-radius: 20px;
   --bar-h: 64px;
 
@@ -933,10 +933,9 @@ a:hover .arrow {
   }
 }
 
-/* Below desktop, tiles and projects become a swipeable row inside their
-   card instead of a tall stack, so a card stays about one screen high. */
+/* Below desktop, projects become a swipeable row inside their card instead
+   of a tall stack, so the card stays about one screen high. */
 @media (max-width: 1023px) {
-  .tiles,
   .projects {
     display: flex;
     gap: 12px;
@@ -949,23 +948,135 @@ a:hover .arrow {
     scrollbar-width: none;
   }
 
-  .tiles::-webkit-scrollbar,
   .projects::-webkit-scrollbar {
     display: none;
-  }
-
-  .tile {
-    flex: 0 0 min(78%, 320px);
-    scroll-snap-align: start;
-  }
-
-  .tiles--wide .tile {
-    flex-basis: min(86%, 420px);
   }
 
   .project {
     flex: 0 0 min(86%, 420px);
     scroll-snap-align: start;
+  }
+}
+
+/* Phones: every role visible at once as a 2 × 2 grid, each role only as
+   tall as its content, and "What I built" as a tight list, not cards. */
+@media (max-width: 767px) {
+  .xp {
+    gap: 24px;
+  }
+
+  .xp__tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .xp__tab {
+    gap: 2px;
+    min-height: 64px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: color-mix(in srgb, currentColor 6%, transparent);
+    color: var(--muted);
+    opacity: 1;
+  }
+
+  .xp__tab:hover {
+    opacity: 1;
+  }
+
+  .xp__tab[aria-selected="true"] {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .xp__tab-period {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .xp__tab-name {
+    font-size: 24px;
+  }
+
+  .xp__panel[hidden] {
+    display: none;
+  }
+
+  .xp__role {
+    margin-top: 16px;
+    font-size: 24px;
+  }
+
+  .xp__lead {
+    margin-top: 12px;
+    font-size: 17px;
+  }
+
+  .xp__built {
+    margin-top: 24px;
+  }
+
+  .xp .tiles {
+    display: block;
+    margin-top: 8px;
+  }
+
+  .xp .tile {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    column-gap: 8px;
+    row-gap: 2px;
+    min-height: 0;
+    padding: 12px 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: inset 0 1px 0 color-mix(in srgb, currentColor 14%, transparent);
+  }
+
+  .xp .tile__index {
+    grid-row: span 2;
+    margin: 0;
+    padding-top: 1px;
+  }
+
+  .xp .tile__title {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.3;
+  }
+
+  .xp .tile__text {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  /* Degrees read top to bottom: period, degree, school, detail. */
+  .xp .tiles--wide .tile {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 0;
+  }
+
+  .xp .tile__title--lg {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  .xp__panel:not([hidden]) {
+    animation: panel-in 260ms var(--ease-out) both;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
   }
 }
 
