@@ -11,7 +11,7 @@ identifiable, and they are listed here so you do not repeat them a seventh time.
 
 **Subject.** Zakkarija Micallef, software engineer in Amsterdam. Currently on the
 GenAI Engineering team at Booking.com, building the internal agent platform, the
-MCP integration platform, and developer tooling. Four years before that at
+MCP integration platform, and developer tooling. Before that, 2021–2026 at
 PhoenixNAP on backend orchestration for a bare-metal cloud. MSc from VU
 Amsterdam on industrial MLOps; published at CAIN 2026 (ACM).
 
@@ -232,12 +232,12 @@ Source of truth is `src/data/` and `src/lib/site-config.ts`. Read from there.
 
 **Facts, all verifiable:**
 
-- Booking.com — Software Engineer, GenAI Engineering, Amsterdam, 2025–present.
+- Booking.com — Software Engineer, GenAI Engineering, Amsterdam, 2026–present.
   Internal agent platform, MCP integration platform, developer tooling.
 - VU Amsterdam & University of Amsterdam — MSc Computer Science, 2023–2025.
   Thesis: industrial anomaly-detection pipelines on CNC machine signals with
   IDEKO, comparing MLflow and Kubeflow.
-- PhoenixNAP — Software Engineer, 2021–2025. Backend orchestration for a
+- PhoenixNAP — Software Engineer, 2021–2026. Backend orchestration for a
   bare-metal cloud: automated RAID configuration, custom OS images, Spring Boot
   provisioning tooling.
 - CCBill — Software Engineer intern, 2018–2021.
@@ -250,7 +250,9 @@ Source of truth is `src/data/` and `src/lib/site-config.ts`. Read from there.
   linkedin.com/in/zakkarija-micallef
 
 **Consulting areas:** agents and MCP integrations; backend and platform;
-cloud, delivery and cost; ML pipelines in production.
+cloud, delivery and cost; ML pipelines in production. Only cloud *infrastructure*
+is evidenced (PhoenixNAP: RAID automation, OS images). There is no evidence yet
+for delivery or cost work, so do not claim either until there is.
 
 **Copy rules.** Active voice. Sentence case. A button names what happens ("Book a
 call", not "Submit"), and the same action keeps that name everywhere. Say what
@@ -271,9 +273,11 @@ survive unchanged on a different person's site.
 - The blog pages (`src/app/blogs/`) are on a completely different, untouched
   Tailwind look — white background, `text-gray-900`, rounded pills. They must end
   up on the same system as the rest of the site.
-- `SHOW_AVAILABLE` in `src/lib/site-config.ts` currently hides the consulting
-  section. Since the site is now consulting-facing, decide deliberately whether
-  that flag stays and say which you chose.
+- **Decided 2026-09-26:** consulting is *not* the headline. Zakkarija takes
+  contract work but is new to it, so the site says so in one quiet line near the
+  end ("Open to new opportunities, including small contract projects"), never in
+  the hero or nav. That line is `OPEN_TO_WORK` in `src/lib/site-config.ts`.
+  `SHOW_AVAILABLE` only drives the legacy homepage and goes when it does.
 
 Work incrementally: get one section right at real widths before starting the
 next. A half-finished page that is genuinely good beats a complete page that is
