@@ -18,6 +18,8 @@ export interface TimelineEntry {
   team?: string;
   /** Label short enough to sit on a time axis. */
   short: string;
+  /** Organisation id in organisations.ts, for the click-for-context card. */
+  org?: string;
   /**
    * What was built there. Details are drafted strictly from the description
    * above (and what the names mean); Zakkarija should check the wording.
@@ -30,6 +32,7 @@ export interface TimelineEntry {
 export const timelineItems: TimelineEntry[] = [
   {
     id: "booking",
+    org: "booking",
     year: "2026 - Present",
     title: "Software Engineer",
     subtitle: "Booking.com",
@@ -58,6 +61,7 @@ export const timelineItems: TimelineEntry[] = [
   },
   {
     id: "msc-cs",
+    org: "vu",
     year: "2023 - 2025",
     title: "M.Sc Computer Science",
     subtitle: "VU Amsterdam & University of Amsterdam",
@@ -70,6 +74,7 @@ export const timelineItems: TimelineEntry[] = [
   },
   {
     id: "phoenixnap",
+    org: "phoenixnap",
     year: "2021 - 2026",
     title: "Software Engineer",
     subtitle: "PhoenixNAP",
@@ -101,6 +106,7 @@ export const timelineItems: TimelineEntry[] = [
   },
   {
     id: "ccbill",
+    org: "ccbill",
     year: "2018 - 2021",
     title: "Software Engineer Intern",
     subtitle: "CCBill",
@@ -124,6 +130,7 @@ export const timelineItems: TimelineEntry[] = [
   },
   {
     id: "bsc-ai",
+    org: "uom",
     year: "2018 - 2021",
     title: "B.Sc Artificial Intelligence",
     subtitle: "University of Malta",

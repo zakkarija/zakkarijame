@@ -1,6 +1,6 @@
 /*
  * Direction D: Showcase
- * Near-black ground with a live contour-line background, big stacking cards,
+ * Near-black ground with a live contour-line background, big single cards,
  * one signal-orange accent. Mona Sans: condensed heavy caps for display,
  * normal width for reading.
  */
@@ -12,6 +12,8 @@
   --muted-on-ink: #9c9d95;
   --muted-on-paper: #595a54;
   --accent: #ff6a1a;
+  /* Accent dark enough for small text on paper (4.8:1). */
+  --accent-deep: #b4410a;
 
   --gutter: 16px;
   --card-pad: 24px;
@@ -105,9 +107,9 @@ a {
 /* Display type: one voice for the name, headings and card titles. */
 .hero__name,
 .section__heading,
-.card__title,
 .contact__title,
 .project__title,
+.xp__tab-name,
 .marquee {
   font-weight: 850;
   font-stretch: 75%;
@@ -121,6 +123,7 @@ a {
 .card__label,
 .tile__index,
 .project__kind,
+.xp__tab-period,
 .bar__nav a,
 .hero__foot,
 .hero__kicker {
@@ -447,21 +450,7 @@ a:hover .arrow {
   }
 }
 
-/* Stacking cards -------------------------------------------------------- */
-
-.stack {
-  padding-inline: var(--gutter);
-  padding-bottom: 16px;
-}
-
-.stack__item {
-  position: sticky;
-  top: var(--stick, var(--bar-h));
-}
-
-.stack__item + .stack__item {
-  margin-top: 10vh;
-}
+/* Cards ------------------------------------------------------------------ */
 
 .card {
   position: relative;
@@ -472,16 +461,6 @@ a:hover .arrow {
   border-radius: var(--card-radius);
   transform-origin: 50% 0;
   overflow: clip;
-}
-
-.card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: #000000;
-  opacity: var(--dim, 0);
-  pointer-events: none;
 }
 
 .card--paper {
@@ -530,34 +509,6 @@ a:hover .arrow {
   color: var(--ink);
 }
 
-.card__title {
-  margin-left: -0.03em;
-  font-size: clamp(56px, 8.4vw, 144px);
-  overflow-wrap: anywhere;
-}
-
-.card__role {
-  margin-top: 16px;
-  font-size: clamp(18px, 1.6vw, 22px);
-  line-height: 1.3;
-  font-weight: 500;
-  color: var(--muted);
-}
-
-.card__head {
-  margin-top: 32px;
-  display: grid;
-  gap: 24px;
-}
-
-.card__lead {
-  font-size: clamp(19px, 1.75vw, 26px);
-  line-height: 1.4;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  max-width: 36ch;
-}
-
 .card__label {
   color: var(--muted);
 }
@@ -580,26 +531,11 @@ a:hover .arrow {
 
 /* Tiles are always one row, and that row grows into the card's spare
    height (capped), so the space sits inside the tiles, not as a gap above. */
-.card__built {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding-top: 40px;
-}
-
 .tiles {
-  flex: 1 1 auto;
-  max-height: 400px;
   margin-top: 16px;
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr));
   gap: 12px;
-}
-
-.tiles--wide {
-  margin-top: 0;
 }
 
 .tile {
@@ -640,11 +576,278 @@ a:hover .arrow {
   color: var(--muted);
 }
 
+/* Experience: one card, a role list switching a detail panel ------------ */
+
+.xp {
+  display: grid;
+  gap: 32px;
+}
+
+.xp__tabs {
+  display: flex;
+  gap: 24px;
+  margin-inline: calc(-1 * var(--card-pad));
+  padding-inline: var(--card-pad);
+  scroll-padding-inline: var(--card-pad);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.xp__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.xp__tab {
+  flex: none;
+  display: grid;
+  justify-items: start;
+  gap: 4px;
+  padding: 8px 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  opacity: 0.38;
+  transition: opacity 200ms ease;
+}
+
+.xp__tab:hover {
+  opacity: 0.72;
+}
+
+.xp__tab[aria-selected="true"] {
+  opacity: 1;
+}
+
+.xp__tab-name {
+  font-size: clamp(32px, 4.4vw, 68px);
+}
+
+.xp__tab[aria-selected="true"] .xp__tab-name::after {
+  content: "";
+  display: inline-block;
+  width: 0.22em;
+  height: 0.22em;
+  margin-left: 0.18em;
+  border-radius: 50%;
+  background: var(--accent);
+  vertical-align: 0.08em;
+}
+
+.xp__panels {
+  display: grid;
+}
+
+.xp__panel {
+  grid-area: 1 / 1;
+  min-width: 0;
+  transition:
+    opacity 280ms ease,
+    transform 280ms var(--ease-out),
+    visibility 0s;
+}
+
+/* Hidden panels keep their space (the tallest sets the height) but are
+   invisible, unfocusable and out of the accessibility tree. */
+.xp__panel[hidden] {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 0s 180ms;
+}
+
+.xp__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.xp__role {
+  margin-top: 20px;
+  font-size: clamp(26px, 2.6vw, 40px);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.xp__lead {
+  margin-top: 16px;
+  max-width: 56ch;
+  font-size: clamp(18px, 1.45vw, 21px);
+  line-height: 1.5;
+}
+
+.xp__built {
+  margin-top: 32px;
+}
+
+/* Compact tiles here so four of them (2 × 2) still fit one screen. */
+.xp .tile {
+  min-height: 0;
+  padding: 20px;
+}
+
+.xp .tile__title {
+  margin-top: 16px;
+}
+
 @media (min-width: 1024px) {
-  .card__head {
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: end;
+  .xp {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 64px;
+    align-items: start;
+  }
+
+  .xp__tabs {
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .xp__tab {
+    width: 100%;
+    padding: 18px 0;
+    box-shadow: inset 0 1px 0 color-mix(in srgb, currentColor 14%, transparent);
+  }
+
+  .xp__tab:first-child {
+    padding-top: 0;
+    box-shadow: none;
+  }
+}
+
+/* Organisation links and their context card ------------------------------ */
+
+.org {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+}
+
+.org:hover {
+  text-decoration-style: solid;
+}
+
+.org__icon {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-left: 0.25em;
+  vertical-align: -0.06em;
+  opacity: 0.7;
+}
+
+.org--chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 30%, transparent);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.org--chip:hover {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.org--chip .org__icon {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.org-pop {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  width: min(320px, calc(100vw - 24px));
+  padding: 20px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow:
+    0 24px 64px rgb(0 0 0 / 0.45),
+    0 0 0 1px rgb(14 15 12 / 0.08);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.org-pop__name {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.org-pop__blurb {
+  margin-top: 8px;
+}
+
+.org-pop__links {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
+}
+
+.org-pop__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .org-pop {
+    transition:
+      opacity 180ms ease,
+      transform 180ms var(--ease-out),
+      overlay 180ms allow-discrete,
+      display 180ms allow-discrete;
+  }
+
+  .org-pop:not(:popover-open) {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  @starting-style {
+    .org-pop:popover-open {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
   }
 }
 

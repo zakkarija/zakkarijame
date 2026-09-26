@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { DownloadIcon, GitHubIcon, LinkedInIcon } from "~/components/icons";
+import { organisationById, organisations } from "~/data/organisations";
 import { profile } from "~/data/profile";
 import { selectedWork } from "~/data/projects";
 import { timelineItems } from "~/data/timeline";
@@ -8,10 +9,45 @@ import { formatPeriod } from "~/lib/format";
 import { OPEN_TO_WORK, OPEN_TO_WORK_NOTE } from "~/lib/site-config";
 
 import { ContourBackground } from "./ContourBackground";
+import { ExperienceTabs, type Role } from "./ExperienceTabs";
 import { Motion } from "./Motion";
+import { OrgLink, WithMentions } from "./OrgLink";
 
 const work = timelineItems.filter((t) => t.track === "work");
 const education = timelineItems.filter((t) => t.track === "study");
+const mentions = organisations.filter((o) => o.mentions);
+
+const roles: Role[] = [
+  ...work.map((job) => ({
+    id: job.id,
+    tab: job.subtitle,
+    period: formatPeriod(job.start, job.end),
+    current: job.end === null,
+    heading: job.team ? `${job.title}, ${job.team}` : job.title,
+    lead: job.description,
+    tags: job.stack,
+    org: organisationById(job.org),
+    built: job.built,
+  })),
+  {
+    id: "education",
+    tab: "Education",
+    period: formatPeriod(
+      Math.min(...education.map((e) => e.start)),
+      Math.max(...education.map((e) => e.end ?? 0)),
+    ),
+    current: false,
+    heading: "Computer science and artificial intelligence",
+    degrees: education.map((e) => ({
+      id: e.id,
+      period: formatPeriod(e.start, e.end),
+      name: e.title,
+      school: e.subtitle,
+      org: organisationById(e.org),
+      text: e.description,
+    })),
+  },
+];
 
 const marquee = [
   "Agent platforms",
@@ -29,14 +65,6 @@ function Arrow() {
     <svg className="arrow" viewBox="0 0 16 16" aria-hidden="true">
       <path d="M4.5 11.5 11.5 4.5M6 4.5h5.5V10" fill="none" stroke="currentColor" strokeWidth="1.5" />
     </svg>
-  );
-}
-
-function Index({ n, of }: { n: number; of: number }) {
-  return (
-    <span className="card__index">
-      {pad(n)} / {pad(of)}
-    </span>
   );
 }
 
@@ -67,7 +95,7 @@ function ProfileLinks({ className }: { className?: string }) {
 }
 
 export default function ShowcasePage() {
-  const experienceCount = work.length + 1;
+  const booking = organisationById("booking");
 
   return (
     <>
@@ -103,7 +131,7 @@ export default function ShowcasePage() {
             <p className="hero__kicker reveal" style={{ "--d": "0.5s" } as React.CSSProperties}>
               {profile.role}, {profile.team}
               <br />
-              {profile.company}
+              {booking ? <OrgLink org={booking}>{profile.company}</OrgLink> : profile.company}
             </p>
             <h1 id="hero-name" className="hero__name">
               <span className="line">
@@ -139,83 +167,9 @@ export default function ShowcasePage() {
               Experience
             </h2>
 
-            <div className="stack">
-              {work.map((job, i) => (
-                <div key={job.id} className="stack__item">
-                  <article className={`card ${i % 2 === 0 ? "card--paper" : "card--raised"}`}>
-                    <div className="card__top">
-                      <span className="card__period">{formatPeriod(job.start, job.end)}</span>
-                      {job.end === null ? <span className="badge">Current role</span> : null}
-                      <Index n={i + 1} of={experienceCount} />
-                    </div>
-
-                    <div className="card__head">
-                      <div>
-                        <h3 className="card__title">{job.subtitle}</h3>
-                        <p className="card__role">
-                          {job.title}
-                          {job.team ? `, ${job.team}` : null}
-                        </p>
-                      </div>
-                      <div className="card__summary">
-                        <p className="card__lead">{job.description}</p>
-                        {job.stack ? (
-                          <ul className="tags" aria-label="Technologies">
-                            {job.stack.map((s) => (
-                              <li key={s}>{s}</li>
-                            ))}
-                          </ul>
-                        ) : null}
-                      </div>
-                    </div>
-
-                    {job.built ? (
-                      <div className="card__built">
-                        <h4 className="card__label">What I built</h4>
-                        <ol className="tiles">
-                          {job.built.map((b, n) => (
-                            <li key={b.title} className="tile">
-                              <span className="tile__index">{pad(n + 1)}</span>
-                              <p className="tile__title">{b.title}</p>
-                              <p className="tile__text">{b.detail}</p>
-                            </li>
-                          ))}
-                        </ol>
-                      </div>
-                    ) : null}
-                  </article>
-                </div>
-              ))}
-
-              <div className="stack__item">
-                <article
-                  className={`card ${work.length % 2 === 0 ? "card--paper" : "card--raised"}`}
-                >
-                  <div className="card__top">
-                    <span className="card__period">
-                      {formatPeriod(
-                        Math.min(...education.map((e) => e.start)),
-                        Math.max(...education.map((e) => e.end ?? 0)),
-                      )}
-                    </span>
-                    <Index n={experienceCount} of={experienceCount} />
-                  </div>
-                  <div className="card__head">
-                    <h3 className="card__title">Education</h3>
-                  </div>
-                  <div className="card__built">
-                    <ol className="tiles tiles--wide">
-                      {education.map((e) => (
-                        <li key={e.id} className="tile">
-                          <span className="tile__index">{formatPeriod(e.start, e.end)}</span>
-                          <p className="tile__title tile__title--lg">{e.title}</p>
-                          <p className="tile__school">{e.subtitle}</p>
-                          <p className="tile__text">{e.description}</p>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                </article>
+            <div className="solo">
+              <div className="card card--paper grow">
+                <ExperienceTabs roles={roles} mentions={mentions} />
               </div>
             </div>
           </section>
@@ -253,7 +207,9 @@ export default function ShowcasePage() {
                         {p.kind}, {p.year}
                       </p>
                       <h3 className="project__title">{p.heading}</h3>
-                      <p className="project__summary">{p.summary}</p>
+                      <p className="project__summary">
+                        <WithMentions text={p.summary} orgs={mentions} />
+                      </p>
                       <ul className="project__links">
                         {p.links.map((l) => (
                           <li key={l.url}>
