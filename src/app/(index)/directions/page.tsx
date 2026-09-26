@@ -2,6 +2,12 @@ import Link from "next/link";
 
 const directions = [
   {
+    href: "/directions/showcase",
+    name: "Showcase",
+    idea: "No concept, just the content, presented big: a stack of full-screen cards for each company, each project and contact, over a live contour-line background.",
+    system: "Near-black, off-white and signal orange. Mona Sans, condensed heavy caps for display.",
+  },
+  {
     href: "/directions/coverage",
     name: "Coverage",
     idea: "An evidence matrix under the name: areas of work against where each was done. Empty cells stay empty.",

@@ -18,6 +18,10 @@ export interface TimelineEntry {
   team?: string;
   /** Label short enough to sit on a time axis. */
   short: string;
+  /** What was built there, one item per line. Facts only. */
+  built?: string[];
+  /** Technologies named in the description. */
+  stack?: string[];
 }
 
 export const timelineItems: TimelineEntry[] = [
@@ -33,6 +37,12 @@ export const timelineItems: TimelineEntry[] = [
     start: 2026,
     end: null,
     track: "work",
+    built: [
+      "The internal agent platform",
+      "The MCP integration platform",
+      "The infrastructure and developer tooling around both",
+    ],
+    stack: ["AI agents", "MCP"],
   },
   {
     id: "msc-cs",
@@ -57,6 +67,13 @@ export const timelineItems: TimelineEntry[] = [
     start: 2021,
     end: 2026,
     track: "work",
+    built: [
+      "Backend orchestration for a bare-metal cloud",
+      "Automated RAID configuration",
+      "Custom OS image creation",
+      "Internal provisioning tools in Spring Boot",
+    ],
+    stack: ["Java", "Spring Boot"],
   },
   {
     id: "ccbill",
@@ -69,6 +86,11 @@ export const timelineItems: TimelineEntry[] = [
     start: 2018,
     end: 2021,
     track: "work",
+    built: [
+      "An internal employee-management tool, end to end",
+      "Frontend, backend, database, deployment and support",
+    ],
+    stack: ["Java", "Spring", "Maven", "SQL", "JavaScript"],
   },
   {
     id: "bsc-ai",

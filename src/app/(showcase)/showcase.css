@@ -1,0 +1,726 @@
+/*
+ * Direction D: Showcase
+ * Near-black ground with a live contour-line background, big stacking cards,
+ * one signal-orange accent. Mona Sans: condensed heavy caps for display,
+ * normal width for reading.
+ */
+
+:root {
+  --ink: #0e0f0c;
+  --ink-raised: #1a1b17;
+  --paper: #eeeeea;
+  --muted-on-ink: #9c9d95;
+  --muted-on-paper: #595a54;
+  --accent: #ff6a1a;
+
+  --gutter: 16px;
+  --card-pad: 24px;
+  --card-radius: 20px;
+  --bar-h: 64px;
+
+  --font: var(--font-mona), "Mona Sans", system-ui, sans-serif;
+  --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+  --bar-fg: var(--paper);
+
+  color-scheme: dark;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 24px;
+    --card-pad: 32px;
+    --card-radius: 24px;
+    --bar-h: 72px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --gutter: 32px;
+    --card-pad: 48px;
+    --card-radius: 32px;
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+html {
+  background: var(--ink);
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.contour {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Clip sideways overflow here, not on body: phones widen the layout viewport
+   past a clipped body. overflow: clip keeps sticky positioning working. */
+.page {
+  position: relative;
+  z-index: 1;
+  overflow-x: clip;
+}
+
+/* Display type: one voice for the name, headings and card titles. */
+.hero__name,
+.section__heading,
+.card__title,
+.contact__title,
+.marquee {
+  font-weight: 850;
+  font-stretch: 75%;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.84;
+}
+
+/* Small labels */
+.card__top,
+.card__label,
+.bar__nav a,
+.hero__foot,
+.hero__kicker {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Bar ------------------------------------------------------------------- */
+
+.bar__mark,
+.bar__nav {
+  position: fixed;
+  top: 0;
+  z-index: 50;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  color: var(--bar-fg);
+  transition: color 200ms ease;
+}
+
+.bar__mark {
+  left: var(--gutter);
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-weight: 850;
+  font-stretch: 75%;
+  text-transform: uppercase;
+  font-size: 17px;
+  line-height: 0.95;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.bar__nav {
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  gap: 32px;
+}
+
+.bar__nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: none;
+}
+
+.bar__nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.bar__cta {
+  position: fixed;
+  top: calc((var(--bar-h) - 44px) / 2);
+  right: var(--gutter);
+  z-index: 50;
+}
+
+/* The bar reads the card beneath it (set by Motion) and flips to stay legible. */
+html[data-bar="light"],
+html[data-bar="accent"] {
+  --bar-fg: var(--ink);
+}
+
+html[data-bar="accent"] .bar__cta {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+@media (min-width: 768px) {
+  .bar__nav {
+    display: flex;
+  }
+}
+
+/* Buttons --------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.btn--accent {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.btn--accent:hover {
+  background: var(--paper);
+}
+
+.btn--ink {
+  min-height: 52px;
+  padding: 0 28px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 17px;
+}
+
+.btn--ink:hover {
+  background: var(--ink-raised);
+}
+
+.btn--line {
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+
+.btn--line:hover {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.arrow {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  transition: transform 200ms var(--ease-out);
+}
+
+a:hover .arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Hero ------------------------------------------------------------------ */
+
+.hero {
+  min-height: 100svh;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: calc(var(--bar-h) + 48px) var(--gutter) 24px;
+}
+
+.hero__kicker {
+  margin-bottom: 24px;
+  color: var(--paper);
+}
+
+.hero__name {
+  /* "ZAKKARIJA" is 3.69em wide in this setting: fit it to the content width. */
+  font-size: calc(100cqw / 3.72);
+  margin-left: -0.04em;
+}
+
+.hero__name .line {
+  display: block;
+  overflow: clip;
+  padding-top: 0.04em;
+  margin-top: -0.04em;
+}
+
+.hero__name .line > span {
+  display: block;
+}
+
+.hero__foot {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  color: var(--muted-on-ink);
+}
+
+.hero__links {
+  display: flex;
+  gap: 24px;
+}
+
+.hero__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.hero__links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__name .line > span {
+    animation: rise 1.2s var(--ease-out) both;
+    animation-delay: var(--d, 0s);
+  }
+
+  .reveal {
+    animation: fade-in 1s var(--ease-out) both;
+    animation-delay: var(--d, 0s);
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* Marquee --------------------------------------------------------------- */
+
+.marquee {
+  overflow: clip;
+  padding-block: 48px;
+  font-size: clamp(48px, 8vw, 128px);
+  white-space: nowrap;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee__group {
+  display: flex;
+}
+
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.marquee__sep {
+  display: inline-block;
+  width: 0.22em;
+  height: 0.22em;
+  margin-inline: 0.45em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee__track {
+    animation: marquee 48s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Sections -------------------------------------------------------------- */
+
+.section {
+  padding-top: 96px;
+}
+
+.section__heading {
+  padding-inline: var(--gutter);
+  margin-bottom: 32px;
+  font-size: 20vw;
+  white-space: nowrap;
+}
+
+@media (min-width: 1200px) {
+  .section {
+    padding-top: 128px;
+  }
+
+  .section__heading {
+    margin-bottom: 48px;
+  }
+}
+
+/* Stacking cards -------------------------------------------------------- */
+
+.stack {
+  padding-inline: var(--gutter);
+  padding-bottom: 16px;
+}
+
+.stack__item {
+  position: sticky;
+  top: var(--stick, var(--bar-h));
+}
+
+.stack__item + .stack__item {
+  margin-top: 16vh;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - var(--bar-h) - 48px);
+  padding: var(--card-pad);
+  border-radius: var(--card-radius);
+  transform-origin: 50% 0;
+  overflow: clip;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #000000;
+  opacity: var(--dim, 0);
+  pointer-events: none;
+}
+
+.card--paper {
+  background: var(--paper);
+  color: var(--ink);
+  --muted: var(--muted-on-paper);
+}
+
+.card--raised {
+  background: var(--ink-raised);
+  color: var(--paper);
+  box-shadow: inset 0 0 0 1px rgb(238 238 234 / 0.08);
+  --muted: var(--muted-on-ink);
+}
+
+.card--accent {
+  background: var(--accent);
+  color: var(--ink);
+  --muted: rgb(14 15 12 / 0.72);
+}
+
+.card__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.card__period {
+  font-variant-numeric: tabular-nums;
+}
+
+.card__index {
+  margin-left: auto;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.card__title {
+  margin-top: 32px;
+  margin-left: -0.03em;
+  font-size: clamp(56px, 11vw, 184px);
+  overflow-wrap: anywhere;
+}
+
+.card__title--project {
+  font-size: clamp(40px, 6.4vw, 104px);
+  line-height: 0.9;
+  max-width: 14ch;
+  overflow-wrap: normal;
+}
+
+.card__role {
+  margin-top: 16px;
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.3;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.card__grid {
+  margin-top: auto;
+  padding-top: 48px;
+  display: grid;
+  gap: 32px;
+}
+
+.card__label {
+  color: var(--muted);
+}
+
+.card__text {
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.card__text--lead {
+  color: inherit;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.5;
+}
+
+.card--no-image .card__text--lead {
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1.3;
+  font-weight: 500;
+  max-width: 34ch;
+}
+
+.built {
+  margin-top: 12px;
+}
+
+.built li {
+  padding-block: 14px;
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.tags {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags li {
+  padding: 6px 14px;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 30%, transparent);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.degree__name {
+  margin-top: 12px;
+  font-size: clamp(22px, 2.2vw, 32px);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.degree__school {
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.degree .card__text {
+  margin-top: 16px;
+}
+
+.project__figure {
+  justify-self: start;
+  border-radius: calc(var(--card-radius) - 12px);
+  overflow: clip;
+  background: #ffffff;
+}
+
+/* Keep each project on one screen: the figure gives way before the text does. */
+.project__figure img {
+  width: auto;
+  max-width: 100%;
+  max-height: 52svh;
+}
+
+.project__citation {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.project__links {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (min-width: 1024px) {
+  .card__grid {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+
+  .card__grid--even {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .card--project .card__grid {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: end;
+  }
+
+  .card--no-image .card__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Contact --------------------------------------------------------------- */
+
+.section--contact {
+  padding-inline: var(--gutter);
+  padding-bottom: 24px;
+}
+
+.contact {
+  min-height: calc(100svh - var(--bar-h) - 48px);
+}
+
+.contact .card__period {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.contact__title {
+  margin-top: auto;
+  margin-left: -0.04em;
+  font-size: 16vw;
+  padding-top: 48px;
+}
+
+.contact__email {
+  margin-top: 24px;
+  font-size: clamp(22px, 3.6vw, 56px);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  overflow-wrap: anywhere;
+}
+
+.contact__note {
+  margin-top: 16px;
+  color: var(--muted);
+}
+
+.contact__actions {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.contact__links {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.contact__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contact__links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+/* Footer ---------------------------------------------------------------- */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 24px var(--gutter) 32px;
+  font-size: 14px;
+  color: var(--muted-on-ink);
+}
