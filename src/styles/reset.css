@@ -1,0 +1,65 @@
+/* Minimal reset shared by the redesign directions. No visual opinions here. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ol,
+ul {
+  margin: 0;
+}
+
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
