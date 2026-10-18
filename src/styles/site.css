@@ -111,8 +111,7 @@ a {
 .project__title,
 .xp__tab-name,
 .blog-item__title,
-.post__title,
-.marquee {
+.post__title {
   font-weight: 850;
   font-stretch: 75%;
   text-transform: uppercase;
@@ -314,15 +313,34 @@ a:hover .arrow {
   padding: calc(var(--bar-h) + 48px) var(--gutter) 24px;
 }
 
+/* The kicker sits at the top of the hero; the name and links sit at the
+   bottom. Padding, not margin, keeps a minimum gap when space runs out. */
 .hero__kicker {
-  margin-bottom: 24px;
+  margin-bottom: auto;
+  padding-bottom: 64px;
   color: var(--paper);
 }
 
 .hero__name {
-  /* "ZAKKARIJA" is 3.69em wide in this setting: fit it to the content width. */
-  font-size: calc(100cqw / 3.72);
+  /* "ZAKKARIJA" is 3.69em wide in this setting, and the two lines are 1.72em
+     tall. Take whichever is smaller: 80% of the content width, or what is
+     left of the viewport after the bar, kicker, gap and links (~360px), so
+     the profile links are always visible on first load. */
+  font-size: max(48px, min(calc(80cqw / 3.72), calc((100svh - 360px) / 1.72)));
   margin-left: -0.04em;
+}
+
+@media (max-width: 767px) {
+  .hero__name {
+    font-size: max(48px, min(calc(100cqw / 3.72), calc((100svh - 400px) / 1.72)));
+  }
+}
+
+/* Phones held sideways: no room for the full gap. */
+@media (max-height: 480px) {
+  .hero__kicker {
+    padding-bottom: 32px;
+  }
 }
 
 .hero__name .line {
@@ -382,50 +400,6 @@ a:hover .arrow {
   from {
     opacity: 0;
     transform: translateY(12px);
-  }
-}
-
-/* Marquee --------------------------------------------------------------- */
-
-.marquee {
-  overflow: clip;
-  padding-block: 48px;
-  font-size: clamp(48px, 8vw, 128px);
-  white-space: nowrap;
-}
-
-.marquee__track {
-  display: flex;
-  width: max-content;
-}
-
-.marquee__group {
-  display: flex;
-}
-
-.marquee__item {
-  display: inline-flex;
-  align-items: center;
-}
-
-.marquee__sep {
-  display: inline-block;
-  width: 0.22em;
-  height: 0.22em;
-  margin-inline: 0.45em;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .marquee__track {
-    animation: marquee 48s linear infinite;
-  }
-}
-
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
   }
 }
 

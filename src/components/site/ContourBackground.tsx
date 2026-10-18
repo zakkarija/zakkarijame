@@ -80,12 +80,15 @@ void main() {
   float f = fract(bands);
   float w = fwidth(bands);
   float d = min(f, 1.0 - f);
-  float line = 1.0 - smoothstep(0.0, w * 1.4, d);
-
-  // Every sixth contour is an index line, slightly stronger, in the accent.
+  // Every sixth contour is an index line, drawn heavier and in the accent.
   float index = step(abs(mod(floor(bands + 0.5), 6.0)), 0.0);
-  vec3 lineColor = mix(uLine, uAccent, index * 0.6);
-  float alpha = mix(0.10, 0.22, index);
+  float line = 1.0 - smoothstep(0.0, w * mix(1.4, 2.2, index), d);
+
+  // A slow wave of brightness travels along the index lines, so stretches
+  // of each one light up and fade instead of sitting at one level.
+  float pulse = smoothstep(-0.2, 0.7, snoise(vec3(uv * 0.9 + 41.0, t * 2.5)));
+  vec3 lineColor = mix(uLine, uAccent, index);
+  float alpha = mix(0.10, 0.22 + 0.38 * pulse, index);
 
   // Fade toward the edges so text never sits on busy lines.
   float vignette = smoothstep(1.25, 0.25, length(uv * vec2(0.8, 1.0)));

@@ -51,15 +51,6 @@ const roles: Role[] = [
   },
 ];
 
-const marquee = [
-  "Agent platforms",
-  "MCP integrations",
-  "Developer tooling",
-  "Backend orchestration",
-  "Bare-metal cloud",
-  "MLOps pipelines",
-];
-
 const pad = (n: number) => String(n).padStart(2, "0");
 
 function Arrow() {
@@ -126,21 +117,6 @@ export default function ShowcasePage() {
               <ProfileLinks />
             </div>
           </section>
-
-          <div className="marquee" aria-hidden="true">
-            <div className="marquee__track">
-              {[0, 1].map((copy) => (
-                <span key={copy} className="marquee__group">
-                  {marquee.map((m) => (
-                    <span key={m} className="marquee__item">
-                      {m}
-                      <span className="marquee__sep" />
-                    </span>
-                  ))}
-                </span>
-              ))}
-            </div>
-          </div>
 
           <section id="experience" className="section" aria-labelledby="experience-title">
             <h2 id="experience-title" className="section__heading drift">
