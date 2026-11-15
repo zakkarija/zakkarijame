@@ -99,7 +99,8 @@ needs a number you do not have, leave a clearly-marked placeholder and say so.
 ## Working agreement
 
 - Small, reviewable commits with real messages.
-- Never push to `main`. Work on a branch.
+- Never push to `main`. Work on a branch. The one exception is deploying to
+  production when the user asks for it: follow `AGENTS.md` exactly.
 - After a visual change, actually look at it: run the dev server and open the
   page at 1440px, 834px and 390px before saying it works.
 - If you disagree with something in the design brief, say so and make the case.
