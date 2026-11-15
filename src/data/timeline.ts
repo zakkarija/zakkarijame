@@ -25,6 +25,10 @@ export interface TimelineEntry {
    * above (and what the names mean); Zakkarija should check the wording.
    */
   built?: { title: string; detail: string }[];
+  /** Heading over the built list. Defaults to "What I built". */
+  builtLabel?: string;
+  /** Degree name short enough for a role tab, for study entries. */
+  degree?: string;
   /** Technologies named in the description. */
   stack?: string[];
 }
@@ -66,11 +70,23 @@ export const timelineItems: TimelineEntry[] = [
     title: "M.Sc Computer Science",
     subtitle: "VU Amsterdam & University of Amsterdam",
     short: "MSc, VU and UvA",
-    description: "Thesis with IDEKO: industrial anomaly-detection pipelines on CNC machine signals, built once on MLflow and once on Kubeflow to compare the two in practice.",
+    description: "Joint degree from the University of Amsterdam and VU Amsterdam, with research on industrial MLOps: how machine-learning pipelines are built and run in production.",
     logo: "/logos/Amsterdamuniversitylogo.svg.png",
     start: 2023,
     end: 2025,
     track: "study",
+    degree: "MSc Computer Science",
+    builtLabel: "Research",
+    built: [
+      {
+        title: "Thesis with IDEKO",
+        detail: "Two anomaly-detection pipelines for CNC machine signals, one on MLflow and one on Kubeflow, to compare them in practice.",
+      },
+      {
+        title: "Paper at CAIN 2026",
+        detail: "A systematic review of MLOps tools across 41 papers, published by ACM.",
+      },
+    ],
   },
   {
     id: "phoenixnap",
@@ -135,10 +151,18 @@ export const timelineItems: TimelineEntry[] = [
     title: "B.Sc Artificial Intelligence",
     subtitle: "University of Malta",
     short: "BSc, University of Malta",
-    description: "Machine learning, computer vision and knowledge representation. Dissertation on saliency-directed product placement.",
+    description: "Machine learning, computer vision and knowledge representation.",
     logo: "/logos/UoM_logo.jpg",
     start: 2018,
     end: 2021,
     track: "study",
+    degree: "BSc Artificial Intelligence",
+    builtLabel: "Dissertation",
+    built: [
+      {
+        title: "Saliency-directed product placement",
+        detail: "Ranks the products in a scene by how likely each is to catch attention first, using Mask R-CNN. The ranking reached a 0.66 correlation with human attention.",
+      },
+    ],
   },
 ];

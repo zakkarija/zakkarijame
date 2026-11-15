@@ -39,7 +39,7 @@ export const organisations: Organisation[] = [
     id: "vu",
     name: "UvA & VU Amsterdam",
     blurb:
-      "Joint MSc Computer Science. UvA (University of Amsterdam) is consistently ranked among the top universities in continental Europe; VU Amsterdam contributes the distributed-systems and software-engineering coursework.",
+      "A joint MSc Computer Science, run together by the University of Amsterdam (UvA) and Vrije Universiteit Amsterdam (VU), with courses at both.",
     links: [
       { label: "Visit UvA", url: "https://www.uva.nl/en" },
       { label: "Visit VU", url: "https://vu.nl/en" },
@@ -49,7 +49,7 @@ export const organisations: Organisation[] = [
     id: "uom",
     name: "University of Malta",
     blurb:
-      "Malta's leading research university, founded 1592, one of the oldest in continental Europe. The Department of Artificial Intelligence covers machine learning, computer vision, and knowledge representation.",
+      "Malta's national university, with roots in a Jesuit college founded in 1592. Its Department of Artificial Intelligence teaches machine learning, computer vision and knowledge representation.",
     links: [{ label: "Visit site", url: "https://www.um.edu.mt" }],
   },
   {

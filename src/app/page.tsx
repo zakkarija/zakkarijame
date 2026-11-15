@@ -31,24 +31,22 @@ const roles: Role[] = [
     org: organisationById(job.org),
     built: job.built,
   })),
-  {
-    id: "education",
-    tab: "Education",
-    period: formatPeriod(
-      Math.min(...education.map((e) => e.start)),
-      Math.max(...education.map((e) => e.end ?? 0)),
-    ),
-    current: false,
-    heading: "Computer science and artificial intelligence",
-    degrees: education.map((e) => ({
-      id: e.id,
-      period: formatPeriod(e.start, e.end),
-      name: e.title,
-      school: e.subtitle,
-      org: organisationById(e.org),
-      text: e.description,
+  // One entry per degree, newest first: the degree names the tab and the
+  // full university name sits under it.
+  ...education
+    .sort((a, b) => b.start - a.start)
+    .map((study) => ({
+      id: study.id,
+      tab: study.degree ?? study.title,
+      school: study.subtitle,
+      period: formatPeriod(study.start, study.end),
+      current: false,
+      heading: study.degree ?? study.title,
+      lead: study.description,
+      org: organisationById(study.org),
+      built: study.built,
+      builtLabel: study.builtLabel,
     })),
-  },
 ];
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -99,27 +97,29 @@ export default function ShowcasePage() {
       <div className="page">
         <main id="top">
           <section className="hero" aria-labelledby="hero-name">
-            <p className="hero__kicker reveal" style={{ "--d": "0.5s" } as React.CSSProperties}>
-              {profile.role}, {profile.team}
-              <br />
-              {booking ? <OrgLink org={booking}>{profile.company}</OrgLink> : profile.company}
-            </p>
-            <h1 id="hero-name" className="hero__name">
-              <span className="line">
-                <span style={{ "--d": "0.05s" } as React.CSSProperties}>{profile.givenName}</span>
-              </span>
-              <span className="line">
-                <span style={{ "--d": "0.15s" } as React.CSSProperties}>{profile.familyName}</span>
-              </span>
-            </h1>
-            <div className="hero__foot reveal" style={{ "--d": "0.6s" } as React.CSSProperties}>
-              <span>{profile.city}</span>
-              <ProfileLinks />
+            <div className="hero__body">
+              <h1 id="hero-name" className="hero__name">
+                <span className="line">
+                  <span style={{ "--d": "0.05s" } as React.CSSProperties}>{profile.givenName}</span>
+                </span>
+                <span className="line">
+                  <span style={{ "--d": "0.15s" } as React.CSSProperties}>{profile.familyName}</span>
+                </span>
+              </h1>
+              <div className="hero__details reveal" style={{ "--d": "0.5s" } as React.CSSProperties}>
+                <p className="hero__role">
+                  {profile.role}, {profile.team}
+                  <br />
+                  {booking ? <OrgLink org={booking}>{profile.company}</OrgLink> : profile.company}
+                </p>
+                <p className="hero__city">{profile.city}</p>
+                <ProfileLinks />
+              </div>
             </div>
           </section>
 
           <section id="experience" className="section" aria-labelledby="experience-title">
-            <h2 id="experience-title" className="section__heading drift">
+            <h2 id="experience-title" className="section__heading">
               Experience
             </h2>
 
@@ -131,7 +131,7 @@ export default function ShowcasePage() {
           </section>
 
           <section id="projects" className="section" aria-labelledby="projects-title">
-            <h2 id="projects-title" className="section__heading drift">
+            <h2 id="projects-title" className="section__heading">
               Projects
             </h2>
 
@@ -185,24 +185,28 @@ export default function ShowcasePage() {
 
           <section id="contact" className="section section--contact" aria-labelledby="contact-title">
             <div className="card card--accent contact grow">
-              <p className="card__period">Contact</p>
-              <h2 id="contact-title" className="contact__title">
-                Get in touch
-              </h2>
-              <EmailLink email={profile.email} className="contact__email">
-                {profile.email}
-              </EmailLink>
-              {OPEN_TO_WORK ? <p className="contact__note">{OPEN_TO_WORK_NOTE}</p> : null}
-              <div className="contact__actions">
-                <EmailLink email={profile.email} className="btn btn--ink btn--lg">
-                  Email me
-                </EmailLink>
-                <a className="btn btn--line btn--lg" href={profile.calUrl}>
-                  Book a call
-                  <Arrow />
-                </a>
+              <div>
+                <p className="card__period">Contact</p>
+                <h2 id="contact-title" className="contact__title">
+                  Get in touch
+                </h2>
+                {OPEN_TO_WORK ? <p className="contact__note">{OPEN_TO_WORK_NOTE}</p> : null}
               </div>
-              <ProfileLinks className="profile-links--contact" />
+              <div>
+                <EmailLink email={profile.email} className="contact__email">
+                  {profile.email}
+                </EmailLink>
+                <div className="contact__actions">
+                  <EmailLink email={profile.email} className="btn btn--ink btn--lg">
+                    Email me
+                  </EmailLink>
+                  <a className="btn btn--line btn--lg" href={profile.calUrl}>
+                    Book a call
+                    <Arrow />
+                  </a>
+                </div>
+                <ProfileLinks className="profile-links--contact" />
+              </div>
             </div>
           </section>
         </main>

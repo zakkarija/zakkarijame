@@ -9,6 +9,8 @@ import { OrgLink, WithMentions } from "./OrgLink";
 export type Role = {
   id: string;
   tab: string;
+  /** Second line on the tab, e.g. the full university name under a degree. */
+  school?: string;
   period: string;
   current: boolean;
   heading: string;
@@ -16,14 +18,7 @@ export type Role = {
   tags?: string[];
   org?: Organisation;
   built?: { title: string; detail: string }[];
-  degrees?: {
-    id: string;
-    period: string;
-    name: string;
-    school: string;
-    org?: Organisation;
-    text: string;
-  }[];
+  builtLabel?: string;
 };
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -76,11 +71,12 @@ export function ExperienceTabs({ roles, mentions }: { roles: Role[]; mentions: O
             aria-selected={active === i}
             aria-controls={`xp-panel-${r.id}`}
             tabIndex={active === i ? 0 : -1}
-            className="xp__tab"
+            className={r.school ? "xp__tab xp__tab--study" : "xp__tab"}
             onClick={() => select(i)}
           >
             <span className="xp__tab-period">{r.period}</span>
             <span className="xp__tab-name">{r.tab}</span>
+            {r.school ? <span className="xp__tab-school">{r.school}</span> : null}
           </button>
         ))}
       </div>
@@ -121,14 +117,14 @@ export function ExperienceTabs({ roles, mentions }: { roles: Role[]; mentions: O
 
           {r.built ? (
             <div className="xp__built">
-              <h4 className="card__label">What I built</h4>
+              <h4 className="card__label">{r.builtLabel ?? "What I built"}</h4>
               <ol
                 className="tiles"
                 style={{ "--cols": r.built.length === 4 ? 2 : r.built.length } as React.CSSProperties}
               >
                 {r.built.map((b, n) => (
                   <li key={b.title} className="tile">
-                    <span className="tile__index">{pad(n + 1)}</span>
+                    {r.built!.length > 1 ? <span className="tile__index">{pad(n + 1)}</span> : null}
                     <p className="tile__title">{b.title}</p>
                     <p className="tile__text">{b.detail}</p>
                   </li>
@@ -137,27 +133,6 @@ export function ExperienceTabs({ roles, mentions }: { roles: Role[]; mentions: O
             </div>
           ) : null}
 
-          {r.degrees ? (
-            <div className="xp__built">
-              <ol
-                className="tiles tiles--wide"
-                style={{ "--cols": r.degrees.length } as React.CSSProperties}
-              >
-                {r.degrees.map((d) => (
-                  <li key={d.id} className="tile">
-                    <span className="tile__index">{d.period}</span>
-                    <p className="tile__title tile__title--lg">{d.name}</p>
-                    <p className="tile__school">
-                      {d.org ? <OrgLink org={d.org}>{d.school}</OrgLink> : d.school}
-                    </p>
-                    <p className="tile__text">
-                      <WithMentions text={d.text} orgs={mentions} />
-                    </p>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          ) : null}
         </div>
       ))}
       </div>
