@@ -317,12 +317,12 @@ a:hover .arrow {
   padding: calc(var(--bar-h) + 64px) var(--gutter) 0;
 }
 
-/* Name on the left; job title, city and links beside it, sharing the same
-   bottom line. Stacked below 1024px. */
+/* One left-aligned stack at every width: name, then job title, city and
+   links directly under it. The open space sits above and to the right. */
 .hero__body {
   display: grid;
   gap: 32px;
-  align-items: end;
+  justify-items: start;
 }
 
 .hero__name {
@@ -355,14 +355,6 @@ a:hover .arrow {
 
 .hero__details .profile-links {
   margin-top: 24px;
-}
-
-@media (min-width: 1024px) {
-  .hero__body {
-    grid-template-columns: auto minmax(0, 480px);
-    justify-content: space-between;
-    gap: 64px;
-  }
 }
 
 .profile-links {
@@ -1022,6 +1014,11 @@ a:hover .arrow {
     border-radius: 0;
     background: none;
     box-shadow: inset 0 1px 0 color-mix(in srgb, currentColor 14%, transparent);
+  }
+
+  /* A lone item has no number, so no number column either. */
+  .xp .tile--plain {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .xp .tile__index {

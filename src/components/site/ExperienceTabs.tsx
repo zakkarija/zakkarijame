@@ -142,7 +142,7 @@ export function ExperienceTabs({ roles, mentions }: { roles: Role[]; mentions: O
                   style={{ "--cols": r.built.length === 4 ? 2 : r.built.length } as React.CSSProperties}
                 >
                   {r.built.map((b, n) => (
-                    <li key={b.title} className="tile">
+                    <li key={b.title} className={r.built!.length > 1 ? "tile" : "tile tile--plain"}>
                       {r.built!.length > 1 ? <span className="tile__index">{pad(n + 1)}</span> : null}
                       <p className="tile__title">
                         <WithMentions text={b.title} orgs={mentions} />
