@@ -1092,7 +1092,8 @@ a:hover .arrow {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 0.15em;
-  overflow-wrap: anywhere;
+  /* Break at the <wbr> before the @; mid-word only as a last resort. */
+  overflow-wrap: break-word;
 }
 
 .contact__actions {

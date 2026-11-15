@@ -194,7 +194,9 @@ export default function ShowcasePage() {
               </div>
               <div>
                 <EmailLink email={profile.email} className="contact__email">
-                  {profile.email}
+                  {/* If it has to wrap, wrap before the @, never mid-word. */}
+                  {profile.email.split("@")[0]}
+                  <wbr />@{profile.email.split("@")[1]}
                 </EmailLink>
                 <div className="contact__actions">
                   <EmailLink email={profile.email} className="btn btn--ink btn--lg">
