@@ -49,9 +49,6 @@ export function SiteBar({ home = false }: { home?: boolean }) {
 export function SiteFooter() {
   return (
     <footer className="footer">
-      <p>
-        © {new Date().getFullYear()} {profile.name}
-      </p>
       <ul className="footer__links">
         <li>
           <Link href="/blogs">Writing</Link>
