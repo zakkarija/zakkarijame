@@ -539,98 +539,78 @@ a:hover .arrow {
   color: var(--muted);
 }
 
-/* Experience: one card, a role list switching a detail panel ------------ */
+/* Experience ------------------------------------------------------------
+   Each role is a heading button followed by its panel. Stacked (phones and
+   tablets) that is an accordion: the panel opens under the row you tapped.
+   On desktop the grid lifts the panels into a column beside the buttons. */
 
 .xp {
   display: grid;
-  gap: 32px;
+  gap: 6px;
 }
 
-.xp__tabs {
-  display: flex;
-  gap: 24px;
-  margin-inline: calc(-1 * var(--card-pad));
-  padding-inline: var(--card-pad);
-  scroll-padding-inline: var(--card-pad);
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.xp__tabs::-webkit-scrollbar {
-  display: none;
+.xp__head {
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 .xp__tab {
-  flex: none;
   display: grid;
-  justify-items: start;
-  gap: 4px;
-  padding: 8px 0;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
   border: 0;
-  background: none;
-  color: inherit;
+  border-radius: 14px;
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  color: var(--muted);
+  font: inherit;
   text-align: left;
   cursor: pointer;
-  opacity: 0.38;
-  transition: opacity 200ms ease;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    opacity 200ms ease;
 }
 
 .xp__tab:hover {
-  opacity: 0.72;
+  color: inherit;
 }
 
-.xp__tab[aria-selected="true"] {
-  opacity: 1;
+.xp__tab[aria-expanded="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.xp__tab-period {
+  grid-area: 1 / 2;
+  justify-self: end;
+  font-variant-numeric: tabular-nums;
 }
 
 .xp__tab-name {
-  font-size: var(--fs-4);
+  grid-area: 1 / 1;
+  font-size: var(--fs-3);
 }
 
 /* Degrees: the university's full name, in reading type, under the degree. */
 .xp__tab-school {
+  grid-column: 1 / -1;
   margin-top: 4px;
   font-size: var(--fs-1);
   line-height: 1.4;
   font-weight: 500;
 }
 
-.xp__tab[aria-selected="true"] .xp__tab-name::after {
-  content: "";
-  display: inline-block;
-  width: 0.22em;
-  height: 0.22em;
-  margin-left: 0.18em;
-  border-radius: 50%;
-  background: var(--accent);
-  vertical-align: 0.08em;
-}
-
-.xp__panels {
-  display: grid;
-}
-
 .xp__panel {
-  grid-area: 1 / 1;
   min-width: 0;
-  transition:
-    opacity 280ms ease,
-    transform 280ms var(--ease-out),
-    visibility 0s;
+  padding: 16px 4px 24px;
 }
 
-/* Hidden panels keep their space (the tallest sets the height) but are
-   invisible, unfocusable and out of the accessibility tree. */
 .xp__panel[hidden] {
-  display: block;
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(8px);
-  pointer-events: none;
-  transition:
-    opacity 180ms ease,
-    transform 180ms ease,
-    visibility 0s 180ms;
+  display: none;
 }
 
 .xp__meta {
@@ -669,30 +649,114 @@ a:hover .arrow {
   margin-top: 16px;
 }
 
+/* In the accordion the row already names a degree. */
+@media (max-width: 1023px) {
+  .xp__role--repeat {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
+  .xp__panel:not([hidden]) {
+    animation: panel-in 260ms var(--ease-out) both;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
 @media (min-width: 1024px) {
+  /* One auto row per role for the buttons, then a 1fr row that absorbs the
+     rest of the panel's height so the buttons stay packed at the top. */
   .xp {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: 64px;
-    align-items: start;
+    grid-template-rows: repeat(var(--n), auto) 1fr;
+    column-gap: 64px;
+    row-gap: 0;
   }
 
-  .xp__tabs {
-    flex-direction: column;
-    gap: 0;
-    margin: 0;
-    padding: 0;
-    overflow: visible;
+  .xp__head {
+    grid-column: 1;
   }
 
   .xp__tab {
-    width: 100%;
+    grid-template-columns: none;
+    justify-items: start;
+    gap: 4px;
+    min-height: 0;
     padding: 20px 0;
+    border-radius: 0;
+    background: none;
+    color: inherit;
+    opacity: 0.38;
     box-shadow: inset 0 1px 0 color-mix(in srgb, currentColor 14%, transparent);
   }
 
-  .xp__tab:first-child {
+  .xp__head:first-of-type .xp__tab {
     padding-top: 0;
     box-shadow: none;
+  }
+
+  .xp__tab:hover {
+    opacity: 0.72;
+  }
+
+  .xp__tab[aria-expanded="true"] {
+    background: none;
+    color: inherit;
+    opacity: 1;
+  }
+
+  .xp__tab-period,
+  .xp__tab-name,
+  .xp__tab-school {
+    grid-area: auto;
+    justify-self: start;
+  }
+
+  .xp__tab-name {
+    font-size: var(--fs-4);
+  }
+
+  .xp__tab[aria-expanded="true"] .xp__tab-name::after {
+    content: "";
+    display: inline-block;
+    width: 0.22em;
+    height: 0.22em;
+    margin-left: 0.18em;
+    border-radius: 50%;
+    background: var(--accent);
+    vertical-align: 0.08em;
+  }
+
+  /* All panels share the right-hand cell, so the card is as tall as the
+     tallest one and switching roles never shifts the page. */
+  .xp__panel {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    padding: 0;
+    transition:
+      opacity 280ms ease,
+      transform 280ms var(--ease-out),
+      visibility 0s;
+  }
+
+  /* Hidden panels keep their space but are invisible, unfocusable and out
+     of the accessibility tree. */
+  .xp__panel[hidden] {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease,
+      visibility 0s 180ms;
   }
 }
 
@@ -929,70 +993,8 @@ a:hover .arrow {
   }
 }
 
-/* Below desktop the roles are a compact list (name left, years right), so
-   all five are visible and long university names have room. */
-@media (max-width: 1023px) {
-  .xp__tabs {
-    display: grid;
-    gap: 6px;
-    margin: 0;
-    padding: 0;
-    overflow: visible;
-  }
-
-  .xp__tab {
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: baseline;
-    column-gap: 12px;
-    row-gap: 0;
-    min-height: 52px;
-    padding: 14px 16px;
-    border-radius: 14px;
-    background: color-mix(in srgb, currentColor 6%, transparent);
-    color: var(--muted);
-    opacity: 1;
-  }
-
-  .xp__tab:hover {
-    opacity: 1;
-  }
-
-  .xp__tab[aria-selected="true"] {
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  .xp__tab-period {
-    grid-area: 1 / 2;
-    justify-self: end;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .xp__tab-name {
-    grid-area: 1 / 1;
-    font-size: var(--fs-3);
-  }
-
-  .xp__tab-school {
-    grid-column: 1 / -1;
-  }
-
-  .xp__tab[aria-selected="true"] .xp__tab-name::after {
-    display: none;
-  }
-}
-
-/* Phones: each role only as tall as its content, and "What I built" as a
-   tight list, not cards. */
+/* Phones: "What I built" as a tight list, not cards. */
 @media (max-width: 767px) {
-  .xp {
-    gap: 24px;
-  }
-
-  .xp__panel[hidden] {
-    display: none;
-  }
-
   .xp__role {
     margin-top: 16px;
   }
@@ -1036,19 +1038,6 @@ a:hover .arrow {
 
   .xp .tile__text {
     line-height: 1.45;
-  }
-}
-
-@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
-  .xp__panel:not([hidden]) {
-    animation: panel-in 260ms var(--ease-out) both;
-  }
-}
-
-@keyframes panel-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
   }
 }
 
