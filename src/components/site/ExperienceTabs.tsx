@@ -125,8 +125,12 @@ export function ExperienceTabs({ roles, mentions }: { roles: Role[]; mentions: O
                 {r.built.map((b, n) => (
                   <li key={b.title} className="tile">
                     {r.built!.length > 1 ? <span className="tile__index">{pad(n + 1)}</span> : null}
-                    <p className="tile__title">{b.title}</p>
-                    <p className="tile__text">{b.detail}</p>
+                    <p className="tile__title">
+                      <WithMentions text={b.title} orgs={mentions} />
+                    </p>
+                    <p className="tile__text">
+                      <WithMentions text={b.detail} orgs={mentions} />
+                    </p>
                   </li>
                 ))}
               </ol>

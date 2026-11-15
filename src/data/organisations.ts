@@ -60,6 +60,17 @@ export const organisations: Organisation[] = [
     links: [{ label: "Visit site", url: "https://www.ideko.es/en" }],
     mentions: ["IDEKO"],
   },
+  {
+    id: "cain",
+    name: "CAIN 2026",
+    blurb:
+      "The 5th International Conference on AI Engineering, on software engineering for AI systems. Held in Rio de Janeiro in April 2026, co-located with ICSE, the International Conference on Software Engineering. Proceedings published by ACM.",
+    links: [
+      { label: "Read the paper", url: "https://doi.org/10.1145/3793653.3793785" },
+      { label: "Conference site", url: "https://conf.researchr.org/home/cain-2026" },
+    ],
+    mentions: ["CAIN 2026"],
+  },
 ];
 
 export const organisationById = (id: string | undefined) =>
